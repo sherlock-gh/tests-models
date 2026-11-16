@@ -1,0 +1,9 @@
+# Run state and results stay on Sherlock, never in the repo
+2026-10-config/results/
+2026-10-config/why/
+2026-11-models/results/
+__pycache__/
+.DS_Store
+.env
+*.key
+*.pem

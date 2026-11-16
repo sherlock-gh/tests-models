@@ -1,0 +1,15 @@
+config	language	run	result	stopped at
+devstral	python	1	failed	M1
+devstral	python	2	failed	M1
+coder-next	python	1	failed	M5
+coder-next	python	2	failed	M5
+coder-next	swift	1	failed	M3
+coder-next	swift	2	failed	M3
+laguna-xs	python	1	failed	M6
+laguna-xs	python	2	machine-failed	M4
+laguna-xs	python	3	failed	M6
+laguna-xs	python	2	failed	M2
+laguna-xs	swift	1	failed	M4
+laguna-xs	swift	2	failed	M3
+devstral	swift	1	failed	M1
+devstral	swift	2	failed	M1

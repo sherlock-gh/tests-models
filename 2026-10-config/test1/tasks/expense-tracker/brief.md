@@ -1,0 +1,1 @@
+A small personal expense tracker in Python, standard library only: record expenses (date, amount, category, note) in a local JSON file, add and list them from the command line, see a monthly summary by category, import expenses from a CSV file, set monthly budgets per category and see which are over, and do all of this from a simple local web page as well.

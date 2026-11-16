@@ -1,0 +1,7 @@
+# milestone  hidden tests it adds (cumulative: each milestone also runs every earlier line)
+M1 test_model_contract test_missing_store test_store_order_and_roundtrip
+M2 test_cli_add_list_order test_cli_invalid_add
+M3 test_summary_totals_order test_summary_empty_month
+M4 test_csv_success test_csv_atomic_failure
+M5 test_budget_report test_budget_under_limit
+M6 test_web_ test_readme_documents_commands_and_pages test_package_module_docstrings

@@ -1,0 +1,73 @@
+#!/bin/bash
+# cloud-in <claude|codex> <repo-dir> [agent args...]: Claude Code or Codex confined to one repo,
+# for the cloud comparison (README, "Cloud comparison"); cloud.sh runs every job through it. The
+# fence is hermes-in's (hosts/sherlock/bin/hermes-in, whose comments explain each rule), so a
+# frontier model works under the local models' limits, with two differences:
+# - The agent reads and writes its own sign-in and state (~/.claude and ~/.claude.json, or
+#   ~/.codex), which hermes-in hides from Hermes; the other agent's stay hidden. Commands it runs
+#   can read them too: its own login, nothing more.
+# - The test itself (~/tests-2026-10-config: the runner, the hidden tests, every model's results)
+#   is unreadable and unwritable, as the README says the hidden tests are. hermes-in doesn't
+#   close it.
+# Codex runs with its own sandbox off (it can't nest inside this one), as Claude Code runs with
+# its permission prompts off: this fence is the limit for both. Commands get the agent toolbox's
+# PATH and bash, as Hermes's do; no auto-update mid-test.
+set -eu
+WS=/Users/sherlock/workspaces H=/Users/sherlock
+[ $# -ge 2 ] || { echo "usage: cloud-in <claude|codex> <repo-dir> [agent args...]" >&2; exit 2; }
+AGENT=$1; REPO=$(cd "$2" && pwd -P); shift 2
+case $AGENT in
+    # HIDE ends inside a rule that the profile closes
+    claude) HIDE="(subpath \"$H/.codex\"))
+(deny network-outbound (remote unix-socket (subpath \"$H/.codex\")))
+(deny network-outbound (remote unix-socket (regex #\"^/private/tmp/codex-\"))" ;;
+    codex) HIDE="(subpath \"$H/.claude\") (literal \"$H/.claude.json\"))
+(deny file-write* (subpath \"$H/.claude\") (literal \"$H/.claude.json\")" ;;
+    *) echo "cloud-in: the agent is claude or codex, not $AGENT" >&2; exit 2 ;;
+esac
+case "$REPO/" in
+    "$WS"/?*/) ;;
+    *) echo "cloud-in: $REPO is not a folder inside $WS" >&2; exit 2 ;;
+esac
+[ -d "$REPO/.git" ] || { echo "cloud-in: $REPO is not a git repo root" >&2; exit 2; }
+PARENTS="" D="$REPO"
+while [ "$D" != "$WS" ]; do D=$(dirname "$D"); PARENTS="$PARENTS (require-not (literal \"$D\"))"; done
+PROFILE="(version 1)
+(allow default)
+(deny file-read-data file-write*
+  (require-all (subpath \"$WS\") (require-not (subpath \"$REPO\"))$PARENTS))
+(deny file-read-data file-write* (subpath \"$H/tests-2026-10-config\"))
+(deny file-write*
+  (require-all (regex #\"/(site-packages|dist-packages|node_modules)(/|$)\") (require-not (subpath \"$REPO\")))
+  (subpath \"$H/.local/bin\") (subpath \"$H/.local/lib\") (subpath \"$H/bin\")
+  (subpath \"$H/Library/Python\") (subpath \"$H/.cargo\") (subpath \"$H/go\")
+  (subpath \"$H/.hermes/hermes-agent\") (subpath \"$H/.hermes/tools\")
+  (subpath \"$H/.hermes/plugins\") (subpath \"$H/.hermes/dashboard-themes\")
+  (literal \"$H/.bash_profile\") (literal \"$H/.bashrc\") (literal \"$H/.profile\")
+  (literal \"$H/.zprofile\") (literal \"$H/.zshrc\") (literal \"$H/.zshenv\")
+  (subpath \"$H/.config/git\") (subpath \"$H/.config/gh\") (literal \"$H/.gitconfig\") (subpath \"$H/.ssh\")
+  (subpath \"$H/scaffolding\")
+  (subpath \"$REPO/.git/hooks\") (literal \"$REPO/.git/config\"))
+(deny file-read-data
+  (subpath \"$H/.vscode-server\") (subpath \"$H/.ssh\")
+  (subpath \"$H/.config/aiinfra\") (subpath \"$H/demo\") $HIDE)
+(deny file-write* (subpath \"$H/.config/aiinfra\") (subpath \"$H/demo\"))
+(deny network-outbound (remote unix-socket (regex #\"^/private/var/folders/.*/T/(vscode-|code-|mcp-)\")))
+(deny network-outbound (remote ip \"*:18100\"))
+(deny network-outbound (remote ip \"localhost:*\"))
+(allow network-outbound (remote ip \"localhost:18080\"))
+(allow network-outbound (remote ip \"localhost:18081\"))
+(allow network-outbound (remote ip \"localhost:18082\"))
+(allow network-outbound (remote ip \"localhost:18083\"))
+(allow network-outbound (remote ip \"localhost:18084\"))
+(allow network-outbound (remote ip \"localhost:18085\"))
+(allow network-outbound (remote ip \"localhost:18086\"))
+(allow network-outbound (remote ip \"localhost:18087\"))
+(allow network-outbound (remote ip \"localhost:18088\"))
+(allow network-outbound (remote ip \"localhost:18089\"))"
+
+# HERMES_IN_REPO: ~/.bash_profile keys the toolbox's place on PATH on it (dotfiles/bash_profile)
+export PATH=/Users/Shared/agent-tools/venv/bin:/usr/bin:/bin:/usr/sbin:/sbin SHELL=/bin/bash
+export HERMES_IN_REPO="$REPO" PIP_REQUIRE_VIRTUALENV=1 DISABLE_AUTOUPDATER=1
+cd "$REPO"
+exec sandbox-exec -p "$PROFILE" "$H/.local/bin/$AGENT" "$@"

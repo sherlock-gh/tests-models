@@ -1,0 +1,5 @@
+name	model	loaded	memory_gb	swap_mb	replied	parsed	tok_s	through
+laguna-s	TensorFold/Laguna-S-2.1-MLX-4bit	yes			yes	20	41.0	yes
+devstral	mlx-community/Devstral-Small-2-24B-Instruct-2512-4bit	yes			yes	20	23.4	yes
+flash	flash-next	yes			yes	20	29.7	yes
+coder30b	qwen3-coder-30b-64k	yes			yes	8	86.4	no

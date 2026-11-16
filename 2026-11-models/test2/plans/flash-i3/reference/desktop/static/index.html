@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Back office</title>
+<style>body{font:15px system-ui;margin:20px;max-width:900px}#err{color:#b00}section{margin:18px 0}input{width:110px}</style></head>
+<body><h1>Back office</h1><p id="err"></p>
+<section><h2>Cleaners</h2><input id="cn" placeholder="name"><button onclick="add('cleaners','cn')">Add</button><ul id="cleaners"></ul></section>
+<section><h2>Clients</h2><input id="kn" placeholder="name"><button onclick="add('clients','kn')">Add</button><ul id="clients"></ul></section>
+<section><h2>Book a job</h2>client <input id="bc"> cleaners <input id="bn" value="1"> minutes <input id="bl" value="240"> day <input id="bd" type="date">
+<button onclick="book()">Book</button><ul id="jobs"></ul></section>
+<section><h2>Taps</h2>job <input id="tj"> cleaner <input id="tc"> at <input id="ta" placeholder="YYYY-MM-DDTHH:MM">
+<button onclick="tap('arrive')">Arrive</button><button onclick="tap('depart')">Depart</button><button onclick="tap('more-time')">More time</button></section>
+<section><h2>Invoices</h2><ul id="invoices"></ul></section>
+<section><h2>Utilization</h2>day <input id="ud" type="date"><button onclick="util()">Show</button><ul id="util"></ul></section>
+<script>
+const $=id=>document.getElementById(id);
+async function api(m,p,b){const r=await fetch(p,{method:m,headers:{'Content-Type':'application/json'},body:b?JSON.stringify(b):undefined});
+ const j=await r.json();$('err').textContent=j.error||'';if(j.error)throw j.error;return j}
+async function add(k,i){await api('POST','/api/'+k,{name:$(i).value});load()}
+async function book(){await api('POST','/api/jobs',{client_id:+$('bc').value,cleaners_needed:+$('bn').value,expected_length_min:+$('bl').value,requested_day:$('bd').value});load()}
+async function tap(k){const b={cleaner_id:+$('tc').value};if($('ta').value)b.at=$('ta').value;await api('POST',`/api/jobs/${$('tj').value}/${k}`,b);load()}
+async function pay(id,c){await api('POST',`/api/invoices/${id}/pay`,{amount_cents:c});load()}
+async function del(k,id){await api('DELETE',`/api/${k}/${id}`);load()}
+async function util(){const u=await api('GET','/api/utilization/daily?date='+$('ud').value);$('util').innerHTML=u.entries.map(e=>`<li>${e.cleaner_name}: ${e.hours_worked} of ${e.hours_of}</li>`).join('')}
+async function load(){
+ for(const k of['cleaners','clients'])$(k).innerHTML=(await api('GET','/api/'+k))[k].map(r=>`<li>${r.id} ${r.name} <button onclick="del('${k}',${r.id})">Delete</button></li>`).join('');
+ $('jobs').innerHTML=(await api('GET','/api/jobs')).jobs.map(j=>`<li>${j.id} ${j.client_name||''} ${j.status} ${j.parts.map(p=>p.start+'–'+p.end.slice(11)).join(', ')} cleaners ${j.cleaner_ids} <button onclick="del('jobs',${j.id})">Delete</button></li>`).join('');
+ $('invoices').innerHTML=(await api('GET','/api/invoices')).invoices.map(i=>`<li>${i.id} job ${i.job_id} ${i.total_str} ${i.settled?'settled':`<button onclick="pay(${i.id},${i.total_cents})">Record payment</button>`}</li>`).join('')}
+load()
+</script></body></html>

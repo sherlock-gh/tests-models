@@ -1,0 +1,56 @@
+# Test 1's blind reviews. Round 1's local runs: set test1-20261111-1304, graded by Opus (of 16). Round 2's local runs with round 1's Sonnet and Terra runs, regraded: set test1-20261112-1410, graded by Sol through Codex on Sherlock (of 21; Terra, a contestant, didn't grade). Iteration 3 (round3, with Flash-Next redone after the placeholder-check fix, round3-sonnet and round3-terra): set test1-20261113-0923, graded against the F1-F7 checklist by Sol through Codex and by Opus, reconciled (of 21). One line a complete run.
+round	config	run	fit	rank	of	note
+round1	flash	1	yes	5	16	All rules right and both apps planned in parallel with mirrored tests; but invents a 52-workday search horizon and steps candidate starts on a grid, and leaves Flask vs stdlib open.
+round1	q27-4	3	yes	6	16	Every rule stated right, standard library, minute-by-minute scan finds the true earliest slot, integer cents rounded once; but lets a rebooked job end after 17:00, where only the extended job may, and adds a search horizon.
+round1	q27-4	1	yes	7	16	Thorough and both apps covered, but the booking search steps in 20-minute increments and stops at 30 days, so it can miss the earliest slot and refuse jobs the problem says to book.
+round1	q27-4	2	no	8	16	Thorough, but FR-002 requires the two apps to stay in sync, which the problem puts out of scope; adds a 90-day horizon.
+round1	laguna-s	3	no	9	16	Spec right, but the mobile app is three tasks at the end, the search uses a 20-minute grid, and utilization is built before booking.
+round1	laguna-s	2	no	10	16	Calls the workday 8 hours (it is 9), never states the $45 rate in the spec; otherwise covers both apps.
+round1	q122	1	no	11	16	Adds offline sync the problem excludes, plans a CLI, gives the Swift package 6 tasks and makes tests optional.
+round1	coder-next	1	no	12	16	8-hour workday error; plans an iOS app on CoreData with FastAPI rather than a UI-less Swift package.
+round1	coder-next	2	no	13	16	No mobile app at all (Python FastAPI in Docker), and rebooks a bumped job at exactly +1 h instead of by the booking rule.
+round1	coder-next	3	no	13	16	Calls the workday 8 hours (it is 9); plans a FastAPI back end and an iOS app with screens on UIKit, but no Swift tasks at all.
+round1	gemma31	1	no	15	16	Same as aa714f: stack undecided, no Swift tasks, deletion rules and error handling missing.
+round1	gemma31	2	no	15	16	Plan leaves language and platform as NEEDS CLARIFICATION, no Swift tasks, and the spec omits the deletion rules and per-cleaner invoice lines.
+round1-terra	terra	1	yes	1	21	Most buildable: both local apps, exact earliest-slot candidates without a cutoff, atomic cascades, preserved invoices, and day-split utilization are specified and ordered in the tasks.
+round1-terra	terra	2	yes	2	21	Covers both apps and all core rules with a finite search derived from existing jobs, atomic cascades, invoice snapshots, and shared fixtures; utilization attributes overnight work to the job's start day.
+round1-sonnet	sonnet	1	no	3	21	Detailed two-app tasks and parity cases make this useful, but its 366-day search cutoff can refuse a later valid slot, and it truncates tap times to whole minutes before billing.
+round1-sonnet	sonnet	2	no	4	21	Clear dual-app design, second-precision billing, and conformance cases; the arbitrary 366-day booking bound violates the unbounded earliest-slot rule, and utilization assigns all work to the Arrive date.
+round2	flash	2	no	5	21	Concrete APIs, parity scenarios, and well-sequenced tasks cover both apps, but the invented 60-day booking horizon rejects requests the stated rule would place later.
+round2	q27-4	1	no	6	21	Broad two-app coverage and sensible task order, but its 15-minute booking scan can miss the actual earliest available start after a variable-length job.
+round2	q27-4	3	no	7	21	Strong two-app structure and cascade worklist, but utilization is incorrectly capped at 8 and 40 hours and the model permits cancelling in-progress jobs on client deletion.
+round2	laguna-s	1	no	8	21	Detailed mirrored Python and Swift work covers most flows, but it repeatedly calls 8 hours the maximum job length, wrongly refusing valid jobs of up to 9 hours.
+round2	flash	1	no	9	21	Both apps and major workflows are planned, but the research's cents formula uses worked_minutes times 45 divided by 60 instead of times 4500 divided by 60; its 365-day cutoff also breaks booking.
+round2	laguna-s	2	no	10	21	Gets the 9-hour limit and most business rules right, but the mobile tasks cover mainly time and storage rather than the same full rule set, and the desktop is planned as a process rather than a defined local web page.
+round2	q27-4	2	no	11	21	Provides both app contracts and ordered tasks, but says an exactly 9-hour job is too long, gives a wrong overlap predicate in research, and shows invoice amounts three times the correct charge in its data example.
+round2	laguna-s	3	no	12	21	Covers many features in both languages, but plans one shared data file despite the separate-local-file limit and refuses valid jobs longer than 8 hours.
+round2	q122	2	no	13	21	The Python task list gives useful detail for booking, cascade, billing, and removals, but delivers only a CLI and omits the required Python-served web page and Swift package.
+round2	coder-next	2	no	14	21	Substantial domain coverage, including the correct 9-hour limit and chained rebooking, but the implementation is a single Python CLI with neither required app form.
+round2	coder-next	3	no	15	21	Plans a local Python API and most workflows, but omits the Swift package and explicitly imposes an incorrect 8-hour job limit.
+round2	coder-next	1	no	16	21	Has extensive requirements and a Python API outline, but no Swift package or coherent web-page tasks; deletion tasks refuse future jobs instead of rebooking or cancelling them.
+round2	q122	1	no	17	21	Plans a Python CLI only, rejects valid 8-to-9-hour jobs, and leaves the required desktop web page and Swift package unbuilt.
+round2	laguna-xs	3	no	18	21	A single Python CLI replaces both required app forms; it also gives jobs a 2-to-3-hour duration and computes invoices from cleaner count rather than each cleaner's recorded time.
+round2	gemma31	1	no	19	21	Thin single-project Python plan lacks the Swift package, a specified local web page, and enough implementation detail for safe cascading and error handling.
+round2	gemma31	3	no	20	21	Leaves language, platform, dependencies, and testing as NEEDS CLARIFICATION, then lists only a generic Python CLI; the required two-app implementation cannot be built from it.
+round2	flash	3	no	21	21	Although the spec and plan name both app forms, the task list switches paths and invents grace-period extension charges, half-day utilization values, and deletion of issued invoices, requiring extensive rework.
+round3-sonnet	sonnet	1	yes	1	21	Passes F1-F7 and follows every rule: page with a day view and tap buttons, shared conformance scenarios, failed cascades change nothing; 20 gaps recorded (one job in progress per cleaner can refuse an Arrive).
+round3-terra	terra	2	yes	1	21	Passes F1-F7 and follows every rule: split jobs booked as complete sequences, atomic cascades, invoices aggregated across parts; tasks less specific than Sonnet run 1 (Sol ranked it first; tied).
+round3-sonnet	sonnet	2	yes	3	21	Fit: Arrive/Depart are desktop API routes (no button needed, owner 13 Nov). Refuses lengths off the quarter hour (recorded; Sol failed it on these), so some valid requests need rounding.
+round3	flash	1	yes	4	21	Fit: Arrive/Depart are desktop API routes (no button needed, owner 13 Nov). Split-job parts fixed at 8:00, so long jobs book later than possible. The only fit local plan.
+round3	flash	3	no	5	21	F6: its invoice test expects $157.50 + $202.50 = $337.50 (the sum is $360.00). Otherwise complete, page with taps; refuses a long job whose first-found cleaners cannot take a later part; a DST test uses a nonexistent time.
+round3-sonnet	sonnet	3	no	6	21	F6: a job over 8 hours gets one Arrive/Depart pair for all its days, so its invoice bills the nights or issues after day one. Sol passed it.
+round3	q27-4	1	no	7	21	F4: back-office taps are coded but no route or page reaches them, so the back office never issues an invoice; a cleaner deletion that cannot rebook cancels the job (Sol: F6).
+round3-terra	terra	1	no	7	21	F4: back-office taps are coded but no route or page reaches them, so the back office never issues an invoice. Sol passed it; its interface lists no tap route.
+round3-terra	terra	3	no	7	21	F4: back-office taps are coded but no route or page reaches them, so the back office never issues an invoice. Sol passed it; its page lists no taps.
+round3	flash	2	no	7	21	F4: its desktop contract puts Arrive/Depart off the web page, so the back office never issues an invoice. Sol passed it.
+round3	q27-4	3	no	11	21	F4, F6: refuses deleting any cleaner or client who has worked a job; no back-office tap route; one Arrive/Depart pair per multi-day job.
+round3	q27-4	2	no	12	21	F4: taps and invoice issue only in the Swift app by design; the back office has no invoices.
+round3	laguna-s	3	no	13	21	F1: no task builds the back office web page.
+round3	laguna-s	2	no	13	21	F1: no task builds the web page or either app file store.
+round3	laguna-s	1	no	15	21	F1, F5: back office is an API with no page; the Swift package lacks a day view, Arrive and extension.
+round3	q122	2	no	16	21	F1, F3, F4: no page; no Swift file store; refuses deleting a cleaner with future jobs.
+round3	gemma31	1	no	17	21	F2, F4, F5, F7: a sketch with SwiftUI views; no CRUD, settlement or utilization; storage optional.
+round3	gemma31	3	no	18	21	F1, F4, F5, F7: no page; storage left open; the Swift package only records taps and extensions.
+round3	coder-next	1	no	19	21	F1, F2, F5, F7: almost everything in a Python API; the Swift package gets models and two tasks.
+round3	coder-next	3	no	20	21	F1-F5, F7: a connected REST back end with a SwiftUI client.
+round3	q122	3	no	21	21	F1-F5, F7: language, storage and platform left as NEEDS CLARIFICATION; neither app planned.

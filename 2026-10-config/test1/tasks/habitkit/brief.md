@@ -1,0 +1,1 @@
+HabitKit is the logic of a habit-tracking app, as a Swift package with no UI: habits with schedules (every day, certain weekdays, or a number of times a week), daily check-ins, current streaks, and completion rates over a period, all saved to a JSON file, so an iOS or macOS app can be built on top of it.
