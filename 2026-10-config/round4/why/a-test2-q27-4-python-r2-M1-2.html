@@ -1,0 +1,127 @@
+<!doctype html><meta charset="utf-8"><title>test2-q27-4-python-r2-M1-2</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ the round</a>
+
+# test2-q27-4-python-r2-M1-2: fail
+
+- Job: 00:00:17 to 00:03:49 (212 s); runner&#x27;s note: 2 failed, 1 passed, 34 deselected in 0.15s
+- Hermes&#x27;s turn: completed True, failed False, interrupted False, partial False, turn_exit_reason text_response(finish_reason=stop), api_calls 8
+- Hermes session: 20261110_000022_a12348
+
+## The session, turn by turn
+
+- 00:00:22 **prompt** [1389 chars]
+- 00:01:24 **call** read_file {path: SPEC.md}
+- 00:01:24 **call** search_files {pattern: [1 chars], target: [5 chars], path: ., limit: 50}
+  - 00:01:26 result (read_file): [102 lines, 5610 bytes]
+  - 00:01:26 result (search_files): [? lines, ? bytes]
+- 00:01:48 **call** read_file {path: expenses/models.py}
+- 00:01:48 **call** read_file {path: expenses/store.py}
+- 00:01:48 **call** read_file {path: expenses/__init__.py}
+- 00:01:48 **call** read_file {path: tests/test_store.py}
+- 00:01:48 **call** read_file {path: .gitignore}
+  - 00:01:48 result (read_file): [16 lines, 310 bytes]
+  - 00:01:48 result (read_file): [67 lines, 1997 bytes]
+  - 00:01:48 result (read_file): [1 lines, 72 bytes]
+  - 00:01:48 result (read_file): [48 lines, 1454 bytes]
+  - 00:01:48 result (read_file): [2 lines, 27 bytes]
+- 00:02:04 **model writes** (tool_calls) [193 chars]
+- 00:02:04 **call** terminal {command: python3 -m pytest -q 2&gt;&amp;1; echo &quot;exit=$?&quot;}
+- 00:02:04 **call** terminal {command: git status --short; git ls-files}
+  - 00:02:04 result (terminal): exit 0, 3 lines out
+  - 00:02:05 result (terminal): exit 0, 6 lines out
+- 00:02:15 **model writes** (tool_calls) [305 chars]
+- 00:02:15 **call** patch {path: expenses/store.py, old_string: [113 chars], new_string: [117 chars]}
+  - 00:02:16 result (patch): [? lines, ? bytes]
+- 00:02:57 **model writes** (tool_calls) [33 chars]
+- 00:02:57 **call** patch {new_string: [128 chars], old_string: [120 chars], path: tests/test_store.py}
+- 00:02:57 **call** patch {new_string: [60 chars], old_string: [56 chars], path: tests/test_store.py}
+  - 00:02:58 result (patch): [? lines, ? bytes]
+  - 00:02:58 result (patch): [? lines, ? bytes]
+- 00:03:04 **call** terminal {command: python3 -m pytest -q 2&gt;&amp;1; echo &quot;exit=$?&quot;}  ← the same call, time 2
+  - 00:03:05 result (terminal): exit 0, 3 lines out
+- 00:03:09 **model writes** (tool_calls) [23 chars]
+- 00:03:09 **call** terminal {command: git add -A &amp;&amp; git commit -m &quot;Rename Store.list to Store.expenses to avoid shadowing the builtin&quot; &amp;&amp; git status --short &amp;&amp; git log --oneline -3}
+  - 00:03:09 result (terminal): exit 0, 5 lines out
+- 00:03:21 **model writes** (stop) [744 chars]
+
+## Summary
+
+- Model turns 8, tool calls 14, distinct calls 13
+- The session&#x27;s last entry: the model writing text
+
+## The runner&#x27;s watch (one line each 30 s), last 60 lines
+
+```
+00:00:17  start: prompt 1410 bytes, limit 5400s
+00:00:48  +31s  files same (last change 31s ago)  request open yes (last 0s ago)
+00:01:18  +61s  files same (last change 61s ago)  request open yes (last 0s ago)
+00:01:48  +91s  files same (last change 91s ago)  request open yes (last 0s ago)
+00:02:18  +121s  files changed (last change 0s ago)  request open yes (last 0s ago)
+00:02:48  +151s  files same (last change 30s ago)  request open yes (last 0s ago)
+00:03:18  +181s  files changed (last change 0s ago)  request open yes (last 0s ago)
+00:03:48  +211s  Hermes exited on its own, status 0 -&gt; done
+```
+
+## The check&#x27;s output, last 60 lines
+
+```
+2 failed, 1 passed, 34 deselected in 0.15s
+```
+
+## The check&#x27;s errors, last 60 lines
+
+```
+.FF                                                                      [100%]
+=================================== FAILURES ===================================
+______________________________ test_missing_store ______________________________
+
+modules = &lt;function modules.&lt;locals&gt;.&lt;lambda&gt; at 0x1038477f0&gt;
+tmp_path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/pytest-of-sherlock/pytest-1004/test_missing_store0&#x27;)
+
+    def test_missing_store(modules, tmp_path):
+        &quot;&quot;&quot;Section 1: A missing data file represents an empty store.&quot;&quot;&quot;
+&gt;       assert modules(&quot;store&quot;).Store(tmp_path / &quot;absent.json&quot;).list() == []
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: &#x27;Store&#x27; object has no attribute &#x27;list&#x27;
+
+test_acceptance.py:104: AttributeError
+________________________ test_store_order_and_roundtrip ________________________
+
+modules = &lt;function modules.&lt;locals&gt;.&lt;lambda&gt; at 0x103846980&gt;
+tmp_path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/pytest-of-sherlock/pytest-1004/test_store_order_and_roundtrip0&#x27;)
+
+    def test_store_order_and_roundtrip(modules, tmp_path):
+        &quot;&quot;&quot;Section 1: Unique integer IDs, date ordering, and persistent round trip.&quot;&quot;&quot;
+        cls = modules(&quot;models&quot;).Expense
+        store_cls = modules(&quot;store&quot;).Store
+        path = tmp_path / &quot;store.json&quot;
+        store = store_cls(path)
+        later = cls(dt.date(2024, 2, 20), 1234, &quot;food&quot;, &#x27;comma, and &quot;quote&quot;&#x27;)
+        earlier = cls(dt.date(2024, 1, 1), 99, &quot;travel&quot;)
+        ids = [store.add(later), store.add(earlier)]
+        assert all(isinstance(i, int) for i in ids) and ids[0] != ids[1]
+        expected = [(ids[1], earlier), (ids[0], later)]
+&gt;       assert store.list() == expected
+               ^^^^^^^^^^
+E       AttributeError: &#x27;Store&#x27; object has no attribute &#x27;list&#x27;
+
+test_acceptance.py:118: AttributeError
+=========================== short test summary info ============================
+FAILED test_acceptance.py::test_missing_store - AttributeError: &#x27;Store&#x27; objec...
+FAILED test_acceptance.py::test_store_order_and_roundtrip - AttributeError: &#x27;...
+2 failed, 1 passed, 34 deselected in 0.15s
+```
+
+## The repo
+
+```
+branch: main
+* a07a565 41 seconds ago
+* a809a4b 7 minutes ago
+* e67cfc6 10 minutes ago
+uncommitted: none
+```
+
+## The server
+
+- Sherlock&#x27;s record of the model served: q27-4
+</body>

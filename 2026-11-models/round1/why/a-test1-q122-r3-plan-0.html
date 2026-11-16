@@ -1,0 +1,98 @@
+<!doctype html><meta charset="utf-8"><title>test1-q122-r3-plan-0</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ the round</a>
+
+# test1-q122-r3-plan-0: fail
+
+- Job: 02:44:47 to 02:49:48 (301 s); runner&#x27;s note: specs/001-scheduling-billing-system/plan.md: placeholder left: [link]
+- Hermes&#x27;s turn: completed True, failed False, interrupted False, partial False, turn_exit_reason text_response(finish_reason=stop), api_calls 15
+- Hermes session: 20261111_024451_893f1f
+
+## The session, turn by turn
+
+- 02:44:51 **prompt** [238 chars]
+- 02:44:55 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/.claude/skills/speckit-plan/SKILL.md}
+  - 02:44:55 result (read_file): [169 lines, 8344 bytes]
+- 02:45:11 **model writes** (tool_calls) [170 chars]
+- 02:45:11 **call** execute_code {code: [1011 chars]}
+  - 02:45:11 result (execute_code): exit 0, 14 lines out
+- 02:45:18 **model writes** (tool_calls) [115 chars]
+- 02:45:18 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/.specify/feature.json}
+- 02:45:18 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/.specify/templates/plan-template.md}
+- 02:45:18 **call** terminal {command: cd #267bd7 [128 chars]}
+  - 02:45:18 result (read_file): [3 lines, 64 bytes]
+  - 02:45:18 result (read_file): [113 lines, 3682 bytes]
+  - 02:45:19 result (terminal): exit 0, 2 lines out
+- 02:45:28 **model writes** (tool_calls) [89 chars]
+- 02:45:28 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/specs/001-scheduling-billing-system/spec … [123 chars]}
+- 02:45:28 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/specs/001-scheduling-billing-system/plan … [123 chars]}
+  - 02:45:28 result (read_file): [209 lines, 12264 bytes]
+  - 02:45:28 result (read_file): [113 lines, 3682 bytes]
+- 02:46:08 **model writes** (tool_calls) [625 chars]
+- 02:46:08 **call** write_file {content: [2547 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/specs/001-scheduling-billing-system/plan … [123 chars]}
+  - 02:46:08 result (write_file): [? lines, ? bytes]
+- 02:46:35 **model writes** (tool_calls) [191 chars]
+- 02:46:35 **call** write_file {content: [3268 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/specs/001-scheduling-billing-system/rese … [127 chars]}
+  - 02:46:35 result (write_file): [? lines, ? bytes]
+- 02:47:25 **model writes** (tool_calls) [78 chars]
+- 02:47:25 **call** write_file {content: [6230 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/specs/001-scheduling-billing-system/data … [129 chars]}
+  - 02:47:25 result (write_file): [? lines, ? bytes]
+- 02:47:29 **model writes** (tool_calls) [52 chars]
+- 02:47:29 **call** execute_code {code: [230 chars]}
+  - 02:47:29 result (execute_code): exit 0, 1 lines out
+- 02:48:13 **call** write_file {content: [5206 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/specs/001-scheduling-billing-system/cont … [132 chars]}
+  - 02:48:13 result (write_file): [? lines, ? bytes]
+- 02:48:59 **model writes** (tool_calls) [32 chars]
+- 02:48:59 **call** write_file {content: [5123 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/specs/001-scheduling-billing-system/quic … [129 chars]}
+  - 02:48:59 result (write_file): [? lines, ? bytes]
+- 02:49:28 **model writes** (tool_calls) [96 chars]
+- 02:49:28 **call** write_file {content: [3094 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-q122-r3/cleaning/specs/001-scheduling-billing-system/plan … [123 chars]}
+  - 02:49:28 result (write_file): [? lines, ? bytes]
+- 02:49:31 **model writes** (tool_calls) [52 chars]
+- 02:49:31 **call** terminal {command: cd #7ee8d7 [96 chars]}
+  - 02:49:31 result (terminal): exit 0, 10 lines out
+- 02:49:34 **call** terminal {command: cd #87bc6f [130 chars]}
+  - 02:49:34 result (terminal): exit 0, 0 lines out
+- 02:49:39 **call** terminal {command: cd #1098ac [492 chars]}
+  - 02:49:39 result (terminal): exit 0, 7 lines out
+- 02:49:47 **model writes** (stop) [862 chars]
+
+## Summary
+
+- Model turns 15, tool calls 17, distinct calls 17
+- The session&#x27;s last entry: the model writing text
+
+## The runner&#x27;s watch (one line each 30 s), last 60 lines
+
+```
+02:44:47  start: prompt 239 bytes, limit 5400s
+02:45:17  +30s  files same (last change 30s ago)  request open yes (last 0s ago)
+02:45:47  +60s  files changed (last change 0s ago)  request open yes (last 0s ago)
+02:46:17  +90s  files changed (last change 0s ago)  request open yes (last 0s ago)
+02:46:47  +120s  files changed (last change 0s ago)  request open yes (last 0s ago)
+02:47:17  +150s  files same (last change 30s ago)  request open yes (last 0s ago)
+02:47:47  +180s  files changed (last change 0s ago)  request open yes (last 0s ago)
+02:48:18  +210s  files changed (last change 0s ago)  request open yes (last 0s ago)
+02:48:48  +241s  files same (last change 31s ago)  request open yes (last 0s ago)
+02:49:18  +271s  files changed (last change 0s ago)  request open yes (last 0s ago)
+02:49:48  +301s  Hermes exited on its own, status 0 -&gt; done
+```
+
+## The check&#x27;s output, last 60 lines
+
+```
+specs/001-scheduling-billing-system/plan.md: placeholder left: [link]
+```
+
+## The repo
+
+```
+branch: main
+* c84bf4a 9 seconds ago
+* cc86fbc 5 minutes ago
+* 3fd3108 9 minutes ago
+uncommitted: none
+```
+
+## The server
+
+- Sherlock&#x27;s record of the model served: q122
+</body>

@@ -1,0 +1,46 @@
+<!doctype html><meta charset="utf-8"><title>test2-terra-swift-r1-M1-0.1794431258</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ round 1</a>
+
+# test2-terra-swift-r1-M1-0: fail
+
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+
+Codex: completed, 28 model calls; tool calls command_execution x11; 5 failed
+
+## The runner&#x27;s watch
+
+13:02:31  start: prompt 690 bytes, limit 5400s of work
+13:03:01  +30s  files same (last change 30s ago)  output 32749 bytes (last 0s ago)
+13:03:31  +60s  files changed (last change 0s ago)  output 46248 bytes (last 0s ago)
+13:04:01  +90s  files changed (last change 0s ago)  output 65815 bytes (last 0s ago)
+13:04:31  +120s  files changed (last change 0s ago)  output 66048 bytes (last 0s ago)
+13:05:01  +150s  files changed (last change 0s ago)  output 67241 bytes (last 0s ago)
+13:05:31  +180s  files changed (last change 0s ago)  output 89226 bytes (last 0s ago)
+13:06:02  +211s  Codex exited on its own, status 0 -&gt; done
+
+## How the turn ended
+
+{&quot;subtype&quot;: &quot;completed&quot;, &quot;api_calls&quot;: 28, &quot;model&quot;: &quot;gpt-6.1-terra&quot;, &quot;duration_ms&quot;: null, &quot;five&quot;: {&quot;used&quot;: 9.0, &quot;resets&quot;: 1794447693}, &quot;week&quot;: {&quot;used&quot;: 6.0, &quot;resets&quot;: 1794686238}, &quot;limited&quot;: false}
+
+## The check
+
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.bggNYo/w/mobile/Tests/CleaningLogicTests/M1.swift:45:114: error: cannot find type &#x27;Invoice&#x27; in scope
+    |                                                                                                                  `- error: cannot find type &#x27;Invoice&#x27; in scope
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.bggNYo/w/mobile/Tests/CleaningLogicTests/M1.swift:45:12: error: type &#x27;Fixture.Snapshot&#x27; does not conform to protocol &#x27;Equatable&#x27;
+    |            |- error: type &#x27;Fixture.Snapshot&#x27; does not conform to protocol &#x27;Equatable&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.bggNYo/w/mobile/Tests/CleaningLogicTests/M1.swift:45:114: error: cannot find type &#x27;Invoice&#x27; in scope
+    |                                                                                                                  `- error: cannot find type &#x27;Invoice&#x27; in scope
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.bggNYo/w/mobile/Tests/CleaningLogicTests/M1.swift:45:12: error: type &#x27;Fixture.Snapshot&#x27; does not conform to protocol &#x27;Equatable&#x27;
+    |            |- error: type &#x27;Fixture.Snapshot&#x27; does not conform to protocol &#x27;Equatable&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.bggNYo/w/mobile/Tests/CleaningLogicTests/M1.swift:46:138: error: value of type &#x27;CleaningService&#x27; has no member &#x27;listInvoices&#x27;
+    |                                                                                                                                          `- error: value of type &#x27;CleaningService&#x27; has no member &#x27;listInvoices&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.bggNYo/w/mobile/Tests/CleaningLogicTests/M1.swift:46:160: error: &#x27;nil&#x27; requires a contextual type
+    |                                                                                                                                                                `- error: &#x27;nil&#x27; requires a contextual type
+error: fatalError
+
+## Commits, newest first
+
+6ad4d3f 2 minutes ago
+3bc0d35 5 minutes ago
+</body>

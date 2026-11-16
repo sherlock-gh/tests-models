@@ -1,0 +1,113 @@
+<!doctype html><meta charset="utf-8"><title>test1-laguna-xs-r3-plan-0</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ round 1</a>
+
+# test1-laguna-xs-r3-plan-0: fail
+
+- Job: 12:32:34 to 12:41:36 (542 s); runner&#x27;s note: Hermes stopped: the model&#x27;s tool calls were invalid
+- Hermes&#x27;s turn: completed False, failed False, interrupted None, partial True, turn_exit_reason None, api_calls 29
+- Hermes session: 20261111_123238_aad092
+
+## The session, turn by turn
+
+- 12:32:38 **prompt** [238 chars]
+- 12:32:41 **call** read_file {path: .claude/skills/speckit-plan/SKILL.md}
+  - 12:32:41 result (read_file): [169 lines, 8344 bytes]
+- 12:32:44 **call** read_file {path: .specify/extensions.yml}
+  - 12:32:44 result (read_file): [0 lines, 0 bytes, NOT FOUND, error]
+- 12:32:47 **call** read_file {path: .specify/scripts/bash/setup-plan.sh}
+  - 12:32:48 result (read_file): [85 lines, 2540 bytes]
+- 12:32:52 **call** read_file
+arg_key&gt;path&lt;/arg_key&gt;&lt;arg_value&gt;.specify/scripts/bash/common.sh&lt;/arg_value&gt; {}
+  - 12:32:52 result (read_file
+arg_key&gt;path&lt;/arg_key&gt;&lt;arg_value&gt;.specify/scripts/bash/common.sh&lt;/arg_value&gt;): [299 chars]
+- 12:32:57 **call** read_file {path: .specify/scripts/common.sh}
+  - 12:32:57 result (read_file): [0 lines, 0 bytes, NOT FOUND, error]
+- 12:33:02 **call** search_files {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning, pattern: [10 chars]}
+  - 12:33:02 result (search_files): [? lines, ? bytes]
+- 12:33:08 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning/.specify/scripts/bash/resolve-templ … [126 chars]}
+  - 12:33:08 result (read_file): [57 lines, 1547 bytes]
+- 12:33:15 **call** shell {command: git status #f2a29f [10 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:33:15 result (shell): [218 chars]
+- 12:33:22 **call** terminal {command: git status #f2a29f [10 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:33:22 result (terminal): exit 0, 2 lines out
+- 12:33:29 **call** terminal {command: ls #45017c [16 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:33:29 result (terminal): exit 0, 7 lines out
+- 12:33:36 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning/.specify/feature.json}
+  - 12:33:36 result (read_file): [3 lines, 65 bytes]
+- 12:33:44 **call** shell {command: ls #c9a90c [24 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:33:44 result (shell): [218 chars]
+- 12:33:52 **call** shell {command: ls #c9a90c [24 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}  ← the same call, time 2
+  - 12:33:52 result (shell): [218 chars]
+- 12:34:00 **call** terminal {command: ls #c9a90c [24 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:34:00 result (terminal): exit 0, 4 lines out
+- 12:34:09 **call** shell {command: find #0b9e57 [29 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:34:09 result (shell): [218 chars]
+- 12:34:17 **call** terminal {command: find #0b9e57 [29 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:34:17 result (terminal): exit 0, 6 lines out
+- 12:34:26 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning/.specify/scripts/bash/common.sh}
+  - 12:34:26 result (read_file): [942 lines, 39506 bytes]
+- 12:34:55 **call** shell {command: ls #305331 [26 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:34:55 result (shell): [218 chars]
+- 12:35:24 **call** terminal {command: ls #305331 [26 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:35:24 result (terminal): exit 0, 6 lines out
+- 12:35:53 **call** read_file {}
+  - 12:35:53 result (read_file): [0 lines, 0 bytes, error]
+- 12:36:23 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning/.specify/templates/plan-template.md}
+  - 12:36:23 result (read_file): [113 lines, 3682 bytes]
+- 12:36:56 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning/.specify/templates/spec-template.md}
+  - 12:36:56 result (read_file): [131 lines, 4556 bytes]
+- 12:37:31 **call** shell {command: ls #a0845a [13 chars]}
+  - 12:37:31 result (shell): [218 chars]
+- 12:38:08 **call** shell {command: ls #a0845a [13 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:38:08 result (shell): [218 chars]
+- 12:38:45 **call** terminal {command: ls #a0845a [13 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:38:45 result (terminal): exit 0, 4 lines out
+- 12:39:23 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning/specs/001-cleaning-scheduler-billin … [129 chars]}
+  - 12:39:23 result (read_file): [149 lines, 9568 bytes]
+- 12:40:05 **call** shell {command: ls #30c0d0 [23 chars]}
+  - 12:40:05 result (shell): [218 chars]
+- 12:40:48 **call** shell {command: ls #30c0d0 [23 chars], workdir: /Users/sherlock/workspaces/tests/2026-11-models/round1-a/test1-laguna-xs-r3/cleaning}
+  - 12:40:48 result (shell): [218 chars]
+- 12:41:32 **model writes** (-) [40 chars]
+
+## Summary
+
+- Model turns 29, tool calls 28, distinct calls 27
+- The session&#x27;s last entry: the model writing text
+
+## The runner&#x27;s watch (one line each 30 s), last 60 lines
+
+```
+12:32:34  start: prompt 239 bytes, limit 5400s
+12:33:04  +30s  files same (last change 30s ago)  request open yes (last 0s ago)
+12:33:34  +60s  files same (last change 60s ago)  request open yes (last 0s ago)
+12:34:04  +90s  files same (last change 90s ago)  request open yes (last 0s ago)
+12:34:35  +120s  files same (last change 120s ago)  request open yes (last 0s ago)
+12:35:05  +151s  files same (last change 151s ago)  request open yes (last 0s ago)
+12:35:35  +181s  files same (last change 181s ago)  request open yes (last 0s ago)
+12:36:05  +211s  files same (last change 211s ago)  request open yes (last 0s ago)
+12:36:35  +241s  files same (last change 241s ago)  request open yes (last 0s ago)
+12:37:05  +271s  files same (last change 271s ago)  request open yes (last 0s ago)
+12:37:35  +301s  files same (last change 301s ago)  request open yes (last 0s ago)
+12:38:05  +331s  files same (last change 331s ago)  request open yes (last 0s ago)
+12:38:36  +361s  files same (last change 361s ago)  request open yes (last 0s ago)
+12:39:06  +392s  files same (last change 392s ago)  request open yes (last 0s ago)
+12:39:36  +422s  files same (last change 422s ago)  request open yes (last 0s ago)
+12:40:06  +452s  files same (last change 452s ago)  request open yes (last 0s ago)
+12:40:36  +482s  files same (last change 482s ago)  request open yes (last 0s ago)
+12:41:06  +512s  files same (last change 512s ago)  request open yes (last 0s ago)
+12:41:36  +542s  Hermes exited on its own, status 2 -&gt; invalid
+```
+
+## The repo
+
+```
+branch: main
+* 82b67ca 10 minutes ago
+* 7cc3dbb 12 minutes ago
+uncommitted: none
+```
+
+## The server
+
+- Sherlock&#x27;s record of the model served: laguna-xs
+</body>

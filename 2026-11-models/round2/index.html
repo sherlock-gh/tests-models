@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model tests · round 2</title>
+<style>
+:root { --bg:#f6f6f4; --fg:#1d1d1b; --mute:#6b6b66; --line:#d9d9d4; --card:#fff;
+  --ok:#d7f0dc; --okf:#14532d; --bad:#fbd5d5; --badf:#7f1d1d; --mach:#fde7c4; --machf:#7c4a03;
+  --run:#d6e6fb; --runf:#173f78; --wait:#ececea; --waitf:#77776f; }
+@media (prefers-color-scheme: dark) { :root { --bg:#161615; --fg:#ececea; --mute:#9a9a94; --line:#33332f; --card:#1f1f1d;
+  --ok:#163a22; --okf:#9ee2b0; --bad:#4a1c1c; --badf:#f6b3b3; --mach:#45320f; --machf:#f5cf8c;
+  --run:#17304f; --runf:#a9cbf6; --wait:#262624; --waitf:#8b8b84; } }
+body { margin:0; padding:20px 16px; background:var(--bg); color:var(--fg); font:14px/1.4 -apple-system, system-ui, sans-serif; }
+h1 { font-size:20px; margin:0 0 4px; }
+.facts { color:var(--mute); margin:0 0 12px; }
+.wrap { overflow-x:auto; }
+table { border-collapse:separate; border-spacing:3px; }
+th { font-weight:600; font-size:12px; color:var(--mute); padding:2px 4px; white-space:nowrap; }
+th.name { text-align:left; color:var(--fg); font-size:14px; padding-right:10px; }
+th.name small { display:block; font-weight:400; color:var(--mute); font-size:11px; }
+td { min-width:92px; padding:6px 8px; border-radius:6px; vertical-align:top; font-size:13px; }
+td b { display:block; font-weight:600; }
+td small { display:block; font-size:11px; opacity:.85; }
+td.score small { font-weight:400; color:var(--mute); }
+td a { color:inherit; text-decoration:none; display:block; }
+td a:hover b { text-decoration:underline; }
+td a b::after { content:" ›"; }
+.ok { background:var(--ok); color:var(--okf); } .bad { background:var(--bad); color:var(--badf); }
+.inc { background:color-mix(in srgb, var(--bad) 30%, transparent); color:var(--badf); }
+.mach { background:var(--mach); color:var(--machf); } .wait { background:var(--wait); color:var(--waitf); }
+.run { background:var(--run); color:var(--runf); animation:pulse 2s ease-in-out infinite; }
+.rank { display:inline-block; margin:0 0 4px; padding:2px 8px; border-radius:5px; font-size:16px; font-weight:700; color:#111; }
+.ok .rank { background:color-mix(in srgb, var(--ok) 45%, #fff); }
+.bad .rank { background:color-mix(in srgb, var(--bad) 45%, #fff); }
+td small.note { margin-top:4px; font-size:11px; line-height:1.3; opacity:.8; max-width:260px; white-space:normal; }
+td.split { padding:0; background:transparent; }
+td.gate { background:transparent; animation:none; }
+.half { padding:5px 8px; border-radius:6px; margin:0 0 3px; }
+.half:last-child { margin:0; }
+.half b { display:block; font-weight:600; }
+.half small { display:block; font-size:11px; opacity:.85; }
+.half small.plan { font-weight:600; text-transform:uppercase; letter-spacing:.03em; opacity:.7; }
+.half.score { text-align:center; font-weight:700; color:var(--fg); background:transparent; }
+.skip { background:transparent; color:var(--waitf); border:1px dashed var(--line); }
+.na { background:transparent; min-width:0; }
+td.score { min-width:30px; text-align:center; font-weight:700; color:var(--fg); background:transparent; }
+@keyframes pulse { 50% { opacity:.6; } }
+pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px; overflow-x:auto; font-size:12px; }
+th.group { text-align:left; color:var(--fg); font-size:15px; padding:14px 4px 4px; }
+summary { cursor:pointer; font-weight:600; margin-top:12px; }
+</style>
+</head><body>
+<p><a href="/tests-models/">← All tests</a></p>
+<h1>Model tests · round 2</h1>
+<p class="facts">Updated Sun 15 Nov 13:25:03. Reload to refresh.</p>
+<div class="wrap"><table>
+<tr><th></th><th>Gate</th><th colspan="4">Test 1 · project management</th><th colspan="4">Test 2 · Python</th><th colspan="4">Test 2 · Swift</th></tr>
+<tr><th></th><th></th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done; the server under it">score</th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done; the server under it">score</th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done; the server under it">score</th></tr>
+<tr><th class="name">q27-4<small>Qwen3.8-27B-4bit</small></th><td class="gate"><b>passed</b><small>19.5 tok/s</small></td><td class="bad"><span class="rank">#6 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Broad two-app coverage and sensible task order, but its 15-minute booking scan can miss the actual earliest available start after a variable-length job.</small></td><td class="bad"><span class="rank">#11 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Provides both app contracts and ordered tasks, but says an exactly 9-hour job is too long, gives a wrong overlap predicate in research, and shows invoice amounts three times the correct charge in its data example.</small></td><td class="bad"><span class="rank">#7 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Strong two-app structure and cascade worklist, but utilization is incorrectly capped at 8 and 40 hours and the model permits cancelling in-progress jobs on client deletion.</small></td><td class="score">0/3<small>hudsonbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">q27-8<small>Qwen3.8-27B-8bit</small></th><td class="gate"><b>too slow</b><small>11.7 tok/s, under 15</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"><small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">gemma31<small>gemma-4-31b-it-4bit</small></th><td class="gate"><b>passed</b><small>16.1 tok/s</small></td><td class="bad"><span class="rank">#19 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Thin single-project Python plan lacks the Swift package, a specified local web page, and enough implementation detail for safe cascading and error handling.</small></td><td class="inc"><a href="why/a-test1-gemma31-r2-plan-0.html"><b>incomplete</b><small>stopped at plan</small></a></td><td class="bad"><span class="rank">#20 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Leaves language, platform, dependencies, and testing as NEEDS CLARIFICATION, then lists only a generic Python CLI; the required two-app implementation cannot be built from it.</small></td><td class="score">0/3<small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">q122<small>Qwen3.5-122B-A10B-4bit</small></th><td class="gate"><b>passed</b><small>35.9 tok/s</small></td><td class="bad"><span class="rank">#17 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Plans a Python CLI only, rejects valid 8-to-9-hour jobs, and leaves the required desktop web page and Swift package unbuilt.</small></td><td class="bad"><span class="rank">#13 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">The Python task list gives useful detail for booking, cascade, billing, and removals, but delivers only a CLI and omits the required Python-served web page and Swift package.</small></td><td class="inc"><a href="why/a-test1-q122-r3-plan-0.html"><b>incomplete</b><small>stopped at plan</small></a></td><td class="score">0/3<small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">flash<small>flash-next</small></th><td class="gate"><b>passed</b><small>27.8 tok/s</small></td><td class="bad"><span class="rank">#9 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Both apps and major workflows are planned, but the research&#x27;s cents formula uses worked_minutes times 45 divided by 60 instead of times 4500 divided by 60; its 365-day cutoff also breaks booking.</small></td><td class="bad"><span class="rank">#5 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Concrete APIs, parity scenarios, and well-sequenced tasks cover both apps, but the invented 60-day booking horizon rejects requests the stated rule would place later.</small></td><td class="bad"><span class="rank">#21 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Although the spec and plan name both app forms, the task list switches paths and invents grace-period extension charges, half-day utilization values, and deletion of issued invoices, requiring extensive rework.</small></td><td class="score">0/3<small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">coder-next<small>Qwen3-Coder-Next-4bit</small></th><td class="gate"><b>passed</b><small>59.1 tok/s</small></td><td class="bad"><span class="rank">#16 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Has extensive requirements and a Python API outline, but no Swift package or coherent web-page tasks; deletion tasks refuse future jobs instead of rebooking or cancelling them.</small></td><td class="bad"><span class="rank">#14 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Substantial domain coverage, including the correct 9-hour limit and chained rebooking, but the implementation is a single Python CLI with neither required app form.</small></td><td class="bad"><span class="rank">#15 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Plans a local Python API and most workflows, but omits the Swift package and explicitly imposes an incorrect 8-hour job limit.</small></td><td class="score">0/3<small>hudsonbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">laguna-s<small>Laguna-S-2.1-MLX-4bit</small></th><td class="gate"><b>passed</b><small>41.6 tok/s</small></td><td class="bad"><span class="rank">#8 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Detailed mirrored Python and Swift work covers most flows, but it repeatedly calls 8 hours the maximum job length, wrongly refusing valid jobs of up to 9 hours.</small></td><td class="bad"><span class="rank">#10 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Gets the 9-hour limit and most business rules right, but the mobile tasks cover mainly time and storage rather than the same full rule set, and the desktop is planned as a process rather than a defined local web page.</small></td><td class="bad"><span class="rank">#12 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">Covers many features in both languages, but plans one shared data file despite the separate-local-file limit and refuses valid jobs longer than 8 hours.</small></td><td class="score">0/3<small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">coder30b<small>qwen3-coder-30b-64k</small></th><td class="gate"><b>failed</b><small>11 of 20 calls parsed</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"><small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">devstral<small>Devstral-Small-2-24B-Instruct-2512-4bit</small></th><td class="gate"><b>passed</b><small>22.7 tok/s</small></td><td class="inc"><a href="why/b-test1-devstral-r1-plan-0.html"><b>incomplete</b><small>stopped at plan</small></a></td><td class="inc"><a href="why/b-test1-devstral-r2-specify-0.html"><b>incomplete</b><small>stopped at specify</small></a></td><td class="inc"><a href="why/b-test1-devstral-r3-specify-0.html"><b>incomplete</b><small>stopped at specify</small></a></td><td class="score">0/3<small>hudsonbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">laguna-xs<small>Laguna-XS-2.1-8bit</small></th><td class="gate"><b>passed</b><small>58.9 tok/s</small></td><td class="inc"><a href="why/b-test1-laguna-xs-r1-estimate-0.html"><b>incomplete</b><small>stopped at estimate</small></a></td><td class="inc"><a href="why/b-test1-laguna-xs-r2-plan-0.html"><b>incomplete</b><small>stopped at plan</small></a></td><td class="bad"><span class="rank">#18 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">A single Python CLI replaces both required app forms; it also gives jobs a 2-to-3-hour duration and computes invoices from cleaner count rather than each cleaner&#x27;s recorded time.</small></td><td class="score">0/3<small>hudsonbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr>
+</table></div>
+<details><summary>local models: runner log, last lines</summary><pre>2026-11-12 02:07:30 [b] test1-laguna-xs-r3 specify: pass specs/001-house-cleaning-scheduling/spec.md complete
+2026-11-12 02:38:17 [a] test1-flash-r3 tasks: pass specs/001-cleaning-business-scheduling/tasks.md complete
+2026-11-12 02:44:19 [a] test1-flash-r3 estimate: pass estimate.md complete
+2026-11-12 02:44:20 [a] test 1: laguna-s run 1
+2026-11-12 02:47:41 [b] test1-laguna-xs-r3 plan: pass specs/001-house-cleaning-scheduling/plan.md complete
+2026-11-12 02:51:08 [a] test1-laguna-s-r1 specify: pass specs/001-cleaning-scheduling-billing/spec.md complete
+2026-11-12 03:02:11 [a] test1-laguna-s-r1 plan: pass specs/001-cleaning-scheduling-billing/plan.md complete
+2026-11-12 03:09:16 [b] test1-laguna-xs-r3 tasks: pass specs/001-house-cleaning-scheduling/tasks.md complete
+2026-11-12 03:09:44 [a] test1-laguna-s-r1 tasks: pass specs/001-cleaning-scheduling-billing/tasks.md complete
+2026-11-12 03:14:46 [a] test1-laguna-s-r1 estimate: pass estimate.md complete
+2026-11-12 03:14:46 [a] test 1: laguna-s run 2
+2026-11-12 03:20:00 [a] test1-laguna-s-r2 specify: pass specs/001-house-cleaning-scheduling/spec.md complete
+2026-11-12 03:22:50 [b] test1-laguna-xs-r3 estimate: pass estimate.md complete
+2026-11-12 03:22:50 [b] test 1: devstral run 1
+2026-11-12 03:27:32 [a] test1-laguna-s-r2 plan: pass specs/001-house-cleaning-scheduling/plan.md complete
+2026-11-12 03:34:06 [b] test1-devstral-r1 specify: pass specs/001-scheduling-billing-house-cleaning/spec.md complete
+2026-11-12 03:35:35 [a] test1-laguna-s-r2 tasks: pass specs/001-house-cleaning-scheduling/tasks.md complete
+2026-11-12 03:41:07 [a] test1-laguna-s-r2 estimate: pass estimate.md complete
+2026-11-12 03:41:07 [a] test 1: laguna-s run 3
+2026-11-12 03:47:09 [b] test1-devstral-r1 plan: fail no commit | Hermes: text_response(finish_reason=stop) | why/test1-devstral-r1-plan-0.md
+2026-11-12 03:47:09 [b] test 1: devstral run 2
+2026-11-12 03:47:21 [a] test1-laguna-s-r3 specify: pass specs/001-cleaning-scheduling-billing/spec.md complete
+2026-11-12 03:58:54 [a] test1-laguna-s-r3 plan: pass specs/001-cleaning-scheduling-billing/plan.md complete
+2026-11-12 04:05:26 [a] test1-laguna-s-r3 tasks: pass specs/001-cleaning-scheduling-billing/tasks.md complete
+2026-11-12 04:10:58 [a] test1-laguna-s-r3 estimate: pass estimate.md complete
+2026-11-12 04:15:58 [b] test1-devstral-r2 specify: fail no commit | Hermes: text_response(finish_reason=stop) | why/test1-devstral-r2-specify-0.md
+2026-11-12 04:15:58 [b] test 1: devstral run 3
+2026-11-12 04:25:43 [b] test1-devstral-r3 specify: fail no commit | Hermes: text_response(finish_reason=stop); the same call 3 times: execute_code {code: [2999 chars], reset: True} | why/test1-devstral-r3-specify-0.md
+2026-11-12 04:25:43 [b] lane done
+2026-11-12 04:26:01 [a] lane done</pre></details>
+</body></html>

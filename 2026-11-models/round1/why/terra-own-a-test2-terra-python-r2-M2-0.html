@@ -1,0 +1,82 @@
+<!doctype html><meta charset="utf-8"><title>test2-terra-python-r2-M2-0</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ round 1</a>
+
+# test2-terra-python-r2-M2-0: fail
+
+1 failed, 22 passed in 7.08s
+
+Codex: completed, 11 model calls; tool calls command_execution x10; 4 failed
+
+## The runner&#x27;s watch
+
+20:58:06  start: prompt 519 bytes, limit 5400s of work
+20:58:37  +30s  files same (last change 30s ago)  output 51084 bytes (last 0s ago)
+20:59:07  +61s  files changed (last change 0s ago)  output 67851 bytes (last 0s ago)
+20:59:37  +91s  files changed (last change 0s ago)  output 85787 bytes (last 0s ago)
+21:00:07  +121s  Codex exited on its own, status 0 -&gt; done
+
+## How the turn ended
+
+{&quot;subtype&quot;: &quot;completed&quot;, &quot;api_calls&quot;: 11, &quot;model&quot;: &quot;gpt-6.1-terra&quot;, &quot;duration_ms&quot;: null, &quot;five&quot;: {&quot;used&quot;: 2.0, &quot;resets&quot;: 1794477276}, &quot;week&quot;: {&quot;used&quot;: 8.0, &quot;resets&quot;: 1794686238}, &quot;limited&quot;: false}
+
+## The check
+
+1 failed, 22 passed in 7.08s
+......................F                                                  [100%]
+=================================== FAILURES ===================================
+_____________________ test_random_extensions_never_overlap _____________________
+
+app = &lt;conftest.App object at 0x10b4c1fd0&gt;
+
+    def test_random_extensions_never_overlap(app):
+        rnd = random.Random(1116)
+        app.cleaners(6)
+        cl = app.client()
+        jobs = []
+        for _ in range(40):
+            req = (date(2026, 11, 16) + timedelta(days=rnd.randrange(5))).isoformat()
+            jobs.append(app.book(cl, rnd.choice((1, 1, 2)), max(30, min(480, int(rnd.gauss(248, 105)))), req))
+        for _ in range(40):
+            j = app.ok(&quot;GET&quot;, f&quot;/api/jobs/{rnd.choice(jobs)[&#x27;id&#x27;]}&quot;)
+            if j[&quot;status&quot;] == &quot;scheduled&quot;:
+                started(app, j, j[&quot;cleanerIds&quot;], f&quot;{j[&#x27;date&#x27;]}T08:00:00&quot;)
+            st, out = app.call(&quot;POST&quot;, f&quot;/api/jobs/{j[&#x27;id&#x27;]}/extend&quot;, {&quot;cleanerId&quot;: rnd.choice(j[&quot;cleanerIds&quot;]), &quot;increments&quot;: rnd.randint(1, 4)})
+            # an extension that would crowd a job already under way cannot be satisfied: refused, nothing changed
+            assert 200 &lt;= st &lt; 300 or (st == 409 and out[&quot;error&quot;][&quot;code&quot;] in (&quot;unschedulable&quot;, &quot;invalid_state&quot;)), (st, out)
+&gt;           assert_no_overlaps(app.ok(&quot;GET&quot;, &quot;/api/jobs&quot;))
+
+test_m2.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+jobs = [{&#x27;id&#x27;: 13, &#x27;clientId&#x27;: 1, &#x27;cleanersNeeded&#x27;: 2, &#x27;durationMinutes&#x27;: 365, ...}, {&#x27;id&#x27;: 17, &#x27;clientId&#x27;: 1, &#x27;cleanersNeede...eded&#x27;: 1, &#x27;durationMinutes&#x27;: 30, ...}, {&#x27;id&#x27;: 2, &#x27;clientId&#x27;: 1, &#x27;cleanersNeeded&#x27;: 1, &#x27;durationMinutes&#x27;: 367, ...}, ...]
+
+    def assert_no_overlaps(jobs):
+        &quot;&quot;&quot;The plan&#x27;s invariant: per cleaner and date, live jobs at least 60 min apart; booked jobs
+        within 8:00-17:00 on a weekday (an extended end may pass 17:00).&quot;&quot;&quot;
+        from datetime import date
+        live = [j for j in jobs if j[&quot;status&quot;] != &quot;cancelled&quot;]
+        for j in live:
+            assert date.fromisoformat(j[&quot;date&quot;]).weekday() &lt; 5, j
+            assert j[&quot;startMinute&quot;] &gt;= 480, j
+            assert len(set(j[&quot;cleanerIds&quot;])) == j[&quot;cleanersNeeded&quot;] == len(j[&quot;cleanerIds&quot;]), j
+        per = {}
+        for j in live:
+            for c in j[&quot;cleanerIds&quot;]:
+                per.setdefault((c, j[&quot;date&quot;]), []).append(j)
+        for k, js in per.items():
+            js.sort(key=lambda j: j[&quot;startMinute&quot;])
+            for a, b in zip(js, js[1:]):
+&gt;               assert b[&quot;startMinute&quot;] &gt;= a[&quot;endMinute&quot;] + 60, f&quot;cleaner {k[0]} on {k[1]}: {a} then {b}&quot;
+E               AssertionError: cleaner 1 on 2026-11-17: {&#x27;id&#x27;: 14, &#x27;clientId&#x27;: 1, &#x27;cleanersNeeded&#x27;: 1, &#x27;durationMinutes&#x27;: 225, &#x27;requestedDate&#x27;: &#x27;2026-11-17&#x27;, &#x27;date&#x27;: &#x27;2026-11-17&#x27;, &#x27;startMinute&#x27;: 480, &#x27;endMinute&#x27;: 785, &#x27;cleanerIds&#x27;: [1], &#x27;status&#x27;: &#x27;in_progress&#x27;, &#x27;work&#x27;: [{&#x27;cleanerId&#x27;: 1, &#x27;arrivedAt&#x27;: &#x27;2026-11-17T08:00:00&#x27;, &#x27;departedAt&#x27;: None, &#x27;elapsedSeconds&#x27;: None}]} then {&#x27;id&#x27;: 37, &#x27;clientId&#x27;: 1, &#x27;cleanersNeeded&#x27;: 1, &#x27;durationMinutes&#x27;: 211, &#x27;requestedDate&#x27;: &#x27;2026-11-17&#x27;, &#x27;date&#x27;: &#x27;2026-11-17&#x27;, &#x27;startMinute&#x27;: 805, &#x27;endMinute&#x27;: 1096, &#x27;cleanerIds&#x27;: [1], &#x27;status&#x27;: &#x27;in_progress&#x27;, &#x27;work&#x27;: [{&#x27;cleanerId&#x27;: 1, &#x27;arrivedAt&#x27;: &#x27;2026-11-17T08:00:00&#x27;, &#x27;departedAt&#x27;: None, &#x27;elapsedSeconds&#x27;: None}]}
+E               assert 805 &gt;= (785 + 60)
+
+conftest.py:138: AssertionError
+=========================== short test summary info ============================
+FAILED test_m2.py::test_random_extensions_never_overlap - AssertionError: cle...
+1 failed, 22 passed in 7.08s
+
+## Commits, newest first
+
+7a4249e 17 seconds ago
+4ee98e9 3 minutes ago
+68060f8 5 minutes ago
+</body>

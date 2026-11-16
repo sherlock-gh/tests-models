@@ -1,0 +1,27 @@
+<!doctype html><meta charset=utf-8><title>Round 4: context probe</title><style>body{font:14px system-ui;margin:16px}td,th{border:1px solid #bbb;padding:4px 8px;text-align:left}table{border-collapse:collapse}</style>
+<h1>Round 4: context probe</h1><p>Written Sun 15 Nov 11:19:42; reload by hand.</p><table>
+<tr><th>name</th><th>model</th><th>context</th><th>tries (size: result, prompt tokens, seconds, swap MB before/after, server memory, note)</th></tr>
+<tr><td>coder-next</td><td>mlx-community/Qwen3-Coder-Next-4bit</td><td>262144</td><td>256K: pass, 242671, 866s, swap 685/685, server 42.2 GB, reply &#x27;4817-WILLOW&#x27;;</td></tr>
+<tr><td>q27-4</td><td>mlx-community/Qwen3.8-27B-4bit</td><td>262144</td><td>256K: pass, 242443, 2519s, swap 677/677, server 14.6 GB, reply &#x27;4817-WILLOW&#x27;;</td></tr>
+<tr><td>q27-8</td><td>mlx-community/Qwen3.8-27B-8bit</td><td>262144</td><td>256K: pass, 242443, 2596s, swap 677/677, server 27.1 GB, reply &#x27;4817-WILLOW&#x27;;</td></tr>
+<tr><td>gemma31</td><td>mlx-community/gemma-4-31b-it-4bit</td><td>262144</td><td>256K: pass, 242418, 3491s, swap 677/677, server 16.7 GB, reply &#x27;4817-WILLOW&#x27;;</td></tr>
+<tr><td>q122</td><td>mlx-community/Qwen3.5-122B-A10B-4bit</td><td>262144</td><td>256K: pass, 242443, 1911s, swap 677/677, server 60.5 GB, reply &#x27;4817-WILLOW&#x27;;</td></tr>
+<tr><td>laguna-s</td><td>TensorFold/Laguna-S-2.1-MLX-4bit</td><td>262144</td><td>256K: pass, 239971, 1487s, swap 677/677, server 62.1 GB, reply &#x27;4817-WILLOW&#x27;;</td></tr>
+<tr><td>devstral</td><td>mlx-community/Devstral-Small-2-24B-Instruct-2512-4bit</td><td>262144</td><td>256K: pass, 242230, 3105s, swap 677/677, server 13.9 GB, reply &#x27;4817-WILLOW&#x27;;</td></tr>
+<tr><td>flash</td><td>flash-next</td><td>262144</td><td>256K: pass, 242443, 3453s, swap ?/?, server ? GB, reply &#x27;4817-WILLOW&#x27;;</td></tr>
+<tr><td>coder30b</td><td>qwen3-coder-30b-64k</td><td></td><td>256K: fail, 3103, no reply: Remote end closed connection without responses, swap ?/?, server ? GB, ;</td></tr>
+</table><h2>Log</h2><pre>2026-11-14 23:38:05 [a] flash: 262144 tokens
+2026-11-15 00:35:39 [a] flash: 262144 tokens: pass (242443 prompt tokens, 3453s, swap ? -&gt; ? MB, server ? GB) reply &#x27;4817-WILLOW&#x27;
+2026-11-15 00:35:39 [a] context probe done
+2026-11-15 00:36:23 [a] context probe: coder30b
+2026-11-15 00:36:23 [a] coder30b: serving
+2026-11-15 00:36:24 [a] serve: adlerbot did not serve coder30b: qwen3-coder-30b is not on this host (see /models) 
+2026-11-15 00:36:24 [a] inferctl failed while asked for coder30b: the probe stops
+2026-11-15 00:36:24 [a] context probe done
+2026-11-15 10:27:37 [a] context probe: coder30b
+2026-11-15 10:27:37 [a] coder30b: serving
+2026-11-15 10:27:58 [a] coder30b: 262144 tokens
+2026-11-15 11:19:42 [a] coder30b: 262144 tokens: fail (3103 prompt tokens, no reply: Remote end closed connection without responses, swap ? -&gt; ? MB, server ? GB) 
+2026-11-15 11:19:42 [a] coder30b: serving it again for the next try
+2026-11-15 11:19:42 [a] serve: adlerbot did not serve coder30b: a restart, switch or reset is already running 
+2026-11-15 11:19:42 [a] context probe done</pre>

@@ -1,0 +1,246 @@
+<!doctype html><meta charset="utf-8"><title>test2-q27-4-python-r1-M1-0w</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ round 4</a>
+
+<b>Test 2 · Python</b>
+
+# test2-q27-4-python-r1-M1-0w: timeout
+
+- Job: 19:01:05 to 19:31:14 (1809 s); runner&#x27;s note: the time limit, then the 30 min to finish and commit
+- Hermes&#x27;s turn: no usage file (Hermes was stopped, or crashed)
+- Hermes session: 20261115_190110_9c0efb
+
+## The session, turn by turn
+
+- 19:01:10 **prompt** [728 chars]
+- 19:02:30 **call** terminal {command: git status &amp;&amp; git log --oneline -5}
+  - 19:02:30 result (terminal): exit 0, 12 lines out
+- 19:02:34 **call** terminal {command: ls -la desktop/ &amp;&amp; ls specs/001-cleaning-scheduling-billing/}
+  - 19:02:34 result (terminal): exit 0, 21 lines out
+- 19:02:38 **call** terminal {command: ls desktop/tests/ desktop/static/ &amp;&amp; wc -l desktop/*.py}
+  - 19:02:38 result (terminal): exit 0, 11 lines out
+- 19:02:41 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}
+  - 19:02:41 result (read_file): [356 lines, 39896 bytes]
+- 19:03:58 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls -la &amp;&amp; cat desktop/__init__.py &amp;&amp; cat Procfile 2&gt;/dev/null}
+  - 19:03:58 result (terminal): exit 0, 16 lines out
+- 19:04:03 **call** read_file {path: desktop/models.py}
+- 19:04:03 **call** read_file {path: desktop/store.py}
+  - 19:04:03 result (read_file): [395 lines, 13165 bytes]
+  - 19:04:03 result (read_file): [320 lines, 12158 bytes]
+- 19:05:10 **call** read_file {path: desktop/timeutil.py}
+- 19:05:10 **call** read_file {path: desktop/rules.py}
+  - 19:05:10 result (read_file): [163 lines, 5822 bytes]
+  - 19:05:10 result (read_file): [563 lines, 23058 bytes]
+- 19:06:31 **call** read_file {path: desktop/api.py}
+- 19:06:31 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls specs/001-cleaning-scheduling-billing/contracts/ &amp;&amp; ls specs/001-cleaning-scheduling-billing/checklists/}
+  - 19:06:31 result (read_file): [202 lines, 7741 bytes]
+  - 19:06:31 result (terminal): exit 0, 5 lines out
+- 19:06:55 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/rules-core.md}
+  - 19:06:55 result (read_file): [74 lines, 4843 bytes]
+- 19:07:12 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}
+- 19:07:12 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/exact-interfaces.md}
+  - 19:07:13 result (read_file): [70 lines, 4427 bytes]
+  - 19:07:13 result (read_file): [44 lines, 4298 bytes]
+- 19:07:38 **call** read_file {path: specs/001-cleaning-scheduling-billing/data-model.md}
+  - 19:07:38 result (read_file): [154 lines, 7955 bytes]
+- 19:08:01 **call** read_file {path: specs/001-cleaning-scheduling-billing/research.md}
+  - 19:08:01 result (read_file): [278 lines, 19709 bytes]
+- 19:08:55 **call** read_file {path: specs/001-cleaning-scheduling-billing/spec.md}
+- 19:08:55 **call** read_file {path: specs/001-cleaning-scheduling-billing/questions.md}
+  - 19:08:55 result (read_file): [181 lines, 18900 bytes]
+  - 19:08:55 result (read_file): [162 lines, 9282 bytes]
+- 19:10:46 **prompt** [10413 chars]
+- 19:02:30 **call** terminal {command: git status &amp;&amp; git log --oneline -5}  ← the same call, time 2
+  - 19:02:30 result (terminal): [77 chars]
+- 19:07:12 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}  ← the same call, time 2
+- 19:07:12 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/exact-interfaces.md}  ← the same call, time 2
+  - 19:07:13 result (read_file): [105 chars]
+  - 19:07:13 result (read_file): [110 chars]
+- 19:07:38 **call** read_file {path: specs/001-cleaning-scheduling-billing/data-model.md}  ← the same call, time 2
+  - 19:07:38 result (read_file): [94 chars]
+- 19:08:01 **call** read_file {path: specs/001-cleaning-scheduling-billing/research.md}  ← the same call, time 2
+  - 19:08:01 result (read_file): [278 lines, 19709 bytes]
+- 19:08:55 **call** read_file {path: specs/001-cleaning-scheduling-billing/spec.md}  ← the same call, time 2
+- 19:08:55 **call** read_file {path: specs/001-cleaning-scheduling-billing/questions.md}  ← the same call, time 2
+  - 19:08:55 result (read_file): [181 lines, 18900 bytes]
+  - 19:08:55 result (read_file): [162 lines, 9282 bytes]
+- 19:13:49 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/ -x -q 2&gt;&amp;1 | tail -30, timeout: 300}
+  - 19:13:50 result (terminal): exit 0, 1 lines out
+- 19:13:55 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls desktop/tests/ desktop/static/ 2&gt;&amp;1; ls desktop/}
+  - 19:13:55 result (terminal): exit 0, 13 lines out
+- 19:14:01 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/ -q 2&gt;&amp;1 | tail -40, timeout: 300}
+  - 19:14:02 result (terminal): exit 0, 1 lines out
+- 19:14:06 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls -la desktop/tests/ &amp;&amp; cat desktop/tests/__init__.py}
+  - 19:14:07 result (terminal): exit 0, 9 lines out
+- 19:14:12 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short &amp;&amp; git log --oneline -3 &amp;&amp; cat Procfile}
+  - 19:14:12 result (terminal): exit 0, 8 lines out
+- 19:14:19 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q 2&gt;&amp;1 | tail -40, timeout: 300}
+  - 19:14:19 result (terminal): exit 0, 1 lines out
+- 19:14:25 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short &amp;&amp; git log --oneline -5 &amp;&amp; cat Procfile &amp;&amp; ls desktop/}
+  - 19:14:25 result (terminal): exit 0, 17 lines out
+- 19:14:31 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q 2&gt;&amp;1 | tail -40, timeout: 300}  ← the same call, time 2
+  - 19:14:32 result (terminal): exit 0, 1 lines out
+- 19:14:37 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short; git log --oneline -3; cat Procfile; ls desktop/ desktop/tests/ desktop/static/}
+  - 19:14:38 result (terminal): exit 0, 23 lines out
+- 19:14:44 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short; git log --oneline -3; cat Procfile; ls desktop/ desktop/tests/ desktop/static/}  ← the same call, time 2
+  - 19:14:44 result (terminal): exit 0, 23 lines out
+- 19:14:50 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short; git log --oneline -3; cat Procfile; ls desktop/ desktop/tests/ desktop/static/}  ← the same call, time 3
+  - 19:14:50 result (terminal): [714 chars]
+- 19:14:57 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short; git log --oneline -3; cat Procfile; ls desktop/ desktop/tests/ desktop/static/}  ← the same call, time 4
+  - 19:14:57 result (terminal): [714 chars]
+- 19:15:02 **call** read_file {path: desktop/models.py}  ← the same call, time 2
+- 19:15:02 **call** read_file {path: desktop/timeutil.py}  ← the same call, time 2
+  - 19:15:02 result (read_file): [15730 chars]
+  - 19:15:02 result (read_file): [6954 chars]
+- 19:15:57 **call** read_file {path: desktop/store.py}  ← the same call, time 2
+- 19:15:57 **call** read_file {path: desktop/rules.py}  ← the same call, time 2
+  - 19:15:57 result (read_file): [14301 chars]
+  - 19:15:57 result (read_file): [26465 chars]
+- 19:17:33 **call** read_file {path: desktop/api.py}  ← the same call, time 2
+- 19:17:33 **call** read_file {path: desktop/__init__.py}
+  - 19:17:33 result (read_file): [9250 chars]
+  - 19:17:33 result (read_file): [8 lines, 454 bytes]
+- 19:18:02 **call** read_file {offset: 280, path: desktop/rules.py}
+- 19:18:02 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/cleaner-api.md}
+  - 19:18:02 result (read_file): [563 lines, 23058 bytes]
+  - 19:18:02 result (read_file): [92 lines, 4338 bytes]
+- 19:18:51 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls -la desktop/tests/ desktop/static/ &amp;&amp; find . -name &quot;*.py&quot; -path &quot;*test*&quot; | head -20 &amp;&amp; ls specs/001-cleaning … [220 chars]}
+  - 19:18:51 result (terminal): exit 0, 21 lines out
+- 19:22:58 **prompt** [18228 chars]
+- 19:14:44 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short; git log --oneline -3; cat Procfile; ls desktop/ desktop/tests/ desktop/static/}  ← the same call, time 5
+  - 19:14:44 result (terminal): [123 chars]
+- 19:14:50 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short; git log --oneline -3; cat Procfile; ls desktop/ desktop/tests/ desktop/static/}  ← the same call, time 6
+  - 19:14:50 result (terminal): [123 chars]
+- 19:14:57 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short; git log --oneline -3; cat Procfile; ls desktop/ desktop/tests/ desktop/static/}  ← the same call, time 7
+  - 19:14:57 result (terminal): [123 chars]
+- 19:15:02 **call** read_file {path: desktop/models.py}  ← the same call, time 3
+- 19:15:02 **call** read_file {path: desktop/timeutil.py}  ← the same call, time 3
+  - 19:15:02 result (read_file): [61 chars]
+  - 19:15:02 result (read_file): [62 chars]
+- 19:15:57 **call** read_file {path: desktop/store.py}  ← the same call, time 3
+- 19:15:57 **call** read_file {path: desktop/rules.py}  ← the same call, time 3
+  - 19:15:57 result (read_file): [60 chars]
+  - 19:15:57 result (read_file): [26465 chars]
+- 19:17:33 **call** read_file {path: desktop/api.py}  ← the same call, time 3
+- 19:17:33 **call** read_file {path: desktop/__init__.py}  ← the same call, time 2
+  - 19:17:33 result (read_file): [9250 chars]
+  - 19:17:33 result (read_file): [8 lines, 454 bytes]
+- 19:18:02 **call** read_file {offset: 280, path: desktop/rules.py}  ← the same call, time 2
+- 19:18:02 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/cleaner-api.md}  ← the same call, time 2
+  - 19:18:02 result (read_file): [563 lines, 23058 bytes]
+  - 19:18:02 result (read_file): [92 lines, 4338 bytes]
+- 19:18:51 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls -la desktop/tests/ desktop/static/ &amp;&amp; find . -name &quot;*.py&quot; -path &quot;*test*&quot; | head -20 &amp;&amp; ls specs/001-cleaning … [220 chars]}  ← the same call, time 2
+  - 19:18:51 result (terminal): exit 0, 21 lines out
+- 19:26:35 **call** read_file {path: desktop/tests/__init__.py}
+  - 19:26:35 result (read_file): [5 lines, 217 bytes]
+- 19:26:39 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/rules-core.md}  ← the same call, time 2
+  - 19:26:39 result (read_file): [5411 chars]
+- 19:26:53 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/exact-interfaces.md}  ← the same call, time 3
+  - 19:26:53 result (read_file): [4833 chars]
+- 19:27:05 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}  ← the same call, time 3
+  - 19:27:05 result (read_file): [5106 chars]
+- 19:27:20 **call** read_file {path: specs/001-cleaning-scheduling-billing/data-model.md}  ← the same call, time 3
+  - 19:27:20 result (read_file): [8844 chars]
+- 19:27:42 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}  ← the same call, time 2
+  - 19:27:42 result (read_file): [41914 chars]
+- 19:29:18 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short; echo ---; git log --oneline -5; echo ---; ls desktop/; echo ---; cat Procfile}
+  - 19:29:19 result (terminal): exit 0, 20 lines out
+- 19:29:25 **call** read_file {path: specs/001-cleaning-scheduling-billing/plan.md}
+- 19:29:25 **call** read_file {path: specs/001-cleaning-scheduling-billing/quickstart.md}
+  - 19:29:25 result (read_file): [173 lines, 11069 bytes]
+  - 19:29:25 result (read_file): [85 lines, 3994 bytes]
+- 19:30:04 **call** read_file {path: specs/001-cleaning-scheduling-billing/research.md}  ← the same call, time 3
+  - 19:30:04 result (read_file): [21243 chars]
+
+## Summary
+
+- Model turns 52, tool calls 68, distinct calls 34
+- The same call 3 times: read_file {path: desktop/models.py}
+- The same call 3 times: read_file {path: desktop/store.py}
+- The same call 3 times: read_file {path: desktop/timeutil.py}
+- The same call 3 times: read_file {path: desktop/rules.py}
+- The same call 3 times: read_file {path: desktop/api.py}
+- The same call 3 times: read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}
+- The same call 3 times: read_file {path: specs/001-cleaning-scheduling-billing/contracts/exact-interfaces.md}
+- The same call 3 times: read_file {path: specs/001-cleaning-scheduling-billing/data-model.md}
+- The same call 3 times: read_file {path: specs/001-cleaning-scheduling-billing/research.md}
+- The same call 7 times: terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git status --short; git log --oneline -3; cat Procfile; ls desktop/ desktop/tests/ desktop/static/}
+- The session&#x27;s last entry: a tool call or its result (stopped mid-work)
+
+## The runner&#x27;s watch (one line each 30 s), last 60 lines
+
+```
+19:01:05  start: prompt 729 bytes, limit 1800s
+…
+19:02:06  +60s  files same (last change 60s ago)  request open yes (last 0s ago)
+19:02:36  +91s  files same (last change 91s ago)  request open yes (last 0s ago)
+19:03:06  +121s  files same (last change 121s ago)  request open yes (last 0s ago)
+19:03:36  +151s  files same (last change 151s ago)  request open yes (last 0s ago)
+19:04:06  +181s  files same (last change 181s ago)  request open yes (last 0s ago)
+19:04:36  +211s  files same (last change 211s ago)  request open yes (last 0s ago)
+19:05:06  +241s  files same (last change 241s ago)  request open yes (last 0s ago)
+19:05:37  +271s  files same (last change 271s ago)  request open yes (last 0s ago)
+19:06:07  +302s  files same (last change 302s ago)  request open yes (last 0s ago)
+19:06:37  +332s  files same (last change 332s ago)  request open yes (last 0s ago)
+19:07:07  +362s  files same (last change 362s ago)  request open yes (last 0s ago)
+19:07:37  +392s  files same (last change 392s ago)  request open yes (last 0s ago)
+19:08:07  +422s  files same (last change 422s ago)  request open yes (last 0s ago)
+19:08:37  +452s  files same (last change 452s ago)  request open yes (last 0s ago)
+19:09:08  +482s  files same (last change 482s ago)  request open yes (last 0s ago)
+19:09:38  +513s  files same (last change 513s ago)  request open yes (last 0s ago)
+19:10:08  +543s  files same (last change 543s ago)  request open yes (last 0s ago)
+19:10:38  +573s  files same (last change 573s ago)  request open yes (last 0s ago)
+19:11:08  +603s  files same (last change 603s ago)  request open yes (last 0s ago)
+19:11:38  +633s  files same (last change 633s ago)  request open yes (last 0s ago)
+19:12:08  +663s  files same (last change 663s ago)  request open yes (last 0s ago)
+19:12:39  +693s  files same (last change 693s ago)  request open yes (last 0s ago)
+19:13:09  +724s  files same (last change 724s ago)  request open yes (last 0s ago)
+19:13:39  +754s  files same (last change 754s ago)  request open yes (last 0s ago)
+19:14:09  +784s  files changed (last change 0s ago)  request open yes (last 0s ago)
+19:14:39  +814s  files changed (last change 0s ago)  request open yes (last 0s ago)
+19:15:09  +844s  files same (last change 30s ago)  request open yes (last 0s ago)
+19:15:39  +874s  files same (last change 60s ago)  request open yes (last 0s ago)
+19:16:10  +904s  files same (last change 90s ago)  request open yes (last 0s ago)
+19:16:40  +935s  files same (last change 121s ago)  request open yes (last 0s ago)
+19:17:10  +965s  files same (last change 151s ago)  request open yes (last 0s ago)
+19:17:40  +995s  files same (last change 181s ago)  request open yes (last 0s ago)
+19:18:10  +1025s  files same (last change 211s ago)  request open yes (last 0s ago)
+19:18:40  +1055s  files same (last change 241s ago)  request open yes (last 0s ago)
+19:19:10  +1085s  files same (last change 271s ago)  request open yes (last 0s ago)
+19:19:40  +1115s  files same (last change 301s ago)  request open yes (last 0s ago)
+19:20:11  +1145s  files same (last change 331s ago)  request open yes (last 0s ago)
+19:20:41  +1176s  files same (last change 362s ago)  request open yes (last 0s ago)
+19:21:11  +1206s  files same (last change 392s ago)  request open yes (last 0s ago)
+19:21:41  +1236s  files same (last change 422s ago)  request open yes (last 0s ago)
+19:22:11  +1266s  files same (last change 452s ago)  request open yes (last 0s ago)
+19:22:41  +1296s  files same (last change 482s ago)  request open yes (last 0s ago)
+19:23:11  +1326s  files same (last change 512s ago)  request open yes (last 0s ago)
+19:23:42  +1356s  files same (last change 542s ago)  request open yes (last 0s ago)
+19:24:12  +1387s  files same (last change 573s ago)  request open yes (last 0s ago)
+19:24:42  +1417s  files same (last change 603s ago)  request open yes (last 0s ago)
+19:25:12  +1447s  files same (last change 633s ago)  request open yes (last 0s ago)
+19:25:42  +1477s  files same (last change 663s ago)  request open yes (last 0s ago)
+19:26:12  +1507s  files same (last change 693s ago)  request open yes (last 0s ago)
+19:26:42  +1537s  files same (last change 723s ago)  request open yes (last 0s ago)
+19:27:13  +1567s  files same (last change 753s ago)  request open yes (last 0s ago)
+19:27:43  +1598s  files same (last change 784s ago)  request open yes (last 0s ago)
+19:28:13  +1628s  files same (last change 814s ago)  request open yes (last 0s ago)
+19:28:43  +1658s  files same (last change 844s ago)  request open yes (last 0s ago)
+19:29:13  +1688s  files same (last change 874s ago)  request open yes (last 0s ago)
+19:29:43  +1718s  files same (last change 904s ago)  request open yes (last 0s ago)
+19:30:13  +1748s  files same (last change 934s ago)  request open yes (last 0s ago)
+19:30:44  +1778s  files same (last change 964s ago)  request open yes (last 0s ago)
+19:31:14  +1809s  files same (last change 995s ago)  request open yes (last 0s ago)  -&gt; ended: timeout
+```
+
+## The repo
+
+```
+branch: main
+* 4aaeb4b 2 hours ago
+* 317f4ea 2 hours ago
+uncommitted: desktop/api.py, desktop/models.py, desktop/rules.py, desktop/store.py, desktop/timeutil.py
+```
+
+## The server
+
+- Sherlock&#x27;s record of the model served: q27-4
+</body>

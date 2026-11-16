@@ -1,0 +1,271 @@
+<!doctype html><meta charset="utf-8"><title>test2-q27-4-python-r1-M6-2</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ the round</a>
+
+# test2-q27-4-python-r1-M6-2: fail
+
+- Job: 23:29:32 to 23:54:15 (1483 s); runner&#x27;s note: 3 failed, 34 passed in 4.97s
+- Hermes&#x27;s turn: completed True, failed False, interrupted False, partial False, turn_exit_reason text_response(finish_reason=stop), api_calls 37
+- Hermes session: 20261109_232937_44ff47
+
+## The session, turn by turn
+
+- 23:29:37 **prompt** [592 chars]
+- 23:29:43 **call** read_file {path: SPEC.md}
+- 23:29:43 **call** terminal {command: git log --oneline -10 &amp;&amp; git status &amp;&amp; ls -la}
+  - 23:29:43 result (read_file): [102 lines, 5610 bytes]
+  - 23:29:43 result (terminal): exit 0, 20 lines out
+- 23:29:57 **call** terminal {command: ls expenses/ tests/ &amp;&amp; python3 -m pytest -q 2&gt;&amp;1 | tail -20}
+  - 23:29:59 result (terminal): exit 0, 22 lines out
+- 23:30:04 **call** terminal {command: python3 -c &quot;import pytest; print(pytest.__version__)&quot; 2&gt;&amp;1; ls /Users/sherlock/workspaces/tests/2026-10-config/round4-a/test2-q27-4-python-r1/ 2&gt;&amp;1}
+  - 23:30:04 result (terminal): exit 0, 3 lines out
+- 23:30:08 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-10-config/round4-a/test2-q27-4-python-r1/app.reply.txt}
+  - 23:30:08 result (read_file): [0 lines, 0 bytes, error]
+- 23:30:12 **call** terminal {command: cat /Users/sherlock/workspaces/tests/2026-10-config/round4-a/test2-q27-4-python-r1/app.reply.txt}
+  - 23:30:12 result (terminal): exit 1, 1 lines out
+- 23:30:15 **call** read_file {path: expenses/web.py}
+- 23:30:15 **call** read_file {path: expenses/cli.py}
+  - 23:30:15 result (read_file): [346 lines, 13537 bytes]
+  - 23:30:15 result (read_file): [200 lines, 7009 bytes]
+- 23:31:03 **call** read_file {path: expenses/report.py}
+- 23:31:03 **call** read_file {path: expenses/importer.py}
+- 23:31:03 **call** read_file {path: expenses/budgets.py}
+- 23:31:03 **call** read_file {path: tests/test_web.py}
+  - 23:31:03 result (read_file): [86 lines, 3254 bytes]
+  - 23:31:03 result (read_file): [84 lines, 2813 bytes]
+  - 23:31:03 result (read_file): [47 lines, 1674 bytes]
+  - 23:31:03 result (read_file): [194 lines, 6829 bytes]
+- 23:31:47 **call** read_file {path: README.md}
+- 23:31:47 **call** read_file {path: Procfile}
+- 23:31:47 **call** read_file {path: expenses/store.py}
+- 23:31:47 **call** read_file {path: expenses/models.py}
+- 23:31:47 **call** read_file {path: expenses/__init__.py}
+- 23:31:47 **call** read_file {path: expenses/__main__.py}
+  - 23:31:47 result (read_file): [47 lines, 1209 bytes]
+  - 23:31:47 result (read_file): [1 lines, 115 bytes]
+  - 23:31:47 result (read_file): [67 lines, 2145 bytes]
+  - 23:31:47 result (read_file): [16 lines, 319 bytes]
+  - 23:31:47 result (read_file): [1 lines, 68 bytes]
+  - 23:31:47 result (read_file): [10 lines, 164 bytes]
+- 23:32:00 **call** terminal {command: cat .gitignore &amp;&amp; git log -1 --stat | head -30}
+  - 23:32:00 result (terminal): exit 0, 17 lines out
+- 23:32:41 **call** patch {path: README.md, old_string: [210 chars], new_string: [185 chars]}
+- 23:32:41 **call** patch {path: expenses/report.py, old_string: [597 chars], new_string: [1077 chars]}
+  - 23:32:43 result (patch): [? lines, ? bytes]
+  - 23:32:43 result (patch): [? lines, ? bytes]
+- 23:35:30 **model writes** (tool_calls) [68 chars]
+- 23:35:30 **call** patch {new_string: [100 chars], old_string: [50 chars], path: expenses/web.py}
+- 23:35:30 **call** patch {new_string: [1320 chars], old_string: [1090 chars], path: expenses/web.py}
+  - 23:35:31 result (patch): [? lines, ? bytes]
+  - 23:35:32 result (patch): [? lines, ? bytes]
+- 23:36:30 **model writes** (tool_calls) [64 chars]
+- 23:36:30 **call** patch {new_string: [704 chars], old_string: [439 chars], path: expenses/web.py}
+- 23:36:30 **call** patch {new_string: [1190 chars], old_string: [1254 chars], path: expenses/web.py}
+  - 23:36:31 result (patch): [? lines, ? bytes]
+  - 23:36:31 result (patch): [? lines, ? bytes]
+- 23:37:03 **model writes** (tool_calls) [73 chars]
+- 23:37:03 **call** patch {new_string: [63 chars], old_string: [1269 chars], path: expenses/web.py}
+  - 23:37:03 result (patch): [? lines, ? bytes]
+- 23:37:09 **model writes** (tool_calls) [93 chars]
+- 23:37:09 **call** read_file {path: expenses/web.py, offset: 140, limit: 80}
+  - 23:37:09 result (read_file): [354 lines, 14018 bytes]
+- 23:40:11 **call** patch {new_string: [40 chars], old_string: [1246 chars], path: expenses/web.py}
+  - 23:40:11 result (patch): [? lines, ? bytes]
+- 23:41:39 **model writes** (tool_calls) [18 chars]
+- 23:41:39 **call** patch {new_string: [1673 chars], old_string: [485 chars], path: tests/test_web.py}
+- 23:41:39 **call** patch {new_string: [1104 chars], old_string: [355 chars], path: tests/test_web.py}
+  - 23:41:40 result (patch): [? lines, ? bytes]
+  - 23:41:40 result (patch): [? lines, ? bytes]
+- 23:41:51 **call** terminal {command: python3 -m pytest -q 2&gt;&amp;1 | tail -5}
+  - 23:41:52 result (terminal): exit 0, 4 lines out
+- 23:42:06 **call** patch {new_string: [177 chars], old_string: [175 chars], path: tests/test_web.py}
+  - 23:42:07 result (patch): [? lines, ? bytes]
+- 23:42:12 **call** terminal {command: python3 -m pytest -q 2&gt;&amp;1 | tail -3}
+  - 23:42:13 result (terminal): exit 0, 3 lines out
+- 23:42:18 **call** terminal {command: python3 -m pytest tests/test_web.py::test_summary_matches_cli_sort -q 2&gt;&amp;1 | grep -A5 ValueError | head -10}
+  - 23:42:18 result (terminal): exit 0, 6 lines out
+- 23:42:39 **call** execute_code {code: [867 chars]}
+  - 23:42:39 result (execute_code): exit 1, 8 lines out, the tool reported an error
+- 23:43:00 **call** terminal {command: python3 - &lt;&lt;&#x27;EOF&#x27; import tempfile from datetime import date from wsgiref.util import setup_testing_defaults from expenses.models import Expense from expenses.store import Store from expenses.web impor … [736 chars]}
+  - 23:43:00 result (terminal): exit 0, 1 lines out
+- 23:43:13 **call** patch {new_string: [162 chars], old_string: [177 chars], path: tests/test_web.py}
+  - 23:43:13 result (patch): [? lines, ? bytes]
+- 23:43:18 **call** terminal {command: python3 -m pytest -q 2&gt;&amp;1 | tail -3}  ← the same call, time 2
+  - 23:43:19 result (terminal): exit 0, 2 lines out
+- 23:43:45 **model writes** (tool_calls) [125 chars]
+- 23:43:45 **call** terminal {command: mkdir -p /tmp/expserve &amp;&amp; cd /tmp/expserve &amp;&amp; rm -f expenses.json budgets.json &amp;&amp; (python3 -m expenses serve --host 127.0.0.1 --port 18080 --file /tmp/expserve/expenses.json --budgets /tmp/expserve/bu … [820 chars], timeout: 60}
+  - 23:43:45 result (terminal): exit -1, 0 lines out, the tool reported an error
+- 23:43:52 **call** terminal {command: mkdir -p /tmp/expserve &amp;&amp; cd /tmp/expserve &amp;&amp; rm -f expenses.json budgets.json &amp;&amp; python3 -m expenses serve --host 127.0.0.1 --port 18080 --file /tmp/expserve/expenses.json --budgets /tmp/expserve/bud … [209 chars], background: True}
+  - 23:43:52 result (terminal): exit 0, 1 lines out
+- 23:47:52 **call** terminal {command: sleep 1; curl -s -o /dev/null -w &quot;GET / -&gt; %{http_code}\n&quot; http://127.0.0.1:18080/; curl -s -o /dev/null -w &quot;GET /add -&gt; %{http_code}\n&quot; http://127.0.0.1:18080/add; curl -s -o /dev/null -w &quot;GET /summa … [969 chars], timeout: 60}
+  - 23:47:54 result (terminal): exit 0, 8 lines out
+- 23:47:57 **call** tool_search {queries: [26 chars]}
+  - 23:47:57 result (tool_search): [? lines, ? bytes]
+- 23:48:02 **call** tool_call {calls: [95 chars]}
+  - 23:48:03 result (process_manage): exit None, 3 lines out
+- 23:51:43 **model writes** (tool_calls) [141 chars]
+- 23:51:43 **call** terminal {command: rm -f /tmp/expserve/expenses.json /tmp/expserve/budgets.json; ls /tmp/expserve 2&gt;/dev/null; which python3}
+  - 23:51:43 result (terminal): exit 0, 1 lines out
+- 23:51:54 **call** terminal {background: True, command: rm -f /tmp/expserve/expenses.json /tmp/expserve/budgets.json &amp;&amp; python3 -m expenses serve --host 127.0.0.1 --port 18080 --file /tmp/expserve/expenses.json --budgets /tmp/expserve/budgets.json, workdir: /Users/sherlock/workspaces/tests/2026-10-config/round4-a/test2-q27-4-python-r1/app}
+  - 23:51:54 result (terminal): exit 0, 1 lines out
+- 23:52:36 **call** terminal {command: sleep 1; curl -s -o /dev/null -w &quot;GET / -&gt; %{http_code}\n&quot; http://127.0.0.1:18080/; curl -s -o /dev/null -w &quot;GET /add -&gt; %{http_code}\n&quot; http://127.0.0.1:18080/add; curl -s -o /dev/null -w &quot;GET /summa … [1159 chars], timeout: 60}
+  - 23:52:38 result (terminal): exit 0, 14 lines out
+- 23:52:53 **call** terminal {command: curl -s http://127.0.0.1:18080/ | grep -o &quot;dinner, with friends\|Imported\|20.00&quot; | sort -u; curl -s -o /dev/null -w &quot;GET /summary?month=2026-13 -&gt; %{http_code}\n&quot; &quot;http://127.0.0.1:18080/summary?mont … [360 chars], timeout: 30}
+  - 23:52:53 result (terminal): exit 0, 3 lines out
+- 23:52:58 **call** tool_call {calls: [96 chars]}
+  - 23:52:58 result (process_manage): exit None, 17 lines out
+- 23:53:08 **model writes** (tool_calls) [47 chars]
+- 23:53:08 **call** terminal {command: python3 -m pytest -q 2&gt;&amp;1 | tail -2 &amp;&amp; git status --short &amp;&amp; git diff --stat}
+  - 23:53:09 result (terminal): exit 0, 11 lines out
+- 23:53:14 **call** terminal {command: git add -A &amp;&amp; git commit -m &quot;Address review: web pages reuse CLI/report code, spec-compliant budgets page, real README commands&quot; &amp;&amp; git log --oneline -2}
+  - 23:53:15 result (terminal): exit 0, 4 lines out
+- 23:53:46 **model writes** (stop) [1730 chars]
+
+## Summary
+
+- Model turns 37, tool calls 50, distinct calls 49
+- The session&#x27;s last entry: the model writing text
+
+## The runner&#x27;s watch (one line each 30 s), last 60 lines
+
+```
+23:29:32  start: prompt 593 bytes, limit 5400s
+23:30:03  +31s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:30:33  +61s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:31:03  +91s  files same (last change 60s ago)  request open yes (last 0s ago)
+23:31:33  +121s  files same (last change 90s ago)  request open yes (last 0s ago)
+23:32:03  +151s  files same (last change 120s ago)  request open yes (last 0s ago)
+23:32:33  +181s  files same (last change 150s ago)  request open yes (last 0s ago)
+23:33:03  +211s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:33:34  +242s  files same (last change 31s ago)  request open yes (last 0s ago)
+23:34:04  +272s  files same (last change 61s ago)  request open yes (last 0s ago)
+23:34:34  +302s  files same (last change 91s ago)  request open yes (last 0s ago)
+23:35:04  +332s  files same (last change 121s ago)  request open yes (last 0s ago)
+23:35:34  +362s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:36:04  +392s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:36:34  +422s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:37:05  +452s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:37:35  +483s  files same (last change 61s ago)  request open yes (last 0s ago)
+23:38:05  +513s  files same (last change 91s ago)  request open yes (last 0s ago)
+23:38:35  +543s  files same (last change 121s ago)  request open yes (last 0s ago)
+23:39:05  +573s  files same (last change 151s ago)  request open yes (last 0s ago)
+23:39:35  +603s  files same (last change 181s ago)  request open yes (last 0s ago)
+23:40:05  +633s  files same (last change 211s ago)  request open yes (last 0s ago)
+23:40:36  +663s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:41:06  +694s  files same (last change 31s ago)  request open yes (last 0s ago)
+23:41:36  +724s  files same (last change 61s ago)  request open yes (last 0s ago)
+23:42:06  +754s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:42:36  +784s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:43:06  +814s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:43:36  +844s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:44:07  +874s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:44:37  +905s  files same (last change 61s ago)  request open yes (last 0s ago)
+23:45:07  +935s  files same (last change 91s ago)  request open yes (last 0s ago)
+23:45:37  +965s  files same (last change 121s ago)  request open yes (last 0s ago)
+23:46:07  +995s  files same (last change 151s ago)  request open yes (last 0s ago)
+23:46:37  +1025s  files same (last change 181s ago)  request open yes (last 0s ago)
+23:47:07  +1055s  files same (last change 211s ago)  request open yes (last 0s ago)
+23:47:38  +1085s  files same (last change 241s ago)  request open yes (last 0s ago)
+23:48:08  +1116s  files same (last change 272s ago)  request open yes (last 0s ago)
+23:48:38  +1146s  files same (last change 302s ago)  request open yes (last 0s ago)
+23:49:08  +1176s  files same (last change 332s ago)  request open yes (last 0s ago)
+23:49:38  +1206s  files same (last change 362s ago)  request open yes (last 0s ago)
+23:50:08  +1236s  files same (last change 392s ago)  request open yes (last 0s ago)
+23:50:38  +1266s  files same (last change 422s ago)  request open yes (last 0s ago)
+23:51:08  +1296s  files same (last change 452s ago)  request open yes (last 0s ago)
+23:51:39  +1326s  files same (last change 482s ago)  request open yes (last 0s ago)
+23:52:09  +1357s  files same (last change 513s ago)  request open yes (last 0s ago)
+23:52:39  +1387s  files same (last change 543s ago)  request open yes (last 0s ago)
+23:53:09  +1417s  files changed (last change 0s ago)  request open no (last 30s ago)
+23:53:39  +1447s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:54:09  +1477s  Hermes exited on its own, status 0 -&gt; done
+```
+
+## The check&#x27;s output, last 60 lines
+
+```
+3 failed, 34 passed in 4.97s
+```
+
+## The check&#x27;s errors, last 60 lines
+
+```
+        assert any(tag == &quot;form&quot; for tag, _ in page.tags)
+&gt;       assert any(tag == &quot;input&quot; and attrs.get(&quot;type&quot;) == &quot;month&quot;
+                   and attrs.get(&quot;value&quot;) in {before, after} for tag, attrs in page.tags)
+E       assert False
+E        +  where False = any(&lt;generator object test_web_budgets_form_and_default_month.&lt;locals&gt;.&lt;genexpr&gt; at 0x1091e18a0&gt;)
+
+test_acceptance.py:412: AssertionError
+__________________________ test_web_set_budget[False] __________________________
+
+budget_web = &lt;function budget_web.&lt;locals&gt;.make at 0x109214510&gt;
+cli = &lt;function cli.&lt;locals&gt;.run at 0x109214460&gt;
+tmp_path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/pytest-of-sherlock/pytest-999/test_web_set_budget_False_0&#x27;)
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x1090439d0&gt;
+default = False
+
+    @pytest.mark.parametrize(&quot;default&quot;, [False, True])
+    def test_web_set_budget(budget_web, cli, tmp_path, monkeypatch, default):
+        &quot;&quot;&quot;Section 6: Setting a budget persists to explicit/default files and redirects.&quot;&quot;&quot;
+        monkeypatch.chdir(tmp_path)
+        path = tmp_path / (&quot;budgets.json&quot; if default else &quot;custom-budgets.json&quot;)
+        web = budget_web(None if default else path)
+        category, value = budget_fields(web)
+        result = web(&quot;/budgets&quot;, {category: &quot;food&quot;, value: &quot;50.00&quot;})
+        assert result[&quot;status&quot;] == 303
+&gt;       assert {k.lower(): v for k, v in result[&quot;headers&quot;].items()}[&quot;location&quot;] == &quot;/budgets&quot;
+E       AssertionError: assert &#x27;/budgets?month=2026-11&#x27; == &#x27;/budgets&#x27;
+E         
+E         - /budgets
+E         + /budgets?month=2026-11
+
+/Users/sherlock/tests-2026-10-config/test2/python/hidden/test_acceptance.py:435: AssertionError
+__________________________ test_web_set_budget[True] ___________________________
+
+budget_web = &lt;function budget_web.&lt;locals&gt;.make at 0x10912f950&gt;
+cli = &lt;function cli.&lt;locals&gt;.run at 0x10912ceb0&gt;
+tmp_path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/pytest-of-sherlock/pytest-999/test_web_set_budget_True_0&#x27;)
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x1091a7cb0&gt;
+default = True
+
+    @pytest.mark.parametrize(&quot;default&quot;, [False, True])
+    def test_web_set_budget(budget_web, cli, tmp_path, monkeypatch, default):
+        &quot;&quot;&quot;Section 6: Setting a budget persists to explicit/default files and redirects.&quot;&quot;&quot;
+        monkeypatch.chdir(tmp_path)
+        path = tmp_path / (&quot;budgets.json&quot; if default else &quot;custom-budgets.json&quot;)
+        web = budget_web(None if default else path)
+        category, value = budget_fields(web)
+        result = web(&quot;/budgets&quot;, {category: &quot;food&quot;, value: &quot;50.00&quot;})
+        assert result[&quot;status&quot;] == 303
+&gt;       assert {k.lower(): v for k, v in result[&quot;headers&quot;].items()}[&quot;location&quot;] == &quot;/budgets&quot;
+E       AssertionError: assert &#x27;/budgets?month=2026-11&#x27; == &#x27;/budgets&#x27;
+E         
+E         - /budgets
+E         + /budgets?month=2026-11
+
+/Users/sherlock/tests-2026-10-config/test2/python/hidden/test_acceptance.py:435: AssertionError
+=========================== short test summary info ============================
+FAILED test_acceptance.py::test_web_budgets_form_and_default_month - assert F...
+FAILED test_acceptance.py::test_web_set_budget[False] - AssertionError: asser...
+FAILED test_acceptance.py::test_web_set_budget[True] - AssertionError: assert...
+3 failed, 34 passed in 4.97s
+```
+
+## The repo
+
+```
+branch: main
+* 0c02973 60 seconds ago
+* 65783f8 55 minutes ago
+* 9b00227 2 hours ago
+* 97c629e 2 hours ago
+* 323f43a 2 hours ago
+* 9c4a731 3 hours ago
+* 90215b2 3 hours ago
+* 97ca44e 3 hours ago
+uncommitted: none
+```
+
+## The server
+
+- Sherlock&#x27;s record of the model served: q27-4
+</body>

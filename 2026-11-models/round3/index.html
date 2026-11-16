@@ -1,0 +1,147 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model tests · round 3</title>
+<style>
+:root { --bg:#f6f6f4; --fg:#1d1d1b; --mute:#6b6b66; --line:#d9d9d4; --card:#fff;
+  --ok:#d7f0dc; --okf:#14532d; --bad:#fbd5d5; --badf:#7f1d1d; --mach:#fde7c4; --machf:#7c4a03;
+  --run:#d6e6fb; --runf:#173f78; --wait:#ececea; --waitf:#77776f; }
+@media (prefers-color-scheme: dark) { :root { --bg:#161615; --fg:#ececea; --mute:#9a9a94; --line:#33332f; --card:#1f1f1d;
+  --ok:#163a22; --okf:#9ee2b0; --bad:#4a1c1c; --badf:#f6b3b3; --mach:#45320f; --machf:#f5cf8c;
+  --run:#17304f; --runf:#a9cbf6; --wait:#262624; --waitf:#8b8b84; } }
+body { margin:0; padding:20px 16px; background:var(--bg); color:var(--fg); font:14px/1.4 -apple-system, system-ui, sans-serif; }
+h1 { font-size:20px; margin:0 0 4px; }
+.facts { color:var(--mute); margin:0 0 12px; }
+.wrap { overflow-x:auto; }
+table { border-collapse:separate; border-spacing:3px; }
+th { font-weight:600; font-size:12px; color:var(--mute); padding:2px 4px; white-space:nowrap; }
+th.name { text-align:left; color:var(--fg); font-size:14px; padding-right:10px; }
+th.name small { display:block; font-weight:400; color:var(--mute); font-size:11px; }
+td { min-width:92px; padding:6px 8px; border-radius:6px; vertical-align:top; font-size:13px; }
+td b { display:block; font-weight:600; }
+td small { display:block; font-size:11px; opacity:.85; }
+td.score small { font-weight:400; color:var(--mute); }
+td a { color:inherit; text-decoration:none; display:block; }
+td a:hover b { text-decoration:underline; }
+td a b::after { content:" ›"; }
+.ok { background:var(--ok); color:var(--okf); } .bad { background:var(--bad); color:var(--badf); }
+.inc { background:color-mix(in srgb, var(--bad) 30%, transparent); color:var(--badf); }
+.mach { background:var(--mach); color:var(--machf); } .wait { background:var(--wait); color:var(--waitf); }
+.run { background:var(--run); color:var(--runf); animation:pulse 2s ease-in-out infinite; }
+.rank { display:inline-block; margin:0 0 4px; padding:2px 8px; border-radius:5px; font-size:16px; font-weight:700; color:#111; }
+.ok .rank { background:color-mix(in srgb, var(--ok) 45%, #fff); }
+.bad .rank { background:color-mix(in srgb, var(--bad) 45%, #fff); }
+td small.note { margin-top:4px; font-size:11px; line-height:1.3; opacity:.8; max-width:260px; white-space:normal; }
+td.split { padding:0; background:transparent; }
+td.gate { background:transparent; animation:none; }
+.half { padding:5px 8px; border-radius:6px; margin:0 0 3px; }
+.half:last-child { margin:0; }
+.half b { display:block; font-weight:600; }
+.half small { display:block; font-size:11px; opacity:.85; }
+.half small.plan { font-weight:600; text-transform:uppercase; letter-spacing:.03em; opacity:.7; }
+.half.score { text-align:center; font-weight:700; color:var(--fg); background:transparent; }
+.skip { background:transparent; color:var(--waitf); border:1px dashed var(--line); }
+.na { background:transparent; min-width:0; }
+td.score { min-width:30px; text-align:center; font-weight:700; color:var(--fg); background:transparent; }
+@keyframes pulse { 50% { opacity:.6; } }
+pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px; overflow-x:auto; font-size:12px; }
+th.group { text-align:left; color:var(--fg); font-size:15px; padding:14px 4px 4px; }
+summary { cursor:pointer; font-weight:600; margin-top:12px; }
+</style>
+</head><body>
+<p><a href="/tests-models/">← All tests</a></p>
+<h1>Model tests · round 3</h1>
+<p class="facts">Updated Sun 15 Nov 13:25:03. Reload to refresh.</p>
+<div class="wrap"><table>
+<tr><th></th><th>Gate</th><th colspan="4">Test 1 · project management</th><th colspan="4">Test 2 · Python</th><th colspan="4">Test 2 · Swift</th></tr>
+<tr><th></th><th></th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done; the server under it">score</th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done; the server under it">score</th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done; the server under it">score</th></tr>
+<tr><th class="name">q27-4<small>Qwen3.8-27B-4bit</small></th><td class="gate"><b>passed</b><small>19.0 tok/s</small></td><td class="bad"><span class="rank">#7 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F4: back-office taps are coded but no route or page reaches them, so the back office never issues an invoice; a cleaner deletion that cannot rebook cancels the job (Sol: F6).</small></td><td class="bad"><span class="rank">#12 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F4: taps and invoice issue only in the Swift app by design; the back office has no invoices.</small></td><td class="bad"><span class="rank">#11 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F4, F6: refuses deleting any cleaner or client who has worked a job; no back-office tap route; one Arrive/Depart pair per multi-day job.</small></td><td class="score">0/3<small>b</small></td><td class="inc"><a href="why/a-test2-q27-4-python-r1-M1-0.html"><b>incomplete</b><small>stopped at M1</small></a></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score">0/1<small>Adlerbot</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"><small>Adlerbot</small></td></tr><tr><th class="name">q27-8<small>Qwen3.8-27B-8bit</small></th><td class="gate"><b>too slow</b><small>11.5 tok/s, under 15</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"><small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">gemma31<small>gemma-4-31b-it-4bit</small></th><td class="gate"><b>passed before</b><small>this time: 14.5 tok/s, 20 of 20 parsed</small></td><td class="bad"><span class="rank">#17 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F2, F4, F5, F7: a sketch with SwiftUI views; no CRUD, settlement or utilization; storage optional.</small></td><td class="inc"><a href="why/a-test1-gemma31-r2-plan-0.html"><b>incomplete</b><small>stopped at plan</small></a></td><td class="bad"><span class="rank">#18 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F1, F4, F5, F7: no page; storage left open; the Swift package only records taps and extensions.</small></td><td class="score">0/3<small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">q122<small>Qwen3.5-122B-A10B-4bit</small></th><td class="gate"><b>passed</b><small>35.6 tok/s</small></td><td class="inc"><a href="why/a-test1-q122-r1-plan-0.html"><b>incomplete</b><small>stopped at plan</small></a></td><td class="bad"><span class="rank">#16 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F1, F3, F4: no page; no Swift file store; refuses deleting a cleaner with future jobs.</small></td><td class="bad"><span class="rank">#21 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F1-F5, F7: language, storage and platform left as NEEDS CLARIFICATION; neither app planned.</small></td><td class="score">0/3<small>Adlerbot</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"><small>Adlerbot</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"><small>Adlerbot</small></td></tr><tr><th class="name">flash<small>flash-next</small></th><td class="gate"><b>passed</b><small>28.8 tok/s</small></td><td class="ok"><span class="rank">#4 of 21</span><b>complete</b><small>fit to build from</small><small class="note">Fit: Arrive/Depart are desktop API routes (no button needed, owner 13 Nov). Split-job parts fixed at 8:00, so long jobs book later than possible. The only fit local plan.</small></td><td class="bad"><span class="rank">#7 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F4: its desktop contract puts Arrive/Depart off the web page, so the back office never issues an invoice. Sol passed it.</small></td><td class="bad"><span class="rank">#5 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F6: its invoice test expects $157.50 + $202.50 = $337.50 (the sum is $360.00). Otherwise complete, page with taps; refuses a long job whose first-found cleaners cannot take a later part; a DST test uses a nonexistent time.</small></td><td class="score">1/3<small>Adlerbot</small></td><td class="inc"><a href="why/a-test2-flash-python-r1-M1-0.html"><b>incomplete</b><small>stopped at M1</small></a></td><td class="inc"><a href="why/a-test2-flash-python-r2-M1-1.html"><b>incomplete</b><small>stopped at M1</small></a></td><td class="inc"><a href="why/a-test2-flash-python-r3-M1-0.html"><b>incomplete</b><small>stopped at M1</small></a></td><td class="score">0/3<small>Adlerbot</small></td><td class="inc"><a href="why/a-test2-flash-swift-r1-M1-0.html"><b>incomplete</b><small>stopped at M1</small></a></td><td class="inc"><a href="why/a-test2-flash-swift-r2-M1-0.html"><b>incomplete</b><small>stopped at M1</small></a></td><td class="inc"><a href="why/a-test2-flash-swift-r3-M1-0.html"><b>incomplete</b><small>stopped at M1</small></a></td><td class="score">0/3<small>Adlerbot</small></td></tr><tr><th class="name">coder-next<small>Qwen3-Coder-Next-4bit</small></th><td class="gate"><b>passed</b><small>57.8 tok/s</small></td><td class="bad"><span class="rank">#19 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F1, F2, F5, F7: almost everything in a Python API; the Swift package gets models and two tasks.</small></td><td class="inc"><a href="why/a-test1-coder-next-r2-tasks-0.html"><b>incomplete</b><small>stopped at tasks</small></a></td><td class="bad"><span class="rank">#20 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F1-F5, F7: a connected REST back end with a SwiftUI client.</small></td><td class="score">0/3<small>Adlerbot</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"><small>Adlerbot</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"><small>Adlerbot</small></td></tr><tr><th class="name">laguna-s<small>Laguna-S-2.1-MLX-4bit</small></th><td class="gate"><b>passed before</b><small>this time: 41.9 tok/s, 19 of 20 parsed</small></td><td class="bad"><span class="rank">#15 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F1, F5: back office is an API with no page; the Swift package lacks a day view, Arrive and extension.</small></td><td class="bad"><span class="rank">#13 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F1: no task builds the web page or either app file store.</small></td><td class="bad"><span class="rank">#13 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F1: no task builds the back office web page.</small></td><td class="score">0/3<small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">coder30b<small>qwen3-coder-30b-64k</small></th><td class="gate"><b>failed</b><small>12 of 20 calls parsed</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"><small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">devstral<small>Devstral-Small-2-24B-Instruct-2512-4bit</small></th><td class="gate"><b>passed</b><small>23.5 tok/s</small></td><td class="inc"><a href="why/b-test1-devstral-r1-specify-0.html"><b>incomplete</b><small>stopped at specify</small></a></td><td class="inc"><a href="why/b-test1-devstral-r2-specify-0.html"><b>incomplete</b><small>stopped at specify</small></a></td><td class="inc"><a href="why/b-test1-devstral-r3-specify-0.html"><b>incomplete</b><small>stopped at specify</small></a></td><td class="score">0/3<small>b</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"><small>Adlerbot</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"><small>Adlerbot</small></td></tr><tr><th class="name">sonnet<small>claude-sonnet-5-5</small></th><td class="gate"><b>no gate</b><small>a cloud model, no local server</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="ok"><b>complete</b></td><td class="ok"><b>complete</b></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">2/2<small>Claude-Code</small></td><td class="inc"><a href="why/sonnet-a-test2-sonnet-swift-r1-M1-0.html"><b>incomplete</b><small>stopped at M1</small></a></td><td class="inc"><a href="why/sonnet-a-test2-sonnet-swift-r2-M1-0.html"><b>incomplete</b><small>stopped at M1</small></a></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2<small>Claude-Code</small></td></tr><tr><th class="name">terra<small>gpt-6.1-terra</small></th><td class="gate"><b>no gate</b><small>a cloud model, no local server</small></td><td class="bad"><span class="rank">#7 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F4: back-office taps are coded but no route or page reaches them, so the back office never issues an invoice. Sol passed it; its interface lists no tap route.</small></td><td class="ok"><span class="rank">#1 of 21</span><b>complete</b><small>fit to build from</small><small class="note">Passes F1-F7 and follows every rule: split jobs booked as complete sequences, atomic cascades, invoices aggregated across parts; tasks less specific than Sonnet run 1 (Sol ranked it first; tied).</small></td><td class="bad"><span class="rank">#7 of 21</span><b>failed</b><small>plan not fit to build from</small><small class="note">F4: back-office taps are coded but no route or page reaches them, so the back office never issues an invoice. Sol passed it; its page lists no taps.</small></td><td class="score">1/3<small>Codex</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr>
+</table></div>
+<details><summary>local models: runner log, last lines</summary><pre>2026-11-13 03:58:11 [a] test 1: flash run 2
+2026-11-13 04:08:25 [a] test1-flash-r2 specify: pass specs/001-cleaning-scheduling-billing/spec.md complete
+2026-11-13 04:20:59 [a] test1-flash-r2 plan: pass specs/001-cleaning-scheduling-billing/plan.md complete
+2026-11-13 04:42:36 [a] test1-flash-r2 tasks: pass specs/001-cleaning-scheduling-billing/tasks.md complete
+2026-11-13 05:27:50 [a] test1-flash-r2 estimate: pass estimate.md complete
+2026-11-13 05:27:50 [a] test 1: flash run 3
+2026-11-13 05:39:04 [a] test1-flash-r3 specify: pass specs/001-cleaning-scheduling-billing/spec.md complete
+2026-11-13 05:52:38 [a] test1-flash-r3 plan: pass specs/001-cleaning-scheduling-billing/plan.md complete
+2026-11-13 06:34:22 [a] test1-flash-r3 tasks: pass specs/001-cleaning-scheduling-billing/tasks.md complete
+2026-11-13 06:45:26 [a] test1-flash-r3 estimate: pass estimate.md complete
+2026-11-13 06:45:26 [a] lane done
+2026-11-13 12:34:07 [a] runner 99007 started: round round3, lane a, model server 192.168.40.110; the round&#x27;s limit: 2026-11-16 12:34:07
+2026-11-13 12:34:07 [a] preflight
+2026-11-13 12:35:49 [a] preflight P1: pass ok.txt committed
+2026-11-13 12:35:49 [a] test 2: flash python run 1 (flash-i3)
+2026-11-13 14:06:56 [a] test2-flash-python-r1 M1: timeout  | Hermes: no usage file; the same call 6 times: terminal {command: python3 -m unittest desktop.tests.test_booking 2&gt;&amp;1 | tail -3, workdir: /Users/sherlock/workspaces/tests/2026-11-models/round3-a/test2-flash-python-r1/app} | why/test2-flash-python-r1-M1-0.md
+2026-11-13 14:06:56 [a] test 2: flash python run 2 (flash-i3)
+2026-11-13 14:31:15 [a] test2-flash-python-r2 M1: machine failure (hang), repair 1: Hermes: no usage file
+2026-11-13 16:01:42 [a] test2-flash-python-r2 M1: timeout  | Hermes: no usage file; the same call 6 times: read_file {path: desktop/timeutil.py} | why/test2-flash-python-r2-M1-1.md
+2026-11-13 16:01:42 [a] test 2: flash python run 3 (flash-i3)
+2026-11-13 17:32:50 [a] test2-flash-python-r3 M1: timeout  | Hermes: no usage file; the same call 7 times: execute_code {code: [140 chars]} | why/test2-flash-python-r3-M1-0.md
+2026-11-13 17:32:50 [a] test 2: flash swift run 1 (flash-i3)
+2026-11-13 19:03:40 [a] test2-flash-swift-r1 M1: timeout  | Hermes: no usage file; the same call 6 times: terminal {command: swift build --disable-sandbox 2&gt;&amp;1 | grep error | sort -u | head; echo BUILD_DONE, timeout: 420} | why/test2-flash-swift-r1-M1-0.md
+2026-11-13 19:03:40 [a] test 2: flash swift run 2 (flash-i3)
+2026-11-13 20:34:32 [a] test2-flash-swift-r2 M1: timeout  | Hermes: no usage file; the same call 5 times: terminal {command: cd CleaningKit &amp;&amp; swift build --build-tests --disable-sandbox 2&gt;&amp;1 | grep &quot;error:&quot; | sort -u | head -20, timeout: 400, workdir: /Users/sherlock/workspaces/tests/2026-11-models/round3-a/test2-flash-swift-r2/app} | why/test2-flash-swift-r2-M1-0.md
+2026-11-13 20:34:33 [a] test 2: flash swift run 3 (flash-i3)
+2026-11-13 22:05:43 [a] test2-flash-swift-r3 M1: timeout  | Hermes: no usage file; the same call 8 times: read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round3-a/test2-flash-swift-r3/app/CleaningKit/Sources/CleaningKit/TimeUt … [128 chars]} | why/test2-flash-swift-r3-M1-0.md
+2026-11-13 22:05:43 [a] test 2: q27-4 python run 1 (flash-i3)
+2026-11-13 22:49:07 [a] test2-q27-4-python-r1 M1: fail no commit | Hermes: guardrail_halt; the same call 5 times: terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round3-a/test2-q27-4-python-r1/app &amp;&amp; python3 -c &quot; import sys; sys.path.insert(0, &#x27;.&#x27;) from desktop.booking import _price from desktop.timeutil impor … [431 chars]} | why/test2-q27-4-python-r1-M1-0.md
+2026-11-13 22:49:07 [a] LANE STOPPED: the production model&#x27;s first test 2 python run did not complete (failed at M1): read its why file; the test may be at fault</pre></details><details><summary>Sonnet (cloud): runner log, last lines</summary><pre>2026-11-13 03:11:02 [a] preflight P1: pass ok.txt committed
+2026-11-13 03:11:02 [a] test 1: sonnet run 2
+2026-11-13 03:14:34 [a] test1-sonnet-r2 specify: pass specs/001-cleaning-scheduling-billing/spec.md complete
+2026-11-13 03:16:05 [a] test1-sonnet-r2 plan: pass specs/001-cleaning-scheduling-billing/plan.md complete
+2026-11-13 03:17:36 [a] test1-sonnet-r2 tasks: pass specs/001-cleaning-scheduling-billing/tasks.md complete
+2026-11-13 03:18:07 [a] test1-sonnet-r2 estimate: pass estimate.md complete
+2026-11-13 03:18:07 [a] test 1: sonnet run 3
+2026-11-13 03:19:38 [a] test1-sonnet-r3 specify: pass specs/001-cleaning-scheduling-billing/spec.md complete
+2026-11-13 03:21:09 [a] test1-sonnet-r3 plan: pass specs/001-cleaning-scheduling-billing/plan.md complete
+2026-11-13 03:22:40 [a] test1-sonnet-r3 tasks: pass specs/001-cleaning-scheduling-billing/tasks.md complete
+2026-11-13 03:23:10 [a] test1-sonnet-r3 estimate: pass estimate.md complete
+2026-11-13 03:23:11 [a] done
+2026-11-13 21:18:42 [a] runner 65092 started: round3-sonnet, claude-sonnet-5-5 through Claude-Code Code); turns in 00:00-24:00 (cloud-hours), none while weekly use is 80% or more
+2026-11-13 21:18:42 [a] preflight
+2026-11-13 21:19:13 [a] preflight P1: pass ok.txt committed
+2026-11-13 21:19:13 [a] test 2: sonnet python run 1 (flash-i3)
+2026-11-13 21:22:22 [a] test2-sonnet-python-r1 M1: pass 14 passed in 6.38s
+2026-11-13 21:24:02 [a] test2-sonnet-python-r1 M2: pass 24 passed in 9.09s
+2026-11-13 21:27:16 [a] test2-sonnet-python-r1 M3: pass 33 passed in 11.46s
+2026-11-13 21:29:30 [a] test2-sonnet-python-r1 M4: pass 37 passed in 12.70s
+2026-11-13 21:29:30 [a] test 2: sonnet python run 2 (flash-i3)
+2026-11-13 21:33:07 [a] test2-sonnet-python-r2 M1: pass 14 passed in 4.69s
+2026-11-13 21:34:47 [a] test2-sonnet-python-r2 M2: pass 24 passed in 7.74s
+2026-11-13 21:37:28 [a] test2-sonnet-python-r2 M3: pass 33 passed in 10.17s
+2026-11-13 21:40:12 [a] test2-sonnet-python-r2 M4: pass 37 passed in 11.19s
+2026-11-13 21:40:12 [a] test 2: sonnet swift run 1 (flash-i3)
+2026-11-13 21:45:51 [a] test2-sonnet-swift-r1 M1: fail /private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:87:94: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;arrive&#x27; | Claude Code: success, 13 model calls; tool calls Bash x12; 2 failed | why/test2-sonnet-swift-r1-M1-0.md
+2026-11-13 21:45:51 [a] test 2: sonnet swift run 2 (flash-i3)
+2026-11-13 21:52:31 [a] test2-sonnet-swift-r2 M1: fail /private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.prGlWj/w/CleaningKit/Tests/CleaningKitTests/M1.swift:87:94: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;arrive&#x27; | Claude Code: success, 14 model calls; tool calls Bash x12, Read x1; 0 failed | why/test2-sonnet-swift-r2-M1-0.md
+2026-11-13 21:52:32 [a] done</pre></details><details><summary>Terra (cloud): runner log, last lines</summary><pre>2026-11-11 20:58:06 [a] test2-terra-python-r2 M1: pass 14 passed in 4.20s
+2026-11-11 21:00:15 [a] test2-terra-python-r2 M2: fail 1 failed, 22 passed in 7.08s | Codex: completed, 11 model calls; tool calls command_execution x10; 4 failed | why/test2-terra-python-r2-M2-0.md
+2026-11-11 21:00:15 [a] test 2: terra swift run 1 (terra-r1)
+2026-11-11 21:05:57 [a] test2-terra-swift-r1 M1: pass 
+2026-11-11 21:10:38 [a] test2-terra-swift-r1 M2: pass 
+2026-11-11 21:14:21 [a] test2-terra-swift-r1 M3: pass 
+2026-11-11 21:14:21 [a] test 2: terra swift run 2 (terra-r1)
+2026-11-11 21:20:02 [a] test2-terra-swift-r2 M1: pass 
+2026-11-11 21:24:44 [a] test2-terra-swift-r2 M2: pass 
+2026-11-11 21:27:57 [a] test2-terra-swift-r2 M3: pass 
+2026-11-11 21:27:57 [a] done
+2026-11-13 03:38:04 [a] runner 53156 started: round3-terra, gpt-6.1-terra through Codex 0.160.0; turns in 00:00-24:00 (cloud-hours), none while weekly use is 80% or more
+2026-11-13 03:38:04 [a] preflight
+2026-11-13 03:38:35 [a] preflight P1: pass ok.txt committed
+2026-11-13 03:38:35 [a] test 1: terra run 1
+2026-11-13 03:40:36 [a] test1-terra-r1 specify: pass specs/001-cleaning-scheduling-billing/spec.md complete
+2026-11-13 03:42:37 [a] test1-terra-r1 plan: pass specs/001-cleaning-scheduling-billing/plan.md complete
+2026-11-13 03:44:08 [a] test1-terra-r1 tasks: pass specs/001-cleaning-scheduling-billing/tasks.md complete
+2026-11-13 03:47:09 [a] test1-terra-r1 estimate: pass estimate.md complete
+2026-11-13 03:47:09 [a] test 1: terra run 2
+2026-11-13 03:49:10 [a] test1-terra-r2 specify: pass specs/001-cleaning-scheduling-billing/spec.md complete
+2026-11-13 03:51:11 [a] test1-terra-r2 plan: pass specs/001-cleaning-scheduling-billing/plan.md complete
+2026-11-13 03:52:42 [a] test1-terra-r2 tasks: pass specs/001-cleaning-scheduling-billing/tasks.md complete
+2026-11-13 03:53:43 [a] test1-terra-r2 estimate: pass estimate.md complete
+2026-11-13 03:53:43 [a] test 1: terra run 3
+2026-11-13 03:55:44 [a] test1-terra-r3 specify: pass specs/001-cleaning-scheduling-billing/spec.md complete
+2026-11-13 03:57:15 [a] test1-terra-r3 plan: pass specs/001-cleaning-scheduling-billing/plan.md complete
+2026-11-13 03:58:46 [a] test1-terra-r3 tasks: pass specs/001-cleaning-scheduling-billing/tasks.md complete
+2026-11-13 03:59:47 [a] test1-terra-r3 estimate: pass estimate.md complete
+2026-11-13 03:59:47 [a] done</pre></details>
+</body></html>

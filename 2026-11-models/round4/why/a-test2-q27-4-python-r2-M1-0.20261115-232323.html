@@ -1,0 +1,217 @@
+<!doctype html><meta charset="utf-8"><title>test2-q27-4-python-r2-M1-0.20261115-232323</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ round 4</a>
+
+<b>Test 2 · Python</b>
+
+# test2-q27-4-python-r2-M1-0: repair: hang
+
+- Job: 22:34:08 to 23:23:22 (2954 s); runner&#x27;s note: -
+- Hermes&#x27;s turn: no usage file (Hermes was stopped, or crashed)
+- Hermes session: 20261115_223412_6bb884
+
+## The session, turn by turn
+
+- 22:34:13 **prompt** [577 chars]
+- 22:35:17 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}
+- 22:35:17 **call** search_files {pattern: [1 chars], target: [5 chars], path: specs/001-cleaning-scheduling-billing, limit: 100}
+  - 22:35:18 result (read_file): [356 lines, 39896 bytes]
+  - 22:35:18 result (search_files): [? lines, ? bytes]
+- 22:36:29 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/rules-core.md}
+- 22:36:29 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}
+  - 22:36:29 result (read_file): [74 lines, 4843 bytes]
+  - 22:36:29 result (read_file): [70 lines, 4427 bytes]
+- 22:36:53 **call** read_file {path: specs/001-cleaning-scheduling-billing/data-model.md}
+- 22:36:53 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/exact-interfaces.md}
+  - 22:36:53 result (read_file): [154 lines, 7955 bytes]
+  - 22:36:53 result (read_file): [44 lines, 4298 bytes]
+- 22:37:22 **call** read_file {path: specs/001-cleaning-scheduling-billing/research.md}
+- 22:37:22 **call** read_file {path: specs/001-cleaning-scheduling-billing/plan.md}
+  - 22:37:22 result (read_file): [278 lines, 19709 bytes]
+  - 22:37:22 result (read_file): [173 lines, 11069 bytes]
+- 22:38:25 **call** read_file {path: specs/001-cleaning-scheduling-billing/questions.md}
+- 22:38:25 **call** read_file {path: specs/001-cleaning-scheduling-billing/quickstart.md}
+  - 22:38:25 result (read_file): [162 lines, 9282 bytes]
+  - 22:38:25 result (read_file): [85 lines, 3994 bytes]
+- 22:39:02 **call** read_file {path: specs/001-cleaning-scheduling-billing/spec.md}
+- 22:39:02 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; ls -la &amp;&amp; git status --short &amp;&amp; git log --oneline -5 2&gt;/dev/null; python3 --version; python3 -c &quot;import pytest; … [232 chars]}
+  - 22:39:02 result (read_file): [181 lines, 18900 bytes]
+  - 22:39:03 result (terminal): exit 0, 8 lines out
+- 22:39:46 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; git remote -v; git branch -a; git config user.name; git config user.email; ls specs/001-cleaning-scheduling-bil … [279 chars]}
+  - 22:39:46 result (terminal): exit 0, 4 lines out
+- 22:39:59 **call** write_file {path: desktop/__init__.py, content: [440 chars]}
+- 22:39:59 **call** write_file {path: desktop/tests/__init__.py, content: [63 chars]}
+  - 22:40:00 result (write_file): [? lines, ? bytes]
+  - 22:40:00 result (write_file): [? lines, ? bytes]
+- 22:44:58 **call** write_file {content: [149 chars], path: Procfile}
+- 22:44:58 **call** write_file {content: [2479 chars], path: desktop/models.py}
+  - 22:44:59 result (write_file): [? lines, ? bytes]
+  - 22:44:59 result (write_file): [? lines, ? bytes]
+- 22:46:02 **model writes** (tool_calls) [30 chars]
+- 22:46:02 **call** write_file {content: [3138 chars], path: desktop/timeutil.py}
+  - 22:46:02 result (write_file): [? lines, ? bytes]
+- 22:49:28 **model writes** (tool_calls) [38 chars]
+- 22:49:28 **call** write_file {content: [11927 chars], path: desktop/store.py}
+  - 22:49:29 result (write_file): [? lines, ? bytes]
+- 22:52:00 **model writes** (tool_calls) [84 chars]
+- 22:52:00 **call** write_file {content: [7080 chars], path: desktop/tests/test_booking.py}
+  - 22:52:01 result (write_file): [? lines, ? bytes]
+- 22:52:17 **call** patch {path: desktop/tests/test_booking.py, old_string: [324 chars], new_string: [251 chars]}
+  - 22:52:18 result (patch): [? lines, ? bytes]
+- 22:57:37 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -m pytest desktop/tests/test_booking.py -q 2&gt;&amp;1 | tail -15}
+  - 22:57:40 result (terminal): exit 0, 15 lines out
+- 23:00:19 **call** write_file {content: [8946 chars], path: desktop/booking.py}
+  - 23:00:19 result (write_file): [? lines, ? bytes]
+- 23:01:59 **prompt** [10288 chars]
+- 22:35:17 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}  ← the same call, time 2
+- 22:35:17 **call** search_files {pattern: [1 chars], target: [5 chars], path: specs/001-cleaning-scheduling-billing, limit: 100}  ← the same call, time 2
+  - 22:35:18 result (read_file): [90 chars]
+  - 22:35:18 result (search_files): [90 chars]
+- 22:44:58 **call** write_file {content: [149 chars], path: Procfile}  ← the same call, time 2
+- 22:44:58 **call** write_file {content: [2479 chars], path: desktop/models.py}  ← the same call, time 2
+  - 22:44:59 result (write_file): [40 chars]
+  - 22:44:59 result (write_file): [50 chars]
+- 22:46:02 **model writes** (tool_calls) [30 chars]
+- 22:46:02 **call** write_file {content: [3138 chars], path: desktop/timeutil.py}  ← the same call, time 2
+  - 22:46:02 result (write_file): [? lines, ? bytes]
+- 22:49:28 **model writes** (tool_calls) [38 chars]
+- 22:49:28 **call** write_file {content: [11927 chars], path: desktop/store.py}  ← the same call, time 2
+  - 22:49:29 result (write_file): [? lines, ? bytes]
+- 22:52:00 **model writes** (tool_calls) [84 chars]
+- 22:52:00 **call** write_file {content: [7080 chars], path: desktop/tests/test_booking.py}  ← the same call, time 2
+  - 22:52:01 result (write_file): [? lines, ? bytes]
+- 22:52:17 **call** patch {path: desktop/tests/test_booking.py, old_string: [324 chars], new_string: [251 chars]}  ← the same call, time 2
+  - 22:52:18 result (patch): [? lines, ? bytes]
+- 22:57:37 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -m pytest desktop/tests/test_booking.py -q 2&gt;&amp;1 | tail -15}  ← the same call, time 2
+  - 22:57:40 result (terminal): exit 0, 15 lines out
+- 23:00:19 **call** write_file {content: [8946 chars], path: desktop/booking.py}  ← the same call, time 2
+  - 23:00:19 result (write_file): [? lines, ? bytes]
+- 23:04:36 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -m pytest desktop/tests/test_booking.py -q 2&gt;&amp;1 | tail -20}
+  - 23:04:39 result (terminal): exit 0, 19 lines out
+- 23:04:56 **model writes** (tool_calls) [100 chars]
+- 23:04:56 **call** patch {new_string: [150 chars], old_string: [141 chars], path: desktop/tests/test_booking.py}
+- 23:04:56 **call** patch {new_string: [63 chars], old_string: [61 chars], path: desktop/tests/test_booking.py}
+  - 23:04:57 result (patch): [? lines, ? bytes]
+  - 23:04:57 result (patch): [? lines, ? bytes]
+- 23:05:05 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -m pytest desktop/tests/test_booking.py -q 2&gt;&amp;1 | tail -20}  ← the same call, time 2
+  - 23:05:08 result (terminal): exit 0, 20 lines out
+- 23:05:18 **call** patch {new_string: [96 chars], old_string: [89 chars], path: desktop/booking.py}
+  - 23:05:18 result (patch): [? lines, ? bytes]
+- 23:05:25 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -m pytest desktop/tests/test_booking.py -q 2&gt;&amp;1 | tail -20}  ← the same call, time 3
+  - 23:08:25 result (terminal): exit 124, 1 lines out
+- 23:08:33 **model writes** (tool_calls) [118 chars]
+- 23:08:33 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; timeout 60 python3 -m pytest desktop/tests/test_booking.py::test_g3_saturday_request_starts_monday_800 -q 2&gt;&amp;1  … [209 chars]}
+  - 23:08:33 result (terminal): exit 0, 1 lines out
+- 23:08:45 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -c &quot; import time, sys sys.path.insert(0, &#x27;.&#x27;) from desktop import booking, store from desktop.models im … [498 chars]}
+  - 23:08:45 result (terminal): exit 0, 1 lines out
+- 23:09:08 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -c &quot; import time, sys, tempfile, os sys.path.insert(0, &#x27;.&#x27;) from desktop import booking, store from des … [1088 chars]}
+  - 23:09:08 result (terminal): exit 0, 5 lines out
+- 23:09:33 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -c &quot; import time, sys, tempfile, os sys.path.insert(0, &#x27;.&#x27;) from desktop import booking, store from des … [1097 chars]}
+  - 23:12:33 result (terminal): exit 124, 1 lines out
+- 23:13:00 **call** patch {new_string: [957 chars], old_string: [770 chars], path: desktop/booking.py}
+  - 23:13:01 result (patch): [? lines, ? bytes]
+- 23:13:56 **model writes** (tool_calls) [143 chars]
+- 23:13:56 **call** patch {new_string: [1975 chars], old_string: [1339 chars], path: desktop/booking.py}
+  - 23:13:57 result (patch): [? lines, ? bytes]
+- 23:14:11 **call** patch {new_string: [163 chars], old_string: [143 chars], path: desktop/booking.py}
+  - 23:14:12 result (patch): [? lines, ? bytes]
+- 23:14:27 **model writes** (tool_calls) [52 chars]
+- 23:14:27 **call** patch {new_string: [77 chars], old_string: [551 chars], path: desktop/booking.py}
+  - 23:14:27 result (patch): [? lines, ? bytes]
+- 23:14:31 **call** search_files {context: 3, path: desktop/booking.py, pattern: [13 chars]}
+  - 23:14:31 result (search_files): [? lines, ? bytes]
+- 23:14:36 **call** read_file {limit: 15, offset: 88, path: desktop/booking.py}
+  - 23:14:36 result (read_file): [253 lines, 9800 bytes]
+- 23:14:49 **call** patch {new_string: [61 chars], old_string: [535 chars], path: desktop/booking.py}
+  - 23:14:50 result (patch): [? lines, ? bytes]
+- 23:14:57 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -m pytest desktop/tests/test_booking.py -q 2&gt;&amp;1 | tail -12}
+  - 23:17:58 result (terminal): exit 124, 1 lines out
+- 23:18:23 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -c &quot; import time, sys, tempfile, os sys.path.insert(0, &#x27;.&#x27;) from desktop import booking, store from des … [1115 chars], timeout: 120}
+  - 23:20:23 result (terminal): exit 124, 1 lines out
+- 23:20:48 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -c &quot; import time, sys, tempfile, os sys.path.insert(0, &#x27;.&#x27;) from desktop import booking, store from des … [1115 chars], timeout: 120}  ← the same call, time 2
+  - 23:21:56 result (terminal): exit 0, 2 lines out
+- 23:22:22 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -c &quot; import time, sys, tempfile, os sys.path.insert(0, &#x27;.&#x27;) from desktop import booking, store from des … [1168 chars], timeout: 150}
+
+## Summary
+
+- Model turns 43, tool calls 54, distinct calls 41
+- The same call 3 times: terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r2/app &amp;&amp; python3 -m pytest desktop/tests/test_booking.py -q 2&gt;&amp;1 | tail -20}
+- The session&#x27;s last entry: a tool call or its result (stopped mid-work)
+
+## The runner&#x27;s watch (one line each 30 s), last 60 lines
+
+```
+22:34:08  start: prompt 578 bytes, limit 604800s
+…
+22:54:14  +1206s  files same (last change 91s ago)  request open yes (last 0s ago)
+22:54:44  +1236s  files same (last change 121s ago)  request open yes (last 0s ago)
+22:55:14  +1266s  files same (last change 151s ago)  request open yes (last 0s ago)
+22:55:44  +1296s  files same (last change 181s ago)  request open yes (last 0s ago)
+22:56:14  +1326s  files same (last change 211s ago)  request open yes (last 0s ago)
+22:56:44  +1356s  files same (last change 241s ago)  request open yes (last 0s ago)
+22:57:15  +1386s  files same (last change 271s ago)  request open yes (last 0s ago)
+22:57:45  +1417s  files changed (last change 0s ago)  request open yes (last 0s ago)
+22:58:15  +1447s  files same (last change 30s ago)  request open yes (last 0s ago)
+22:58:45  +1477s  files same (last change 60s ago)  request open yes (last 0s ago)
+22:59:15  +1507s  files same (last change 90s ago)  request open yes (last 0s ago)
+22:59:45  +1537s  files same (last change 120s ago)  request open yes (last 0s ago)
+23:00:15  +1567s  files same (last change 150s ago)  request open yes (last 0s ago)
+23:00:45  +1597s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:01:16  +1628s  files same (last change 31s ago)  request open yes (last 0s ago)
+23:01:46  +1658s  files same (last change 61s ago)  request open yes (last 0s ago)
+23:02:16  +1688s  files same (last change 91s ago)  request open yes (last 0s ago)
+23:02:46  +1718s  files same (last change 121s ago)  request open yes (last 0s ago)
+23:03:16  +1748s  files same (last change 151s ago)  request open yes (last 0s ago)
+23:03:46  +1778s  files same (last change 181s ago)  request open yes (last 0s ago)
+23:04:16  +1808s  files same (last change 211s ago)  request open yes (last 0s ago)
+23:04:47  +1838s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:05:17  +1869s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:05:47  +1899s  files changed (last change 0s ago)  request open no (last 30s ago)
+23:06:17  +1929s  files same (last change 30s ago)  request open no (last 60s ago)
+23:06:47  +1959s  files same (last change 60s ago)  request open no (last 90s ago)
+23:07:17  +1989s  files same (last change 90s ago)  request open no (last 120s ago)
+23:07:48  +2019s  files same (last change 120s ago)  request open no (last 150s ago)
+23:08:18  +2050s  files same (last change 151s ago)  request open no (last 181s ago)
+23:08:48  +2080s  files same (last change 181s ago)  request open yes (last 0s ago)
+23:09:18  +2110s  files same (last change 211s ago)  request open yes (last 0s ago)
+23:09:48  +2140s  files same (last change 241s ago)  request open no (last 30s ago)
+23:10:18  +2170s  files same (last change 271s ago)  request open no (last 60s ago)
+23:10:48  +2200s  files same (last change 301s ago)  request open no (last 90s ago)
+23:11:19  +2230s  files same (last change 331s ago)  request open no (last 120s ago)
+23:11:49  +2261s  files same (last change 362s ago)  request open no (last 151s ago)
+23:12:19  +2291s  files same (last change 392s ago)  request open no (last 181s ago)
+23:12:49  +2321s  files same (last change 422s ago)  request open yes (last 0s ago)
+23:13:19  +2351s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:13:49  +2381s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:14:19  +2411s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:14:50  +2441s  files same (last change 30s ago)  request open no (last 30s ago)
+23:15:20  +2472s  files changed (last change 0s ago)  request open no (last 61s ago)
+23:15:50  +2502s  files same (last change 30s ago)  request open no (last 91s ago)
+23:16:20  +2532s  files same (last change 60s ago)  request open no (last 121s ago)
+23:16:50  +2562s  files same (last change 90s ago)  request open no (last 151s ago)
+23:17:20  +2592s  files same (last change 120s ago)  request open no (last 181s ago)
+23:17:51  +2622s  files same (last change 150s ago)  request open no (last 211s ago)
+23:18:21  +2653s  files same (last change 181s ago)  request open yes (last 0s ago)
+23:18:51  +2683s  files same (last change 211s ago)  request open no (last 30s ago)
+23:19:21  +2713s  files same (last change 241s ago)  request open no (last 60s ago)
+23:19:51  +2743s  files same (last change 271s ago)  request open no (last 90s ago)
+23:20:21  +2773s  files same (last change 301s ago)  request open no (last 120s ago)
+23:20:52  +2803s  files same (last change 331s ago)  request open no (last 150s ago)
+23:21:22  +2834s  files same (last change 362s ago)  request open no (last 181s ago)
+23:21:52  +2864s  files same (last change 392s ago)  request open no (last 211s ago)
+23:22:22  +2894s  files same (last change 422s ago)  request open no (last 241s ago)
+23:22:52  +2924s  files same (last change 452s ago)  request open no (last 271s ago)
+23:23:22  +2954s  files same (last change 482s ago)  request open no (last 301s ago)  -&gt; ended: hang
+```
+
+## The repo
+
+```
+branch: main
+* a764015 1 second ago
+* 5926822 49 minutes ago
+uncommitted: none
+```
+
+## The server
+
+- Sherlock&#x27;s record of the model served: q27-4
+</body>

@@ -1,0 +1,54 @@
+<!doctype html><meta charset="utf-8"><title>test2-sonnet-swift-r1-M1-0</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ round 3</a>
+
+# test2-sonnet-swift-r1-M1-0: fail
+
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:87:94: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;arrive&#x27;
+
+Claude Code: success, 13 model calls; tool calls Bash x12; 2 failed
+
+## The runner&#x27;s watch
+
+21:40:12  start: prompt 839 bytes, limit 5400s of work
+21:40:42  +30s  files same (last change 30s ago)  output 179413 bytes (last 0s ago)
+21:41:12  +60s  files same (last change 60s ago)  output 473903 bytes (last 0s ago)
+21:41:42  +90s  files changed (last change 0s ago)  output 772030 bytes (last 0s ago)
+21:42:12  +120s  files changed (last change 0s ago)  output 897671 bytes (last 0s ago)
+21:42:43  +150s  files changed (last change 0s ago)  output 897969 bytes (last 0s ago)
+21:43:13  +181s  files changed (last change 0s ago)  output 898267 bytes (last 0s ago)
+21:43:43  +211s  files changed (last change 0s ago)  output 937262 bytes (last 0s ago)
+21:44:13  +241s  Claude-Code exited on its own, status 0 -&gt; done
+
+## How the turn ended
+
+{&quot;subtype&quot;: &quot;success&quot;, &quot;api_calls&quot;: 13, &quot;model&quot;: &quot;claude-sonnet-5-5&quot;, &quot;duration_ms&quot;: 228074, &quot;five&quot;: {&quot;used&quot;: 37.0, &quot;resets&quot;: 1794650400}, &quot;week&quot;: {&quot;used&quot;: 21.0, &quot;resets&quot;: 1795136400}, &quot;limited&quot;: false}
+
+## The check
+
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:87:94: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;arrive&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:87:94: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;arrive&#x27;
+    |                                                                                              `- error: value of type &#x27;CleaningStore&#x27; has no member &#x27;arrive&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:88:94: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;depart&#x27;
+    |                                                                                              `- error: value of type &#x27;CleaningStore&#x27; has no member &#x27;depart&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:94:70: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;invoices&#x27;
+    |                                                                      `- error: value of type &#x27;CleaningStore&#x27; has no member &#x27;invoices&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:112:25: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;updateCleaner&#x27;
+    |                         `- error: value of type &#x27;CleaningStore&#x27; has no member &#x27;updateCleaner&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:115:63: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;updateCleaner&#x27;
+    |                                                               `- error: value of type &#x27;CleaningStore&#x27; has no member &#x27;updateCleaner&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:116:17: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;deleteCleaner&#x27;
+    |                 `- error: value of type &#x27;CleaningStore&#x27; has no member &#x27;deleteCleaner&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:118:58: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;deleteCleaner&#x27;
+    |                                                          `- error: value of type &#x27;CleaningStore&#x27; has no member &#x27;deleteCleaner&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:121:25: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;updateClient&#x27;
+    |                         `- error: value of type &#x27;CleaningStore&#x27; has no member &#x27;updateClient&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:122:64: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;updateClient&#x27;
+    |                                                                `- error: value of type &#x27;CleaningStore&#x27; has no member &#x27;updateClient&#x27;
+/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.6CsJFg/w/CleaningKit/Tests/CleaningKitTests/M1.swift:123:17: error: value of type &#x27;CleaningStore&#x27; has no member &#x27;deleteClient&#x27;
+    |                 `- error: value of type &#x27;CleaningStore&#x27; has no member &#x27;deleteClient&#x27;
+error: fatalError
+
+## Commits, newest first
+
+4d53b50 2 minutes ago
+4667a92 6 minutes ago
+</body>

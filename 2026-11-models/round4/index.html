@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model tests · round 4</title>
+<style>
+:root { --bg:#f6f6f4; --fg:#1d1d1b; --mute:#6b6b66; --line:#d9d9d4; --card:#fff;
+  --ok:#d7f0dc; --okf:#14532d; --bad:#fbd5d5; --badf:#7f1d1d; --mach:#fde7c4; --machf:#7c4a03;
+  --run:#d6e6fb; --runf:#173f78; --wait:#ececea; --waitf:#77776f; }
+@media (prefers-color-scheme: dark) { :root { --bg:#161615; --fg:#ececea; --mute:#9a9a94; --line:#33332f; --card:#1f1f1d;
+  --ok:#163a22; --okf:#9ee2b0; --bad:#4a1c1c; --badf:#f6b3b3; --mach:#45320f; --machf:#f5cf8c;
+  --run:#17304f; --runf:#a9cbf6; --wait:#262624; --waitf:#8b8b84; } }
+body { margin:0; padding:20px 16px; background:var(--bg); color:var(--fg); font:14px/1.4 -apple-system, system-ui, sans-serif; }
+h1 { font-size:20px; margin:0 0 4px; }
+.facts { color:var(--mute); margin:0 0 12px; }
+.wrap { overflow-x:auto; }
+table { border-collapse:separate; border-spacing:3px; }
+th { font-weight:600; font-size:12px; color:var(--mute); padding:2px 4px; white-space:nowrap; }
+th.name { text-align:left; color:var(--fg); font-size:14px; padding-right:10px; }
+th.name small { display:block; font-weight:400; color:var(--mute); font-size:11px; }
+td { min-width:92px; padding:6px 8px; border-radius:6px; vertical-align:top; font-size:13px; }
+td b { display:block; font-weight:600; }
+td small { display:block; font-size:11px; opacity:.85; }
+td.score small { font-weight:400; color:var(--mute); }
+td a { color:inherit; text-decoration:none; display:block; }
+td a:hover b { text-decoration:underline; }
+td a b::after { content:" ›"; }
+.ok { background:var(--ok); color:var(--okf); } .bad { background:var(--bad); color:var(--badf); }
+.inc { background:color-mix(in srgb, var(--bad) 30%, transparent); color:var(--badf); }
+.mach { background:var(--mach); color:var(--machf); } .wait { background:var(--wait); color:var(--waitf); }
+.run { background:var(--run); color:var(--runf); animation:pulse 2s ease-in-out infinite; }
+.rank { display:inline-block; margin:0 0 4px; padding:2px 8px; border-radius:5px; font-size:16px; font-weight:700; color:#111; }
+.ok .rank { background:color-mix(in srgb, var(--ok) 45%, #fff); }
+.bad .rank { background:color-mix(in srgb, var(--bad) 45%, #fff); }
+td small.note { margin-top:4px; font-size:11px; line-height:1.3; opacity:.8; max-width:260px; white-space:normal; }
+td.split { padding:0; background:transparent; }
+td.gate { background:transparent; animation:none; }
+.half { padding:5px 8px; border-radius:6px; margin:0 0 3px; }
+.half:last-child { margin:0; }
+.half b { display:block; font-weight:600; }
+.half small { display:block; font-size:11px; opacity:.85; }
+.half small.plan { font-weight:600; text-transform:uppercase; letter-spacing:.03em; opacity:.7; }
+.half.score { text-align:center; font-weight:700; color:var(--fg); background:transparent; }
+.skip { background:transparent; color:var(--waitf); border:1px dashed var(--line); }
+.na { background:transparent; min-width:0; }
+td.score { min-width:30px; text-align:center; font-weight:700; color:var(--fg); background:transparent; }
+@keyframes pulse { 50% { opacity:.6; } }
+pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px; overflow-x:auto; font-size:12px; }
+th.group { text-align:left; color:var(--fg); font-size:15px; padding:14px 4px 4px; }
+summary { cursor:pointer; font-weight:600; margin-top:12px; }
+</style>
+</head><body>
+<p><a href="/tests-models/">← All tests</a></p>
+<h1>Model tests · round 4</h1>
+<p class="facts">Updated Mon 16 Nov 12:27:49. Reload to refresh. · <a href="context-probe.html">Round 4: context probe</a></p>
+<div class="wrap"><table>
+<tr><th></th><th>Gate</th><th colspan="4">Test 1 · project management</th><th colspan="4">Test 2 · Python</th><th colspan="4">Test 3 · Swift</th></tr>
+<tr><th></th><th></th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done">score</th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done">score</th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done">score</th></tr>
+<tr><th class="name">q27-4<small>Qwen3.8-27B-4bit</small><small>context 128K</small></th><td class="gate"><b>passed</b><small>19.5 tok/s</small></td><td class="ok"><b>complete</b><small>awaiting review</small></td><td class="ok"><b>complete</b><small>awaiting review</small></td><td class="ok"><b>complete</b><small>awaiting review</small></td><td class="score">3/3</td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td></tr><tr><th class="name">q27-8<small>Qwen3.8-27B-8bit</small></th><td class="gate"><b>too slow</b><small>11.4 tok/s, under 15</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td></tr><tr><th class="name">gemma31<small>gemma-4-31b-it-4bit</small><small>context 128K</small></th><td class="gate"><b>passed</b><small>15.8 tok/s</small></td><td class="ok"><b>complete</b><small>awaiting review</small></td><td class="ok"><b>complete</b><small>awaiting review</small></td><td class="ok"><b>complete</b><small>awaiting review</small></td><td class="score">3/3</td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td></tr><tr><th class="name">q122<small>Qwen3.5-122B-A10B-4bit</small><small>context 128K</small></th><td class="gate"><b>passed</b><small>36.4 tok/s</small></td><td class="ok"><b>complete</b><small>awaiting review</small></td><td class="run"><b>running</b><small>plan, 3 min in · 1/4 passed</small></td><td class="wait"><b>waiting</b></td><td class="score">1/1</td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td></tr><tr><th class="name">flash<small>flash-next</small><small>context 128K</small></th><td class="gate"><b>passed</b><small>28.7 tok/s</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td></tr><tr><th class="name">coder-next<small>Qwen3-Coder-Next-4bit</small><small>context 128K</small></th><td class="gate"><b>passed</b><small>59.1 tok/s</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td></tr><tr><th class="name">laguna-s<small>Laguna-S-2.1-MLX-4bit</small><small>context 128K</small></th><td class="gate"><b>passed</b><small>43.0 tok/s</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td></tr><tr><th class="name">coder30b<small>qwen3-coder-30b-64k</small></th><td class="gate"><b>failed</b><small>10 of 20 calls parsed</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td></tr><tr><th class="name">devstral<small>Devstral-Small-2-24B-Instruct-2512-4bit</small><small>context 128K</small></th><td class="gate"><b>passed</b><small>22.6 tok/s</small></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="wait"><b>waiting</b></td><td class="score"></td></tr>
+</table></div>
+<details><summary>local models: runner log, last lines</summary><pre>2026-11-16 06:53:37 [a] runner 26398 started: round round4, lane a, model server 192.168.40.110; the round&#x27;s limit: 2026-11-22 11:45:59
+2026-11-16 06:53:37 [a] preflight
+2026-11-16 06:55:19 [a] preflight P1: pass ok.txt committed
+2026-11-16 06:55:19 [a] test 2: q27-4 python run 3 (flash-i3)
+2026-11-16 10:31:50 [a] LANE STOPPED: the runner exited (status 130)
+2026-11-16 10:33:41 [a] runner 56812 started: round round4, lane a, model server 192.168.40.110; the round&#x27;s limit: 2026-11-22 11:45:59
+2026-11-16 10:33:41 [a] preflight
+2026-11-16 10:35:23 [a] preflight P1: pass ok.txt committed
+2026-11-16 10:35:23 [a] test 1: gemma31 run 1
+2026-11-16 10:45:08 [a] test1-gemma31-r1 specify: pass specs/000-cleaning-scheduling-billing/spec.md complete
+2026-11-16 10:52:11 [a] test1-gemma31-r1 plan: pass specs/000-cleaning-scheduling-billing/plan.md complete
+2026-11-16 11:02:45 [a] test1-gemma31-r1 tasks: pass specs/000-cleaning-scheduling-billing/tasks.md complete
+2026-11-16 11:06:17 [a] test1-gemma31-r1 estimate: pass estimate.md complete
+2026-11-16 11:06:17 [a] test 1: gemma31 run 2
+2026-11-16 11:15:32 [a] test1-gemma31-r2 specify: pass specs/001-cleaning-scheduling-billing/spec.md complete
+2026-11-16 11:22:35 [a] test1-gemma31-r2 plan: pass specs/001-cleaning-scheduling-billing/plan.md complete
+2026-11-16 11:34:09 [a] test1-gemma31-r2 tasks: pass specs/001-cleaning-scheduling-billing/tasks.md complete
+2026-11-16 11:37:41 [a] test1-gemma31-r2 estimate: pass estimate.md complete
+2026-11-16 11:37:41 [a] test 1: gemma31 run 3
+2026-11-16 11:46:26 [a] test1-gemma31-r3 specify: pass specs/001-scheduling-and-billing/spec.md complete
+2026-11-16 11:52:29 [a] test1-gemma31-r3 plan: pass specs/001-scheduling-and-billing/plan.md complete
+2026-11-16 12:03:03 [a] test1-gemma31-r3 tasks: pass specs/001-scheduling-and-billing/tasks.md complete
+2026-11-16 12:07:35 [a] test1-gemma31-r3 estimate: pass estimate.md complete
+2026-11-16 12:07:35 [a] test 1: q122 run 1
+2026-11-16 12:11:51 [a] test1-q122-r1 specify: pass specs/001-scheduling-billing/spec.md complete
+2026-11-16 12:14:52 [a] test1-q122-r1 plan: pass specs/001-scheduling-billing/plan.md complete
+2026-11-16 12:18:54 [a] test1-q122-r1 tasks: pass specs/001-scheduling-billing/tasks.md complete
+2026-11-16 12:20:55 [a] test1-q122-r1 estimate: pass estimate.md complete
+2026-11-16 12:20:55 [a] test 1: q122 run 2
+2026-11-16 12:24:39 [a] test1-q122-r2 specify: pass specs/001-cleaning-schedule-billing/spec.md complete</pre></details>
+</body></html>

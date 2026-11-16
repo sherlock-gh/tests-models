@@ -1,0 +1,63 @@
+<!doctype html><meta charset="utf-8"><title>test2-terra-python-r2-M1-0</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ round 1</a>
+
+# test2-terra-python-r2-M1-0: fail
+
+1 failed, 13 passed in 4.26s
+
+Codex: completed, 8 model calls; tool calls command_execution x7; 2 failed
+
+## The runner&#x27;s watch
+
+12:56:48  start: prompt 555 bytes, limit 5400s of work
+12:57:18  +30s  files same (last change 30s ago)  output 32785 bytes (last 0s ago)
+12:57:48  +60s  files changed (last change 0s ago)  output 48610 bytes (last 0s ago)
+12:58:18  +90s  files same (last change 30s ago)  output 48610 bytes (last 30s ago)
+12:58:48  +120s  files changed (last change 0s ago)  output 79702 bytes (last 0s ago)
+12:59:19  +151s  Codex exited on its own, status 0 -&gt; done
+
+## How the turn ended
+
+{&quot;subtype&quot;: &quot;completed&quot;, &quot;api_calls&quot;: 8, &quot;model&quot;: &quot;gpt-6.1-terra&quot;, &quot;duration_ms&quot;: null, &quot;five&quot;: {&quot;used&quot;: 6.0, &quot;resets&quot;: 1794447693}, &quot;week&quot;: {&quot;used&quot;: 5.0, &quot;resets&quot;: 1794686238}, &quot;limited&quot;: false}
+
+## The check
+
+1 failed, 13 passed in 4.26s
+..........F...                                                           [100%]
+=================================== FAILURES ===================================
+______________________ test_job_update_rebooks_and_delete ______________________
+
+app = &lt;conftest.App object at 0x10a0946e0&gt;
+
+    def test_job_update_rebooks_and_delete(app):
+        app.cleaners(1)
+        cl = app.client()
+        j1 = app.book(cl, 1, 240, MON)
+        j2 = app.book(cl, 1, 120, MON)                 # 13:00
+        u = app.ok(&quot;PUT&quot;, f&quot;/api/jobs/{j2[&#x27;id&#x27;]}&quot;, {&quot;requestedDate&quot;: TUE})
+        assert (u[&quot;date&quot;], u[&quot;startMinute&quot;], u[&quot;requestedDate&quot;]) == (TUE, 480, TUE)
+        app.ok(&quot;DELETE&quot;, f&quot;/api/jobs/{j1[&#x27;id&#x27;]}&quot;)
+&gt;       app.fails(&quot;GET&quot;, f&quot;/api/jobs/{j1[&#x27;id&#x27;]}&quot;, code=&quot;not_found&quot;)
+
+test_m1.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;conftest.App object at 0x10a0946e0&gt;, method = &#x27;GET&#x27;
+path = &#x27;/api/jobs/1&#x27;, body = None, code = &#x27;not_found&#x27;, status = None, at = None
+
+    def fails(self, method, path, body=None, code=None, status=None, at=None):
+        &quot;&quot;&quot;The request fails with the error body; the server still answers afterwards.&quot;&quot;&quot;
+        st, out = self.call(method, path, body, at)
+&gt;       assert 400 &lt;= st &lt; 500, f&quot;{method} {path} {body}: expected an error, got {st} {out}&quot;
+E       AssertionError: GET /api/jobs/1 None: expected an error, got 200 {&#x27;id&#x27;: 1, &#x27;clientId&#x27;: 1, &#x27;cleanersNeeded&#x27;: 1, &#x27;durationMinutes&#x27;: 240, &#x27;requestedDate&#x27;: &#x27;2026-11-16&#x27;, &#x27;date&#x27;: &#x27;2026-11-16&#x27;, &#x27;startMinute&#x27;: 480, &#x27;endMinute&#x27;: 720, &#x27;cleanerIds&#x27;: [1], &#x27;status&#x27;: &#x27;cancelled&#x27;, &#x27;work&#x27;: [{&#x27;cleanerId&#x27;: 1, &#x27;arrivedAt&#x27;: None, &#x27;departedAt&#x27;: None, &#x27;elapsedSeconds&#x27;: None}]}
+E       assert 400 &lt;= 200
+
+conftest.py:88: AssertionError
+=========================== short test summary info ============================
+FAILED test_m1.py::test_job_update_rebooks_and_delete - AssertionError: GET /...
+1 failed, 13 passed in 4.26s
+
+## Commits, newest first
+
+94ae251 30 seconds ago
+a668257 3 minutes ago
+</body>

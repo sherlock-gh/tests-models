@@ -1,0 +1,65 @@
+<!doctype html><meta charset="utf-8"><title>test2-terra-python-r2-M2-0.1794432546</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ round 1</a>
+
+# test2-terra-python-r2-M2-0: fail
+
+1 failed, 22 passed in 7.14s
+
+Codex: completed, 12 model calls; tool calls command_execution x11; 2 failed
+
+## The runner&#x27;s watch
+
+13:26:57  start: prompt 519 bytes, limit 5400s of work
+13:27:27  +30s  files same (last change 30s ago)  output 52164 bytes (last 0s ago)
+13:27:58  +61s  files changed (last change 0s ago)  output 59606 bytes (last 0s ago)
+13:28:28  +91s  files changed (last change 0s ago)  output 78161 bytes (last 0s ago)
+13:28:58  +121s  Codex exited on its own, status 0 -&gt; done
+
+## How the turn ended
+
+{&quot;subtype&quot;: &quot;completed&quot;, &quot;api_calls&quot;: 12, &quot;model&quot;: &quot;gpt-6.1-terra&quot;, &quot;duration_ms&quot;: null, &quot;five&quot;: {&quot;used&quot;: 14.0, &quot;resets&quot;: 1794447693}, &quot;week&quot;: {&quot;used&quot;: 6.0, &quot;resets&quot;: 1794686238}, &quot;limited&quot;: false}
+
+## The check
+
+1 failed, 22 passed in 7.14s
+.....................F.                                                  [100%]
+=================================== FAILURES ===================================
+___________________________ test_extension_refusals ____________________________
+
+app = &lt;conftest.App object at 0x109165a30&gt;
+
+    def test_extension_refusals(app):
+        a, b = sorted(app.cleaners(2))
+        j = app.book(app.client(), 1, 120, MON)
+        started(app, j, [a])
+        app.fails(&quot;POST&quot;, f&quot;/api/jobs/{j[&#x27;id&#x27;]}/extend&quot;, {&quot;cleanerId&quot;: b, &quot;increments&quot;: 1})            # b is not on it
+        app.fails(&quot;POST&quot;, &quot;/api/jobs/9999/extend&quot;, {&quot;cleanerId&quot;: a, &quot;increments&quot;: 1}, code=&quot;not_found&quot;)
+        assert ext(app, j, a, 1)[&quot;endMinute&quot;] == 620
+        app.depart(j[&quot;id&quot;], a, T(MON, &quot;10:20&quot;))
+&gt;       app.fails(&quot;POST&quot;, f&quot;/api/jobs/{j[&#x27;id&#x27;]}/extend&quot;, {&quot;cleanerId&quot;: a, &quot;increments&quot;: 1}, code=(&quot;invalid_state&quot;, &quot;invalid_input&quot;))
+
+test_m2.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;conftest.App object at 0x109165a30&gt;, method = &#x27;POST&#x27;
+path = &#x27;/api/jobs/1/extend&#x27;, body = {&#x27;cleanerId&#x27;: 1, &#x27;increments&#x27;: 1}
+code = (&#x27;invalid_state&#x27;, &#x27;invalid_input&#x27;), status = None, at = None
+
+    def fails(self, method, path, body=None, code=None, status=None, at=None):
+        &quot;&quot;&quot;The request fails with the error body; the server still answers afterwards.&quot;&quot;&quot;
+        st, out = self.call(method, path, body, at)
+&gt;       assert 400 &lt;= st &lt; 500, f&quot;{method} {path} {body}: expected an error, got {st} {out}&quot;
+E       AssertionError: POST /api/jobs/1/extend {&#x27;cleanerId&#x27;: 1, &#x27;increments&#x27;: 1}: expected an error, got 200 {&#x27;id&#x27;: 1, &#x27;clientId&#x27;: 1, &#x27;cleanersNeeded&#x27;: 1, &#x27;durationMinutes&#x27;: 120, &#x27;requestedDate&#x27;: &#x27;2026-11-16&#x27;, &#x27;date&#x27;: &#x27;2026-11-16&#x27;, &#x27;startMinute&#x27;: 480, &#x27;endMinute&#x27;: 640, &#x27;cleanerIds&#x27;: [1], &#x27;status&#x27;: &#x27;in_progress&#x27;, &#x27;work&#x27;: [{&#x27;cleanerId&#x27;: 1, &#x27;arrivedAt&#x27;: &#x27;2026-11-16T08:00:00&#x27;, &#x27;departedAt&#x27;: &#x27;2026-11-16T10:20:00&#x27;, &#x27;elapsedSeconds&#x27;: 8400}]}
+E       assert 400 &lt;= 200
+
+conftest.py:88: AssertionError
+=========================== short test summary info ============================
+FAILED test_m2.py::test_extension_refusals - AssertionError: POST /api/jobs/1...
+1 failed, 22 passed in 7.14s
+
+## Commits, newest first
+
+8375d78 20 seconds ago
+e38d28d 3 minutes ago
+ebf0b47 3 minutes ago
+795b6f9 5 minutes ago
+</body>
