@@ -1,0 +1,87 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test round</title>
+<style>
+:root { --bg:#f6f6f4; --fg:#1d1d1b; --mute:#6b6b66; --line:#d9d9d4; --card:#fff;
+  --ok:#d7f0dc; --okf:#14532d; --bad:#fbd5d5; --badf:#7f1d1d; --mach:#fde7c4; --machf:#7c4a03;
+  --run:#d6e6fb; --runf:#173f78; --wait:#ececea; --waitf:#77776f; }
+@media (prefers-color-scheme: dark) { :root { --bg:#161615; --fg:#ececea; --mute:#9a9a94; --line:#33332f; --card:#1f1f1d;
+  --ok:#163a22; --okf:#9ee2b0; --bad:#4a1c1c; --badf:#f6b3b3; --mach:#45320f; --machf:#f5cf8c;
+  --run:#17304f; --runf:#a9cbf6; --wait:#262624; --waitf:#8b8b84; } }
+body { margin:0; padding:20px 16px; background:var(--bg); color:var(--fg); font:14px/1.4 -apple-system, system-ui, sans-serif; }
+h1 { font-size:20px; margin:0 0 4px; }
+.banner { padding:12px 14px; border-radius:8px; margin:12px 0; font-size:16px; }
+.banner b { text-transform:uppercase; letter-spacing:.04em; margin-right:8px; }
+.facts { color:var(--mute); margin:0 0 12px; }
+.wrap { overflow-x:auto; }
+table { border-collapse:separate; border-spacing:3px; }
+th { font-weight:600; font-size:12px; color:var(--mute); padding:2px 4px; white-space:nowrap; }
+th.name { text-align:left; color:var(--fg); font-size:14px; padding-right:10px; }
+th.name small { display:block; font-weight:400; color:var(--mute); font-size:11px; }
+td { min-width:92px; padding:6px 8px; border-radius:6px; vertical-align:top; font-size:13px; }
+td b { display:block; font-weight:600; }
+td small { display:block; font-size:11px; opacity:.85; }
+td a { color:inherit; text-decoration:none; display:block; }
+td a:hover b { text-decoration:underline; }
+td a b::after { content:" ›"; }
+.ok { background:var(--ok); color:var(--okf); } .bad { background:var(--bad); color:var(--badf); }
+.mach { background:var(--mach); color:var(--machf); } .wait { background:var(--wait); color:var(--waitf); }
+.run { background:var(--run); color:var(--runf); animation:pulse 2s ease-in-out infinite; }
+.skip { background:transparent; color:var(--waitf); border:1px dashed var(--line); }
+.na { background:transparent; min-width:0; }
+td.score { min-width:30px; text-align:center; font-weight:700; color:var(--fg); background:transparent; }
+.banner.run { animation:none; }
+@keyframes pulse { 50% { opacity:.6; } }
+pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px; overflow-x:auto; font-size:12px; }
+#stale { display:none; }
+summary { cursor:pointer; font-weight:600; margin-top:12px; }
+</style></head><body>
+<h1>Local model test round</h1>
+<div id="stale" class="banner bad"><b>Not updating</b><span></span></div>
+<div class="banner ok"><b>done</b></div>
+<p class="facts">Updated Sat 31 Oct 17:11:55 · models on Adlerbot · 11 complete · 26 failed · 4 machine faults · 0 waiting</p>
+<div class="wrap"><table>
+<tr><th></th><th>Gate</th><th colspan="4">Test 1 · project management</th><th colspan="4">Test 2 · Python</th><th colspan="4">Test 2 · Swift</th></tr>
+<tr><th></th><th></th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done">score</th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done">score</th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done">score</th></tr>
+<tr><th class="name">q27-4<small>Qwen3.8-27B-4bit</small></th><td class="ok"><b>passed</b><small>19.2 tok/s</small></td><td class="bad"><b>failed</b><small>at 01-proposal-a research</small></td><td class="ok"><b>complete</b></td><td class="ok"><b>complete</b></td><td class="score">2/3</td><td class="bad"><b>failed</b><small>at M1</small></td><td class="bad"><b>failed</b><small>at M6</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2</td><td class="bad"><b>failed</b><small>at M1</small></td><td class="ok"><b>complete</b></td><td class="bad"><b>failed</b><small>at M1</small></td><td class="score">1/3</td></tr><tr><th class="name">q27-8<small>Qwen3.8-27B-8bit</small></th><td class="ok"><b>passed</b><small>11.5 tok/s</small></td><td class="bad"><b>failed</b><small>at 02-proposal-b research</small></td><td class="ok"><b>complete</b></td><td class="ok"><b>complete</b></td><td class="score">2/3</td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">gemma31<small>gemma-4-31b-it-4bit</small></th><td class="ok"><b>passed</b><small>15.8 tok/s</small></td><td class="ok"><b>complete</b></td><td class="ok"><b>complete</b></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">2/2</td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">q122<small>Qwen3.5-122B-A10B-4bit</small></th><td class="ok"><b>passed</b><small>37.3 tok/s</small></td><td class="bad"><b>failed</b><small>at 01-proposal-a research</small></td><td class="bad"><b>failed</b><small>at 01-proposal-a define</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2</td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">flash<small>flash-next</small></th><td class="ok"><b>passed</b><small>29.9 tok/s</small></td><td class="ok"><b>complete</b></td><td class="ok"><b>complete</b></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">2/2</td><td class="bad"><b>failed</b><small>at M1</small></td><td class="bad"><b>failed</b><small>at M6</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2</td><td class="bad"><b>failed</b><small>at M4</small></td><td class="bad"><b>failed</b><small>at M4</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2</td></tr><tr><th class="name">coder-next<small>Qwen3-Coder-Next-4bit</small></th><td class="ok"><b>passed</b><small>5.7 tok/s</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="mach"><b>machine fault</b><small>M5</small></td><td class="bad"><b>failed</b><small>at M4</small></td><td class="bad"><b>failed</b><small>at M3</small></td><td class="score">0/3</td><td class="bad"><b>failed</b><small>at M1</small></td><td class="bad"><b>failed</b><small>at M2</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2</td></tr><tr><th class="name">laguna-xs<small>Laguna-XS-2.1-8bit</small></th><td class="ok"><b>passed</b><small>8.3 tok/s</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="mach"><b>machine fault</b><small>M3</small></td><td class="mach"><b>machine fault</b><small>M2</small></td><td class="bad"><b>failed</b><small>at M2</small></td><td class="score">0/3</td><td class="bad"><b>failed</b><small>at M1</small></td><td class="mach"><b>machine fault</b><small>M3</small></td><td class="bad"><b>failed</b><small>at M1</small></td><td class="score">0/3</td></tr><tr><th class="name">laguna-s<small>Laguna-S-2.1-MLX-4bit</small></th><td class="ok"><b>passed</b><small>44.5 tok/s</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="bad"><b>failed</b><small>at M6</small></td><td class="bad"><b>failed</b><small>at M1</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2</td><td class="ok"><b>complete</b></td><td class="bad"><b>failed</b><small>at M4</small></td><td class="ok"><b>complete</b></td><td class="score">2/3</td></tr><tr><th class="name">coder30b<small>Qwen3-Coder-30B-A3B-Instruct-4bit</small></th><td class="bad"><b>failed</b><small>5 of 20 calls parsed</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td></tr><tr><th class="name">devstral<small>Devstral-Small-2-24B-Instruct-2512-4bit</small></th><td class="ok"><b>passed</b><small>13.1 tok/s</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="bad"><b>failed</b><small>at M1</small></td><td class="bad"><b>failed</b><small>at M2</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2</td><td class="bad"><b>failed</b><small>at M1</small></td><td class="bad"><b>failed</b><small>at M1</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2</td></tr>
+</table></div>
+<details><summary>Runner log, last lines</summary>
+<pre>2026-10-31 09:01:04 test2-laguna-s-python-r1 M2: pass 7 passed, 31 deselected in 0.72s
+2026-10-31 09:08:38 test2-laguna-s-python-r1 M3: pass 9 passed, 29 deselected in 1.41s
+2026-10-31 09:23:15 test2-laguna-s-python-r1 M4: pass 12 passed, 26 deselected in 2.15s
+2026-10-31 09:39:23 test2-laguna-s-python-r1 M5: pass 14 passed, 24 deselected in 2.79s
+2026-10-31 10:46:47 test2-laguna-s-python-r1 M6: fail 1 failed, 37 passed in 5.35s | Hermes: text_response(finish_reason=stop); the same call 6 times: read_file {path: /Users/sherlock/workspaces/tests/2026-10-config/test2-laguna-s-python-r1/app/expenses/store.py} | why/test2-laguna-s-python-r1-M6-0.md
+2026-10-31 10:46:48 test 2: laguna-s python run 2
+2026-10-31 10:50:27 test2-laguna-s-python-r2 M1: fail 1 failed, 2 passed, 35 deselected in 0.15s | Hermes: text_response(finish_reason=stop) | why/test2-laguna-s-python-r2-M1-0.md
+2026-10-31 10:50:27 test 2: laguna-s swift run 1
+2026-10-31 11:06:19 test2-laguna-s-swift-r1 M1: pass ✔ Test run with 4 tests passed after 0.006 seconds.
+2026-10-31 11:12:32 test2-laguna-s-swift-r1 M2: pass ✔ Test run with 6 tests passed after 0.006 seconds.
+2026-10-31 11:24:18 test2-laguna-s-swift-r1 M3: pass ✔ Test run with 15 tests passed after 0.006 seconds.
+2026-10-31 11:47:08 test2-laguna-s-swift-r1 M4: pass ✔ Test run with 21 tests passed after 0.007 seconds.
+2026-10-31 12:11:58 test2-laguna-s-swift-r1 M5: pass ✔ Test run with 27 tests passed after 0.008 seconds.
+2026-10-31 12:11:58 test 2: laguna-s swift run 2
+2026-10-31 12:23:17 test2-laguna-s-swift-r2 M1: pass ✔ Test run with 4 tests passed after 0.006 seconds.
+2026-10-31 12:32:01 test2-laguna-s-swift-r2 M2: pass ✔ Test run with 6 tests passed after 0.011 seconds.
+2026-10-31 12:45:18 test2-laguna-s-swift-r2 M3: pass ✔ Test run with 15 tests passed after 0.008 seconds.
+2026-10-31 13:28:47 test2-laguna-s-swift-r2 M4: fail ✘ Test run with 21 tests failed after 0.007 seconds with 1 issue. | Hermes: text_response(finish_reason=stop); the same call 8 times: terminal {command: cd #636863 [116 chars], timeout: 120} | why/test2-laguna-s-swift-r2-M4-0.md
+2026-10-31 13:28:47 test 2: laguna-s swift run 3
+2026-10-31 13:38:07 test2-laguna-s-swift-r3 M1: pass ✔ Test run with 4 tests passed after 0.006 seconds.
+2026-10-31 13:43:19 test2-laguna-s-swift-r3 M2: pass ✔ Test run with 6 tests passed after 0.007 seconds.
+2026-10-31 13:55:05 test2-laguna-s-swift-r3 M3: pass ✔ Test run with 15 tests passed after 0.007 seconds.
+2026-10-31 14:16:24 test2-laguna-s-swift-r3 M4: pass ✔ Test run with 21 tests passed after 0.008 seconds.
+2026-10-31 14:40:16 test2-laguna-s-swift-r3 M5: pass ✔ Test run with 27 tests passed after 0.009 seconds.
+2026-10-31 14:40:16 round done</pre>
+</details>
+<script>
+var made = 1793491915, live = false;
+function check() {
+  var age = Math.round(Date.now() / 1000 - made);
+  if (live && age > 60) {
+    var s = document.getElementById("stale");
+    s.style.display = "block";
+    s.querySelector("span").textContent = "No update for " + Math.round(age / 60) + " min: the runner has stopped writing this page (killed, or Sherlock asleep or restarted).";
+  }
+}
+check();   // once, as the page loads: an open page left unrefreshed is not a stale runner
+</script>
+</body></html>

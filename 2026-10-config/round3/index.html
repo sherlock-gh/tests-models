@@ -1,0 +1,97 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test round</title>
+<style>
+:root { --bg:#f6f6f4; --fg:#1d1d1b; --mute:#6b6b66; --line:#d9d9d4; --card:#fff;
+  --ok:#d7f0dc; --okf:#14532d; --bad:#fbd5d5; --badf:#7f1d1d; --mach:#fde7c4; --machf:#7c4a03;
+  --run:#d6e6fb; --runf:#173f78; --wait:#ececea; --waitf:#77776f; }
+@media (prefers-color-scheme: dark) { :root { --bg:#161615; --fg:#ececea; --mute:#9a9a94; --line:#33332f; --card:#1f1f1d;
+  --ok:#163a22; --okf:#9ee2b0; --bad:#4a1c1c; --badf:#f6b3b3; --mach:#45320f; --machf:#f5cf8c;
+  --run:#17304f; --runf:#a9cbf6; --wait:#262624; --waitf:#8b8b84; } }
+body { margin:0; padding:20px 16px; background:var(--bg); color:var(--fg); font:14px/1.4 -apple-system, system-ui, sans-serif; }
+h1 { font-size:20px; margin:0 0 4px; }
+.banner { padding:12px 14px; border-radius:8px; margin:12px 0; font-size:16px; }
+.banner b { text-transform:uppercase; letter-spacing:.04em; margin-right:8px; }
+.facts { color:var(--mute); margin:0 0 12px; }
+.wrap { overflow-x:auto; }
+table { border-collapse:separate; border-spacing:3px; }
+th { font-weight:600; font-size:12px; color:var(--mute); padding:2px 4px; white-space:nowrap; }
+th.name { text-align:left; color:var(--fg); font-size:14px; padding-right:10px; }
+th.name small { display:block; font-weight:400; color:var(--mute); font-size:11px; }
+td { min-width:92px; padding:6px 8px; border-radius:6px; vertical-align:top; font-size:13px; }
+td b { display:block; font-weight:600; }
+td small { display:block; font-size:11px; opacity:.85; }
+td.score small { font-weight:400; color:var(--mute); }
+.lanes { margin:0 0 12px; padding-left:18px; color:var(--mute); }
+td a { color:inherit; text-decoration:none; display:block; }
+td a:hover b { text-decoration:underline; }
+td a b::after { content:" ›"; }
+.ok { background:var(--ok); color:var(--okf); } .bad { background:var(--bad); color:var(--badf); }
+.mach { background:var(--mach); color:var(--machf); } .wait { background:var(--wait); color:var(--waitf); }
+.run { background:var(--run); color:var(--runf); animation:pulse 2s ease-in-out infinite; }
+.skip { background:transparent; color:var(--waitf); border:1px dashed var(--line); }
+.na { background:transparent; min-width:0; }
+td.score { min-width:30px; text-align:center; font-weight:700; color:var(--fg); background:transparent; }
+.banner.run { animation:none; }
+@keyframes pulse { 50% { opacity:.6; } }
+pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px; overflow-x:auto; font-size:12px; }
+#stale { display:none; }
+summary { cursor:pointer; font-weight:600; margin-top:12px; }
+</style>
+</head><body>
+<p><a href="../">‹ all rounds</a></p>
+<h1>Local model test round 3</h1>
+<div id="stale" class="banner bad"><b>Not updating</b><span></span></div>
+<div class="banner ok"><b>done</b></div>
+<ul class="lanes"><li>Adlerbot: done</li></ul>
+<p class="facts">Updated Mon 09 Nov 09:49:50 · round 3 · 2 complete · 7 failed · 0 machine faults · 0 waiting · 1 run carried from round 2</p>
+<div class="wrap"><table>
+<tr><th></th><th>Gate</th><th colspan="4">Test 1 · project management</th><th colspan="4">Test 2 · Python</th><th colspan="4">Test 2 · Swift</th></tr>
+<tr><th></th><th></th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done; the server under it">score</th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done; the server under it">score</th><th>run 1</th><th>run 2</th><th>run 3</th><th title="complete runs / runs done; the server under it">score</th></tr>
+<tr><th class="name">flash<small>flash-next</small></th><td class="ok"><b>passed</b><small>29.7 tok/s</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="bad"><b>failed</b><small>at M6</small></td><td class="bad"><b>failed</b><small>at M6</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2<small>Adlerbot</small></td><td class="bad"><b>failed</b><small>at M5</small></td><td class="bad"><b>failed</b><small>at M4</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2<small>Adlerbot</small></td></tr><tr><th class="name">laguna-s<small>Laguna-S-2.1-MLX-4bit</small></th><td class="ok"><b>passed</b><small>41.0 tok/s</small></td><td class="ok"><b>complete</b></td><td class="bad"><b>failed</b><small>at expense-tracker tasks, round 2</small></td><td class="ok"><b>complete</b></td><td class="score">2/3<small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr><tr><th class="name">coder30b<small>qwen3-coder-30b-64k</small></th><td class="bad"><b>failed</b><small>8 of 20 calls parsed</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="skip"><b>not run</b><small>failed the gate</small></td><td class="score"></td></tr><tr><th class="name">devstral<small>Devstral-Small-2-24B-Instruct-2512-4bit</small></th><td class="ok"><b>passed</b><small>23.4 tok/s</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td><td class="bad"><b>failed</b><small>at M1</small></td><td class="bad"><b>failed</b><small>at M4</small></td><td class="skip"><b>not needed</b><small>runs 1 and 2 agree</small></td><td class="score">0/2<small>Adlerbot</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="score"></td></tr>
+</table></div>
+<details><summary>Runner log, last lines</summary>
+<pre>2026-11-09 07:20:26 [a] test1-laguna-s-r1-habitkit specify: pass specs/001-habit-tracking-core/spec.md complete
+2026-11-09 07:33:00 [a] test1-laguna-s-r1-habitkit plan: pass specs/001-habit-tracking-core/plan.md complete
+2026-11-09 07:39:02 [a] test1-laguna-s-r1-habitkit tasks: pass specs/001-habit-tracking-core/tasks.md complete
+2026-11-09 07:39:02 [a] test 1: laguna-s run 3
+2026-11-09 07:41:03 [a] test1-laguna-s-r3-01-proposal-a intake: pass .specify/assessments/proposal-a/intake.md complete
+2026-11-09 07:48:06 [a] test1-laguna-s-r3-01-proposal-a research: pass .specify/assessments/proposal-a/research.md complete
+2026-11-09 07:50:06 [a] test1-laguna-s-r3-01-proposal-a define: pass .specify/assessments/proposal-a/problem.md complete
+2026-11-09 07:53:08 [a] test1-laguna-s-r3-01-proposal-a shape: pass .specify/assessments/proposal-a/concept.md complete
+2026-11-09 07:55:39 [a] test1-laguna-s-r3-01-proposal-a decide: pass .specify/assessments/proposal-a/decision.md complete
+2026-11-09 07:59:10 [a] test1-laguna-s-r3-01-proposal-a proposal: pass proposal.md complete
+2026-11-09 08:00:41 [a] test1-laguna-s-r3-02-proposal-b intake: pass .specify/assessments/proposal-b/intake.md complete
+2026-11-09 08:06:43 [a] test1-laguna-s-r3-02-proposal-b research: pass .specify/assessments/proposal-b/research.md complete
+2026-11-09 08:09:14 [a] test1-laguna-s-r3-02-proposal-b define: pass .specify/assessments/proposal-b/problem.md complete
+2026-11-09 08:11:45 [a] test1-laguna-s-r3-02-proposal-b shape: pass .specify/assessments/proposal-b/concept.md complete
+2026-11-09 08:14:46 [a] test1-laguna-s-r3-02-proposal-b decide: pass .specify/assessments/proposal-b/decision.md complete
+2026-11-09 08:19:18 [a] test1-laguna-s-r3-02-proposal-b proposal: pass proposal.md complete
+2026-11-09 08:38:24 [a] test1-laguna-s-r3-expense-tracker specify: pass specs/001-expense-tracker/spec.md complete
+2026-11-09 08:45:56 [a] test1-laguna-s-r3-expense-tracker plan: pass specs/001-expense-tracker/plan.md complete
+2026-11-09 08:54:59 [a] test1-laguna-s-r3-expense-tracker tasks: pass specs/001-expense-tracker/tasks.md complete
+2026-11-09 09:05:32 [a] test1-laguna-s-r3-habitkit specify: pass specs/001-habit-tracking-core/spec.md complete
+2026-11-09 09:17:06 [a] test1-laguna-s-r3-habitkit plan: pass specs/001-habit-tracking-core/plan.md complete
+2026-11-09 09:26:09 [a] test1-laguna-s-r3-habitkit tasks: pass specs/001-habit-tracking-core/tasks.md complete
+2026-11-09 09:26:09 [a] test 2: devstral python run 1
+2026-11-09 09:29:24 [a] test2-devstral-python-r1 M1: fail 1 failed, 2 passed, 34 deselected in 0.18s | Hermes: text_response(finish_reason=stop) | why/test2-devstral-python-r1-M1-0.md
+2026-11-09 09:29:24 [a] test 2: devstral python run 2
+2026-11-09 09:31:56 [a] test2-devstral-python-r2 M1: pass 3 passed, 34 deselected in 0.12s
+2026-11-09 09:35:59 [a] test2-devstral-python-r2 M2: pass 7 passed, 30 deselected in 1.04s
+2026-11-09 09:42:33 [a] test2-devstral-python-r2 M3: pass 9 passed, 28 deselected in 1.88s
+2026-11-09 09:49:39 [a] test2-devstral-python-r2 M4: fail 2 failed, 10 passed, 25 deselected in 2.80s | Hermes: text_response(finish_reason=stop) | why/test2-devstral-python-r2-M4-0.md
+2026-11-09 09:49:40 [a] lane done</pre>
+</details>
+<script>
+var made = 1794246590, live = false;
+function check() {
+  var age = Math.round(Date.now() / 1000 - made);
+  if (live && age > 60) {
+    var s = document.getElementById("stale");
+    s.style.display = "block";
+    s.querySelector("span").textContent = "No update for " + Math.round(age / 60) + " min: the runner has stopped writing this page (killed, or Sherlock asleep or restarted).";
+  }
+}
+check();   // once, as the page loads: an open page left unrefreshed is not a stale runner
+</script>
+</body></html>
