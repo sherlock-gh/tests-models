@@ -89,6 +89,15 @@ def main():
             deadline_seen = True
         for event in events:
             note(f'event: {event[:500]}')
+            match = re.search(r'why/([\w.-]+\.md)', event)
+            if match:
+                why = ROOT / 'results/round4/a/why' / match.group(1)
+                try:
+                    evidence = why.read_text(errors='replace')
+                    note(f'why read whole: {why.name}, {len(evidence)} characters; '
+                         'classification pending coordinator')
+                except OSError as error:
+                    note(f'BLOCKER: cannot read why file {why}: {error}')
             pending.append(event)
         alive = live(coordinator)
         if not alive and not dead_seen:
@@ -118,10 +127,18 @@ def main():
             last_launch = time.monotonic()
             dead_seen = False
         notes = (SETUP / 'SETUP-NOTES.md').exists() or (SETUP / 'harness/plans/flash-r4/SETUP-NOTES.md').exists()
-        note(f'tick coordinator={coordinator} live={live(coordinator)} pending={len(pending)} '
+        lock = results / 'a/runner.lock/pid'
+        try:
+            runner = int(lock.read_text().strip())
+        except (OSError, ValueError):
+            runner = 0
+        current = results / 'a/now'
+        phase = current.read_text().strip() if current.exists() else 'not recorded'
+        note(f'tick phase={phase[:100]} coordinator={coordinator} live={live(coordinator)} '
+             f'runner={runner} live={live(runner)} pending={len(pending)} '
              f'retry_seconds={max(0, int(cooldown_until - time.monotonic()))} setup={setup_live} '
-             f'notes={notes} log_offset={offset}; '
-             'limits setup 02:00 PST, round 7d, idle 2h+30m, check 15m, load 20m')
+             f'notes={notes} log_offset={offset}; deadline 2026-11-23 23:46:37 PST + grace; '
+             'limits idle 2h+30m, check 15m, load 20m')
         time.sleep(45)
 
 
