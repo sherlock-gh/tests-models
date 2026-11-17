@@ -23,7 +23,7 @@ The owner's model tests for his home lab: which local and cloud models, with whi
 - Drop a model on its failures' reasons, not their count. A zero is diagnosed before it rejects: if the test caused it, fix the test and rerun.
 - A test gives a defined problem, as a competent human would hand over. A model stalling on a missing input is a test fault.
 - Before a round, every check must pass known-good work and fail known-bad work (`validate.sh`).
-- Cloud models run on the owner's Claude and ChatGPT plans: at night, waiting out a 5-hour limit, starting no turn past the weekly-use cap.
+- Cloud models run on the owner's Claude and ChatGPT plans, waiting out a 5-hour limit and starting no turn past the weekly-use cap. They take every round's test 1 with the local models; ask the owner before one starts a coding test.
 - Refer to cloud models by alias; the real id lives once, in Hermes's `model_aliases`.
 
 ## Working with the owner

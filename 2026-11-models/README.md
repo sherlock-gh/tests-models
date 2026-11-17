@@ -77,11 +77,11 @@ The tests are numbered 1 project management, 2 Python, 3 Swift, 4 the website (o
 - **Milestones chain:** each starts from the last one's commit. A model failure ends the run, and the next run starts at once. A machine failure (server or Hermes crash, hang, request timeout) is repaired and the milestone resumes, at most 2 repairs a milestone and 4 a run. A check that can't run stops the round as a fault in the test.
 - **Limits:** a local milestone isn't timed: it ends when the model has changed no file for 2 hours (4 on the second server), a model failure, or at the round's 7-day limit, then 30 minutes to finish the task in hand and commit, which is checked like any other work. In the cloud, 90 minutes of work a milestone. The limits only stop runs that would never end. Every unattended step has a limit, and reaching it is recorded as a result.
 - **Local settings:** thinking off, each model's published sampling, Hermes's production settings with subagents (`delegate_task`, one at a time), and each model's context, measured by the gate (a long prompt at 128K, else 64K, answered in full without swapping) and set per model in Hermes's `custom_providers`; 128K at most, though most models hold 256K (measured 14 Nov): a longer thread leaves more room for drift, and re-reading one after a compaction or restart costs 11–46 min at 256K against 6–23 at 128K (owner, 15 Nov).
-- **Cloud settings:** the agent's defaults (its own tools and thinking). Turns run only in the hours in `cloud-hours` (22:30–09:00), which the owner may change during a round. A turn cut off by the 5-hour limit waits for the reset and is redone, uncounted. No turn starts once weekly use reaches 80%, so the tests don't use up the owner's plans. This differs from the local setup (another agent, thinking on, its own context), so a cloud result compares a model plus its agent.
+- **Cloud settings:** the agent's defaults (its own tools and thinking). Turns run in the hours in `cloud-hours` (all day: 00:00–24:00), which the owner may change during a round. A turn cut off by the 5-hour limit waits for the reset and is redone, uncounted. No turn starts once weekly use reaches 80%, so the tests don't use up the owner's plans. This differs from the local setup (another agent, thinking on, its own context), so a cloud result compares a model plus its agent.
 - **Runners, all at once.** Sherlock runs every test. The local models' work is done by Hermes, the cloud models' by Claude Code or Codex. Only the models run elsewhere:
   - **Adlerbot (128 GB):** every gate, so speeds come from one host. It also takes any local model's unit from the shared queue, and is the only host for the models it alone can hold (over 48 GB of weights, or on Ollama).
   - **The second server (64 GB):** a gate survivor whose weights leave 16 GB of its memory free, taken from the same queue. Its milestone limit is twice Adlerbot's, as it is slower and time only breaks ties.
-  - **Cloud:** Sonnet and Terra, at night, under the plan limits.
+  - **Cloud:** Sonnet and Terra, under the plan limits. They take test 1 in every round, in the queue with the local models; before either starts a coding test (2 to 4), the owner approves it, as those use far more of his plans (owner, 16 Nov).
 
   A unit (one model's runs of one test) runs wholly on one host, so a model's run-to-run spread isn't host noise.
 - **Data:** what runs produce stays on Sherlock, and only numbers come into the repo. Agents never see the repo, hidden tests or rubrics. The problem statement is fictitious, and all its data synthetic, so cloud models may read it.
@@ -115,7 +115,7 @@ Every problem recorded in `2026-10-config` and the bake-off, each with the rule 
 - **The host was slow, not the model.** Adlerbot on a port that didn't power it ran on battery with the GPU at its minimum clock, an 8x slowdown that took two days to find. MLX also crashed on its GPU buffer limit after hours of serving. Rule: before each round, the owner checks each host is on AC power (inferctl, the runner's only control of the hosts, doesn't report power). The server restarts for each run. Speed, which only breaks ties, is taken from the gate.
 
 **Cloud**
-- **Cloud runs burned plan limits.** A daytime cloud round hit the 5-hour limit in about 25 minutes, and every limited turn was counted as a fault. Rule: run at night, wait out limits, and cap weekly use.
+- **Cloud runs burned plan limits.** A daytime cloud round hit the 5-hour limit in about 25 minutes, and every limited turn was counted as a fault. Rule: wait out limits, and cap weekly use.
 
 **Owner and process**
 - **The owner couldn't see what ran.** A rule paused the round for his acknowledgement, and he found out a day later. Rule: the live status page is up before the round starts, and nothing waits for the owner.
@@ -125,7 +125,7 @@ Every problem recorded in `2026-10-config` and the bake-off, each with the rule 
 
 ## Rounds
 
-A round is one pass through every test. Within it, local models run on two lanes at once and each cloud model has its own runner, at night.
+A round is one pass through every test. Within it, local models run on two lanes at once and each cloud model has its own runner.
 
 | Round 1, in order | Models | Tests |
 | --- | --- | --- |
@@ -133,7 +133,7 @@ A round is one pass through every test. Within it, local models run on two lanes
 | Between | | Blind review of test 1; the owner approves each build plan; its hidden tests and reference solutions; `validate.sh <plan>` passes |
 | Tests 2 to 4 | The gate's survivors; Sonnet, Terra (on the best local plan, and on their own) | Python, Swift, website |
 
-Earlier tests' rounds and results don't count here. Round 4 (from 14 Nov) is the first with the gate as the smoke test (each model's context and a subagent through Hermes), subagents and the finish-at-the-limit job: every local model goes through the gate and test 1 (`./start.sh round4`, no PLAN); the plans are graded blind for the best one, whose hidden tests `validate.sh` passes; then every gate survivor builds it in tests 2 and 3 (`PLAN=<that plan> ./start.sh round4`) (owner, 16 Nov: all of test 1 finds the plan; its first start built `flash-i3` after q27-4's test 1 alone, and those builds are voided). Only round 4's results count, not rounds 1 to 3's.
+Earlier tests' rounds and results don't count here. Round 4 (from 14 Nov) is the first with the gate as the smoke test (each model's context and a subagent through Hermes), subagents and the finish-at-the-limit job: every local model goes through the gate and test 1 (`./start.sh round4`, no PLAN), and Sonnet and Terra take test 1 (`./start-cloud.sh sonnet round4-sonnet`, `./start-cloud.sh terra round4-terra`; owner, 16 Nov: they were left out at its start); the plans are graded blind for the best one, whose hidden tests `validate.sh` passes; then every gate survivor builds it in tests 2 and 3 (`PLAN=<that plan> ./start.sh round4`) (owner, 16 Nov: all of test 1 finds the plan; its first start built `flash-i3` after q27-4's test 1 alone, and those builds are voided). Only round 4's results count, not rounds 1 to 3's.
 
 ## Starting a round
 
@@ -142,7 +142,7 @@ Earlier tests' rounds and results don't count here. Round 4 (from 14 Nov) is the
 From this folder, `~/workspaces/projects/tests-models/2026-11-models` on Sherlock:
 
 - **Round 1:** `./start.sh round1` runs the round on Adlerbot. It talks only to Sherlock, whose runner switches Adlerbot's model through inferctl; nobody logs into a model host. A second model host, if there is one, is added as `./start.sh round1 <its inferctl name> <its address> <its memory in GB>`.
-- **Its cloud models:** `./start-cloud.sh sonnet round1-sonnet` and `./start-cloud.sh terra round1-terra`. These may start at any time; turns run only at night.
+- **Its cloud models:** `./start-cloud.sh sonnet round1-sonnet` and `./start-cloud.sh terra round1-terra`. These start with the round's test 1.
 - **Tests 2 and 3, the local models:** the same command with the plan they build, `PLAN=flash-r1 ./start.sh round1 ...`. It validates that plan's tests on Sherlock first, once a round (up to an hour), and queues each gate survivor's Python and Swift builds (models.txt's tests column, `2`).
 - **Tests 2 and 3, a cloud model on its own plan:** `PARTS="python swift" PLAN=terra-r1 ./start-cloud.sh terra round1-terra-own` (Sonnet: `PLAN=sonnet-r2`, round `round1-sonnet-own`). It validates the plan's tests on Sherlock first, once a round. On the best local plan, the same with that plan's folder and round `round1-<name>-local`.
 
@@ -160,4 +160,4 @@ Each round has its own page, `http://192.168.50.100:18100/tests/2026-11-models/r
 | Repairs | 2 a milestone, 4 a run; past that, the run is redone once at the end |
 | A model switch | 20 min (inferctl's own wait is 5 min), then a fault in the machine |
 | A local round | 7 days from its first start; each lane resets its host to its default model through inferctl when it ends |
-| A cloud round | turns only in `cloud-hours` (22:30–09:00); none while weekly use is at 80% or more; a turn a usage limit cuts off waits for the reset |
+| A cloud round | turns only in `cloud-hours` (00:00–24:00); none while weekly use is at 80% or more; a turn a usage limit cuts off waits for the reset |

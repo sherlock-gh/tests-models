@@ -32,7 +32,7 @@ case $HMODEL in
     gpt-*) AGENT=codex LABEL=Codex SERVED=openai HANG=900 ;;   # reports each step as it ends: longer silences
     *) echo "$NAME ($HMODEL) is neither a claude-* nor a gpt-* model"; exit 1 ;;
 esac
-AV=$("$HOME/.local/bin/$AGENT" --version 2>/dev/null | awk '{print $NF}')
+AV=$("$HOME/.local/bin/$AGENT" --version 2>/dev/null | grep -oE '[0-9]+(\.[0-9]+)+' | head -1)   # "2.1.326 (Claude Code)", "codex-cli 0.160.0"
 
 # lib.sh's model-server, Hermes and 72 h parts, for a cloud agent. Nothing here may reach Adlerbot.
 serve() { true; }; ensure_served() { true; }; served_or_stop() { true; }; server_ok() { true; }
@@ -61,11 +61,11 @@ record() {  # run_work's fields, saying what ran: the agent, not Hermes on a loc
 }
 why() { python3 "$T/cloud_turn.py" why "$AGENT" "$1" ~/"$2" "$3" "$4" "$USAGE" "$TEST_WHY" || echo "why: could not write why/$1.md"; }
 
-hours() { cat "$T/cloud-hours" 2>/dev/null || echo 22:30-09:00; }   # the owner may change it during a round
+hours() { cat "$T/cloud-hours" 2>/dev/null || echo 00:00-24:00; }   # the owner may change it during a round
 mins() { echo $((10#${1%:*} * 60 + 10#${1#*:})); }   # HH:MM -> minutes
 in_hours() { local hr h a b; hr=$(hours); a=$(mins "${hr%-*}"); b=$(mins "${hr#*-}"); h=$(mins "$(date +%H:%M)")
     if [ "$a" -le "$b" ]; then [ "$h" -ge "$a" ] && [ "$h" -lt "$b" ]; else [ "$h" -ge "$a" ] || [ "$h" -lt "$b" ]; fi; }
-hold() {  # trace [until]: wait, beating, until the time given (a reset) has passed, the night hours
+hold() {  # trace [until]: wait, beating, until the time given (a reset) has passed, the hours in cloud-hours
     # allow a turn and the weekly use is under WEEK_MAX. The page and Telegram say what it waits for.
     local tr=$1 until=${2:-0} w why said="" saved; saved=$(cat "$RES/now" 2>/dev/null)
     while :; do
