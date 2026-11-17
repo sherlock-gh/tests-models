@@ -24,6 +24,12 @@ def live(pid):
     if not pid:
         return False
     try:
+        waited, _ = os.waitpid(pid, os.WNOHANG)
+        if waited:
+            return False
+    except ChildProcessError:
+        pass
+    try:
         os.kill(pid, 0)
         return True
     except ProcessLookupError:
