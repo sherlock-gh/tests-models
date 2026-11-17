@@ -2,7 +2,7 @@
 # Starts one cloud model's round (README, "Rounds"), on Sherlock:
 #   ./start-cloud.sh <name in models.txt> <round>      e.g. ./start-cloud.sh sonnet round1-sonnet
 #   PARTS="python swift" PLAN=<folder in test2/plans> ./start-cloud.sh <name> <round>   for test 2
-#   RUNS=1 ./start-cloud.sh ...   only run 1; RUNS="2 3" later makes both, the third even if 1 and 2 agree
+#   RUNS=1 ./start-cloud.sh ...   only run 1; RUNS="2 3" later makes both, a build's third even if 1 and 2 agree
 # The hours turns may run are in cloud-hours, which cloud.sh reads before each turn: to change
 # them during a round, edit it (no restart). WEEK_MAX (80) passes through to cloud.sh. Local rounds
 # and other cloud rounds may run beside it. Starts cloud.sh and returns, in under 15 min (an hour

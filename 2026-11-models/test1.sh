@@ -35,12 +35,11 @@ t1_run() {  # name run
 
 t1_result() { awk -F'\t' -v n="$1" -v r="$2" '$1==n && $2==r{x=$3} END{print x}' "$TSV1" 2>/dev/null; }
 
-test1() {  # name: its runs not yet done. Local models always run 3 (3 of 3 beats 2 of 3, owner,
-    # 11 Nov); a cloud model (CLOUD, cloud.sh) skips the third when the first two agree, as each costs plan use
+test1() {  # name: its runs not yet done. Every model runs 3, cloud ones too: test 1 picks the best
+    # plan to build from, not only which models pass (owner, 16 Nov)
     local name=$1 r rerun=""
     for r in ${RUNS:-1 2 3}; do   # RUNS: only these (owner, 13 Nov: a cloud model's run 1 first, to see its plan use)
         [ -n "$(t1_result "$name" $r)" ] && continue          # done on an earlier start
-        if [ -n "${CLOUD:-}" ] && [ -z "${RUNS:-}" ] && [ $r = 3 ] && [ "$(t1_result "$name" 1)" = "$(t1_result "$name" 2)" ] && [ "$(t1_result "$name" 1)" != machine-failed ]; then continue; fi
         past_deadline && return
         say "test 1: $name run $r"; now 1 "$name" "$r"; t1_run "$name" $r
         [ "$RUN" = machine-failed ] && rerun="$rerun $r"

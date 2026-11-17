@@ -2,7 +2,7 @@
 # A cloud round of the model tests (README, "Rounds"), on Sherlock: one cloud model on the local
 # models' tests, with their prompts, checks, 90-minute milestone limit and rules for runs and
 # repairs (lib.sh, test1.sh, test2.sh): the tests in PARTS (1, python, swift; default 1), test 2 on
-# the build plan PLAN; up to 3 runs each, the third only when the first two differ. What differs is the agent: each job is one turn
+# the build plan PLAN; 3 runs of test 1; up to 3 of a build, the third only when the first two differ. What differs is the agent: each job is one turn
 # of Claude Code (a claude-* model) or Codex (a gpt-* model) with its own defaults, fenced to its
 # repo by cloud-in as Hermes is by hermes-in. No gate (test 0 checks a local server) and no 72 h
 # limit: the owner's plan limits bound the round instead.
@@ -23,7 +23,7 @@ cd "$(dirname "$0")" || exit 1
 PARTS=${PARTS:-1}
 export ROUND=${ROUND:?ROUND=roundN} LANE=a ROUND_MODELS="$NAME $PARTS" PLAN=${PLAN:-}   # ROUND_MODELS: the page's rows (status.py)
 WEEK_MAX=${WEEK_MAX:-80}
-CLOUD=1   # test1.sh: the third run only when the first two differ
+CLOUD=1   # test2.sh: the third build run only when the first two differ
 source ./lib.sh; source ./test1.sh
 case " $PARTS " in *" python "*|*" swift "*) source ./test2.sh ;; esac
 HMODEL=$(model_of "$NAME"); [ -n "$HMODEL" ] || { echo "models.txt has no $NAME line"; exit 1; }
