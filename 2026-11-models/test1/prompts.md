@@ -1,8 +1,6 @@
 # Test 1 prompts
 
-Each run is a fresh git repository holding `problem.md` and SpecKit's templates and skills. The
-agent gets one prompt a step, in this order: the step's section below, then "Every step". The
-runner (`test1.sh`) reads this file.
+Each run is a fresh git repository holding `problem.md` and SpecKit's templates and skills. The agent gets one prompt a step, in this order: the step's section below, then "Every step". The runner (`test1.sh`) reads this file.
 
 ## specify
 

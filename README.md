@@ -1,24 +1,19 @@
 # Lab tests
 
-Which language model should do each kind of work, tested in a local lab: the local models on
-Adlerbot, run by the Hermes agent on Sherlock, with cloud models for comparison. Everything the
-models work on is synthetic test material. This page is also the home page of the results site,
-[sherlock-gh.github.io/tests-models](https://sherlock-gh.github.io/tests-models/).
+Which language model should do each kind of work, tested in a local lab: the local models on Adlerbot, run by the Hermes agent on Sherlock, with cloud models for comparison. Everything the models work on is synthetic test material. This page is also the home page of the results site, [sherlock-gh.github.io/tests-models](https://sherlock-gh.github.io/tests-models/).
 
 | Test | Results |
 | --- | --- |
 | [2026-11-models](#2026-11-models) | [Round 1](https://sherlock-gh.github.io/tests-models/2026-11-models/round1/) · [Round 2](https://sherlock-gh.github.io/tests-models/2026-11-models/round2/) · [Round 3](https://sherlock-gh.github.io/tests-models/2026-11-models/round3/) · [Round 4](https://sherlock-gh.github.io/tests-models/2026-11-models/round4/) · [Files to reproduce](https://sherlock-gh.github.io/tests-models/2026-11-models/files/) |
 | [2026-10-config](#2026-10-config) | [Round 1](https://sherlock-gh.github.io/tests-models/2026-10-config/round1/) · [Round 2](https://sherlock-gh.github.io/tests-models/2026-10-config/round2/) · [Round 3](https://sherlock-gh.github.io/tests-models/2026-10-config/round3/) · [Round 4](https://sherlock-gh.github.io/tests-models/2026-10-config/round4/) |
 
-What each test checks, why it is run this way, and what each iteration changed, below. Each
-test's folder has its own README and its files.
+What each test checks, why it is run this way, and what each iteration changed, below. Each test's folder has its own README and its files.
 
 ## 2026-11-models
 
 Which model should do each kind of work: planning, Python, Swift, a website?
 
-Candidates: the local models on Adlerbot, run by Hermes. Sonnet and Terra (cloud) are for
-comparison only. Folder: [2026-11-models](2026-11-models/README.md).
+Candidates: the local models on Adlerbot, run by Hermes. Sonnet and Terra (cloud) are for comparison only. Folder: [2026-11-models](2026-11-models/README.md).
 
 ### The tests
 
@@ -63,8 +58,7 @@ comparison only. Folder: [2026-11-models](2026-11-models/README.md).
 
 ## 2026-10-config
 
-Which local setup (engine, model, quantization, thinking, harness) can do planning and real
-Python and Swift builds? Folder: [2026-10-config](2026-10-config/README.md).
+Which local setup (engine, model, quantization, thinking, harness) can do planning and real Python and Swift builds? Folder: [2026-10-config](2026-10-config/README.md).
 
 ### The tests
 

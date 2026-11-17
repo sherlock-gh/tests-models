@@ -1,8 +1,6 @@
 # What the model tests have taught us about Hermes and its models
 
-For refining Hermes and how it briefs each model. One entry a finding, with its evidence (run
-records on Sherlock under `~/tests-2026-11-models/results/`, grades in `grades/test1.tsv`) and
-what was done about it. Iterations are this test's passes: 1 (`round1`), 2 (`round2`), 3 (`round3`).
+For refining Hermes and how it briefs each model. One entry a finding, with its evidence (run records on Sherlock under `~/tests-2026-11-models/results/`, grades in `grades/test1.tsv`) and what was done about it. Iterations are this test's passes: 1 (`round1`), 2 (`round2`), 3 (`round3`).
 
 ## Harness and Hermes
 

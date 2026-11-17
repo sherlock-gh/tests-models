@@ -1,60 +1,23 @@
 # Hand-over: model tests, 14 Nov 2026 (for whichever agent continues; delete once done)
 
-You are continuing a comparison of local LLMs for the owner's home lab. Read `CLAUDE.md` at the
-repo's root (roles, how rounds run), then `README.md` in this folder (goal, rules, tests).
+You are continuing a comparison of local LLMs for the owner's home lab. Read `CLAUDE.md` at the repo's root (roles, how rounds run), then `README.md` in this folder (goal, rules, tests).
 
-- Status: http://192.168.50.100:18100/tests/2026-11-models/round4/ (redrawn by the runners;
-  `ROUND=round4 python3 status.py ~/scaffolding/tests-2026-11-models` here redraws it by hand).
+- Status: http://192.168.50.100:18100/tests/2026-11-models/round4/ (redrawn by the runners; `ROUND=round4 python3 status.py ~/scaffolding/tests-2026-11-models` here redraws it by hand).
 
 ## Where it stands
 
-- **Test 1, round 2 (local models): finished** on both hosts. The one change from round 1:
-  Hermes's `SOUL.md` tells models not to end a turn by announcing the next step (Flash-Next
-  stopped 2 of 3 round 1 runs that way; in round 2 it completed 3 of 3). Results:
-  `results/round2/{a,b}/test1.tsv` on Sherlock. Failed the gate: Qwen3.8-27B 8-bit (11.7 tok/s),
-  Qwen3-Coder 30B (11 of 20 tool calls parsed).
-- **Test 1 grading: done** (12 Nov). Sol, through Codex on Sherlock, graded blind set
-  `test1-20261112-1410` (round 2's 17 complete local runs, round 1's Sonnet and Terra runs);
-  joined to its key in `grades/test1.tsv` and on the page. Three of its notes were checked
-  against the runs and held. Only Terra's two plans were judged fit to build from.
-- **Terra, test 2 on its own plan:** Python 2 of 3 complete, Swift 2 of 2. Python run 2 failed
-  milestone 2's randomized extension test: Terra's code let an extension leave 20 min before
-  the same cleaner's next job, which was already under way; its plan (FR-005) requires an hour.
-  Runs 1 and 3 pass the same test, so it was read as Terra's failure, not interference, and not
-  re-run. The owner asked for a re-run; that is his call.
-- **Round 3's test 2 (13 Nov) doesn't count.** Every local build failed milestone 1: Flash-Next's
-  six at the 90-minute limit, still working, and Qwen3.8-27B 4-bit's first at 43 minutes, looping
-  on its own failing tests, which halted the round. At a 64K context Hermes compacted Flash-Next's
-  work every 12 minutes, and its subagents (`delegate_task`) were switched off. Sonnet's Swift runs
-  on the same plan hit a fault in the hidden tests (M1.swift's helpers called milestone 2's taps),
-  fixed 14 Nov.
-- **Round 4 (from 14 Nov), the owner's order: tools before the gate, and the gate is the smoke test.**
-  The probe (14 Nov) found every local model holds 256K but Qwen3-Coder 30B, whose Ollama build cut
-  prompts at 32K; it was rebuilt at 256K under its old name, `qwen3-coder-30b-64k`, the one inferctl
-  serves (15 Nov). Contexts are capped at 128K (owner, 15 Nov). The gate (README, "Order") now
-  measures each model's context, sets it in Hermes, reads it back through Hermes's resolver, and runs
-  one Hermes job with a subagent; the separate probe is gone. Hermes's subagents are on (one at a
-  time) and `SOUL.md` hands each subsystem to a subagent. A milestone isn't timed: it ends after 2 h
-  without a file change, a model failure (15 Nov). No failure halts the round (15 Nov). `./start.sh round4` (no PLAN): every local model
-  through the gate and test 1, 7 days at most; then the plans are graded blind (`blind.py 1`), the best gets
-  its hidden tests and `validate.sh`, and `PLAN=<it> ./start.sh round4` runs tests 2 and 3, Python and Swift (owner, 16 Nov; q27-4's
-  flash-i3 builds from the first start are voided). Sonnet's test 2 repeat
-  waits for round 4's local results.
+- **Test 1, round 2 (local models): finished** on both hosts. The one change from round 1: Hermes's `SOUL.md` tells models not to end a turn by announcing the next step (Flash-Next stopped 2 of 3 round 1 runs that way; in round 2 it completed 3 of 3). Results: `results/round2/{a,b}/test1.tsv` on Sherlock. Failed the gate: Qwen3.8-27B 8-bit (11.7 tok/s), Qwen3-Coder 30B (11 of 20 tool calls parsed).
+- **Test 1 grading: done** (12 Nov). Sol, through Codex on Sherlock, graded blind set `test1-20261112-1410` (round 2's 17 complete local runs, round 1's Sonnet and Terra runs); joined to its key in `grades/test1.tsv` and on the page. Three of its notes were checked against the runs and held. Only Terra's two plans were judged fit to build from.
+- **Terra, test 2 on its own plan:** Python 2 of 3 complete, Swift 2 of 2. Python run 2 failed milestone 2's randomized extension test: Terra's code let an extension leave 20 min before the same cleaner's next job, which was already under way; its plan (FR-005) requires an hour. Runs 1 and 3 pass the same test, so it was read as Terra's failure, not interference, and not re-run. The owner asked for a re-run; that is his call.
+- **Round 3's test 2 (13 Nov) doesn't count.** Every local build failed milestone 1: Flash-Next's six at the 90-minute limit, still working, and Qwen3.8-27B 4-bit's first at 43 minutes, looping on its own failing tests, which halted the round. At a 64K context Hermes compacted Flash-Next's work every 12 minutes, and its subagents (`delegate_task`) were switched off. Sonnet's Swift runs on the same plan hit a fault in the hidden tests (M1.swift's helpers called milestone 2's taps), fixed 14 Nov.
+- **Round 4 (from 14 Nov), the owner's order: tools before the gate, and the gate is the smoke test.** The probe (14 Nov) found every local model holds 256K but Qwen3-Coder 30B, whose Ollama build cut prompts at 32K; it was rebuilt at 256K under its old name, `qwen3-coder-30b-64k`, the one inferctl serves (15 Nov). Contexts are capped at 128K (owner, 15 Nov). The gate (README, "Order") now measures each model's context, sets it in Hermes, reads it back through Hermes's resolver, and runs one Hermes job with a subagent; the separate probe is gone. Hermes's subagents are on (one at a time) and `SOUL.md` hands each subsystem to a subagent. A milestone isn't timed: it ends after 2 h without a file change, a model failure (15 Nov). No failure halts the round (15 Nov). `./start.sh round4` (no PLAN): every local model through the gate and test 1, 7 days at most; then the plans are graded blind (`blind.py 1`), the best gets its hidden tests and `validate.sh`, and `PLAN=<it> ./start.sh round4` runs tests 2 and 3, Python and Swift (owner, 16 Nov; q27-4's flash-i3 builds from the first start are voided). Sonnet's test 2 repeat waits for round 4's local results.
 
 ## Iteration 3 of test 1 (started 12 Nov 19:01, `round3`)
 
-The owner settled the 10 open decisions and added rules (jobs over 8 h split across days,
-quarter-hour starts, a 90-day search) in `test1/problem.md`; each step names its output path,
-commits, and records further gaps with the assumed answer in `questions.md` (checked). Laguna XS
-is dropped. `findings.md` records what the tests taught about Hermes and each model: keep it
-current. Regraded 13 Nov against the F1-F7 fit checklist (`blind.py`'s rubric) with Flash-Next redone and
-Sonnet's and Terra's 3 runs each (set `test1-20261113-0923`, Sol and Opus reconciled,
-`grades/test1.tsv`): fit plans are Sonnet run 1 and Terra run 2, tied, then Sonnet run 2 and Flash-Next run 1, the only fit local plan (F4 judges operations, not buttons: owner, 13 Nov). Sol's
-verdicts disagree with the plans' files often enough that each is checked against them. The owner picked Flash-Next run 1 for round 4's first start; round 4 now grades its own test 1 plans instead (16 Nov).
+The owner settled the 10 open decisions and added rules (jobs over 8 h split across days, quarter-hour starts, a 90-day search) in `test1/problem.md`; each step names its output path, commits, and records further gaps with the assumed answer in `questions.md` (checked). Laguna XS is dropped. `findings.md` records what the tests taught about Hermes and each model: keep it current. Regraded 13 Nov against the F1-F7 fit checklist (`blind.py`'s rubric) with Flash-Next redone and Sonnet's and Terra's 3 runs each (set `test1-20261113-0923`, Sol and Opus reconciled, `grades/test1.tsv`): fit plans are Sonnet run 1 and Terra run 2, tied, then Sonnet run 2 and Flash-Next run 1, the only fit local plan (F4 judges operations, not buttons: owner, 13 Nov). Sol's verdicts disagree with the plans' files often enough that each is checked against them. The owner picked Flash-Next run 1 for round 4's first start; round 4 now grades its own test 1 plans instead (16 Nov).
 
 ## Lessons from this test (don't repeat them)
 
-- Say a thing runs only after reading its log: a runner can start and end at once (the `done`
-  markers in `results/<round>/claims/` must go with any voided result).
+- Say a thing runs only after reading its log: a runner can start and end at once (the `done` markers in `results/<round>/claims/` must go with any voided result).
 - Read a failure's evidence before naming a cause or re-running.
 - Check test changes on Sherlock before a round restarts.

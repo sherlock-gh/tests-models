@@ -4,8 +4,7 @@ Basis: `problem.md`, `specs/001-cleaning-scheduling-billing/{spec,plan,tasks}.md
 
 ## Desktop
 
-Human hours: 44
-Tokens: 950000
+Human hours: 44 Tokens: 950000
 
 How I reached them:
 - Setup, errors, data model, JSON store with atomic write, copy-then-commit pattern (T001, T002, T004, T006, T008, T010, T012): about 5 h.
@@ -23,8 +22,7 @@ Tokens: about 33 tasks at 15–20k tokens of generated code and tests each, abou
 
 ## Mobile
 
-Human hours: 30
-Tokens: 700000
+Human hours: 30 Tokens: 700000
 
 How I reached them:
 - Package.swift, error type, Codable models, store, copy-then-commit service, test helpers (T003, T005, T007, T009, T011, T013): about 4.5 h.

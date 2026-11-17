@@ -23,7 +23,7 @@ STYLE = """:root{--bg:#f7f7f5;--card:#fff;--fg:#1d1d1f;--dim:#6b6b70;--line:#dcd
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
 main{max-width:64rem;margin:0 auto;padding:2rem 1rem 4rem}a{color:var(--accent)}.dim{color:var(--dim)}
 table{border-collapse:collapse;width:100%;background:var(--card)}td,th{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
-pre{background:var(--card);border:1px solid var(--line);padding:1rem;border-radius:.4rem;overflow-x:auto;font-size:.85rem}
+pre{background:var(--card);border:1px solid var(--line);padding:1rem;border-radius:.4rem;overflow-x:auto;font-size:.85rem;white-space:pre-wrap;overflow-wrap:anywhere}
 section{background:var(--card);border:1px solid var(--line);border-radius:.6rem;padding:1.2rem 1.4rem;margin:0 0 1.5rem}
 section h2{margin:0 0 .6rem;font-size:1.3rem}
 h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--dim);margin:1.4rem 0 .5rem}
