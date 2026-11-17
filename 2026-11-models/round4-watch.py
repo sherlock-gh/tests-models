@@ -70,9 +70,6 @@ def main():
     offset = LOG.stat().st_size if LOG.exists() else 0
     setup_seen = not live(SETUP_PID)
     deadline_seen = False
-    last_launch = None
-    rapid_exits = 0
-    cooldown_until = 0
     pending = []
     dead_seen = False
     recent_event = 'none'
@@ -104,16 +101,7 @@ def main():
         alive = live(coordinator)
         if not alive and not dead_seen:
             dead_seen = True
-            if last_launch is None:
-                pending.append('initial coordinator exited; inspect state and unreviewed why files')
-            elif time.monotonic() - last_launch < 180:
-                rapid_exits += 1
-                cooldown_until = time.monotonic() + min(7200, 300 * 2 ** min(rapid_exits, 4))
-                pending.append('coordinator exited quickly; inspect coordinator log and unreviewed why files')
-                note(f'BLOCKER: coordinator {coordinator} exited quickly; retry after '
-                     f'{int(cooldown_until - time.monotonic())}s; inspect {COORDINATOR}')
-            else:
-                rapid_exits = 0
+            note(f'coordinator {coordinator} exited; awaiting a runner event')
         results = ROOT / 'results/round4'
         end = results / 'a/end'
         outcome = end.read_text().strip() if end.exists() else None
@@ -123,10 +111,9 @@ def main():
         if finished and not alive:
             note(f'finished: validated flash-r4, lane a ended {outcome}; watcher stops')
             break
-        if not alive and pending and time.monotonic() >= cooldown_until:
+        if not alive and pending:
             coordinator = launch('; '.join(pending[-5:]))
             pending.clear()
-            last_launch = time.monotonic()
             dead_seen = False
         notes = (SETUP / 'SETUP-NOTES.md').exists() or (SETUP / 'harness/plans/flash-r4/SETUP-NOTES.md').exists()
         lock = results / 'a/runner.lock/pid'
@@ -138,10 +125,8 @@ def main():
         phase = current.read_text().strip() if current.exists() else 'not recorded'
         note(f'tick phase={phase[:100]} coordinator={coordinator} live={live(coordinator)} '
              f'runner={runner} live={live(runner)} pending={len(pending)} '
-             f'retry_seconds={max(0, int(cooldown_until - time.monotonic()))} setup={setup_live} '
-             f'notes={notes} log_offset={offset} evidence={recent_event!r} '
-             f'blockers={"coordinator cooldown" if cooldown_until > time.monotonic() else "none"}; '
-             'deadline 2026-11-23 23:46:37 PST + grace; '
+             f'setup={setup_live} notes={notes} log_offset={offset} evidence={recent_event!r} '
+             'blockers=none; deadline 2026-11-23 23:46:37 PST + grace; '
              'limits idle 2h+30m, check 15m, load 20m')
         time.sleep(45)
 
