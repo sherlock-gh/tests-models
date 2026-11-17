@@ -91,11 +91,12 @@ def main():
         if not live(coordinator) and not blocked:
             results = ROOT / 'results/round4'
             end = results / 'a/end'
-            finished = ((results / 'validated-flash-r4').exists() and end.exists()
-                        and end.read_text().strip() == 'done'
+            outcome = end.read_text().strip() if end.exists() else None
+            finished = ((results / 'validated-flash-r4').exists()
+                        and outcome in ('done', "incomplete: the round's 7-day limit came first")
                         and not (results / 'a/runner.lock').exists())
             if finished:
-                note('finished: validated flash-r4, lane a ended done; watcher stops')
+                note(f'finished: validated flash-r4, lane a ended {outcome}; watcher stops')
                 break
             rapid_exits = rapid_exits + 1 if last_launch and time.monotonic() - last_launch < 180 else 0
             if rapid_exits >= 2:
