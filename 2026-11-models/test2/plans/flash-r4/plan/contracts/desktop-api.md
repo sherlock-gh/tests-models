@@ -6,6 +6,14 @@ under `/api`. Request and response bodies are JSON (UTF-8). Times are local wall
 strings (`YYYY-MM-DDTHH:MM`); money is integer cents. Record shapes are exactly
 data-model.md.
 
+**In-process test interface:** `desktop/app.py` must export `create_app(data_file)`.
+The returned object exposes `request(method, path, body=None)`, returning
+`(http_status_integer, parsed_json_body)` with the same behavior as the HTTP
+endpoint. `data_file` is the isolated JSON store path; separate app instances
+using the same path see persisted changes. This lets the sandbox test the HTTP
+contract without opening a loopback socket (see quickstart.md §2). The served
+app and this test interface must use the same handler and storage rules.
+
 **Error envelope (FR-019)**: every handled failure returns HTTP 400 (bad input), 404
 (unknown id) or 409 (rule violation: overlap, refusal, undeletable, wrong payment) with
 body `{"error": "<human-readable message>"}` and **zero changes** to the data file.

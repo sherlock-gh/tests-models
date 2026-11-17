@@ -48,8 +48,8 @@ cd desktop
 
 Expected: pytest green across booking, taps/invoicing, cascades, CRUD errors, and
 utilization modules. Note: this sandbox cannot connect to loopback HTTP ports; the suite
-drives the request handler in-process (direct calls with captured `start_response`-style
-outputs), not via curl (research R6).
+drives the `create_app(data_file).request(method, path, body)` interface specified
+in contracts/desktop-api.md, not via curl (research R6).
 
 ## 3. Desktop app — run it for a person
 

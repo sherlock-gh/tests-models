@@ -14,7 +14,7 @@ LOG = Path('/Users/sherlock/scaffolding/tests-2026-11-models/log.txt')
 PROMPT = Path('/private/tmp/hermes-round4-coordinator-brief.txt')
 COORDINATOR = Path('/private/tmp/hermes-round4-coordinator.log')
 HERMES = '/Users/sherlock/.local/bin/hermes'
-INITIAL_COORDINATOR = 81410
+INITIAL_COORDINATOR = 73828
 SETUP_PID = 70183
 SETUP_DEADLINE = datetime.datetime(2026, 11, 17, 2, tzinfo=datetime.timezone(datetime.timedelta(hours=-8)))
 EVENT = re.compile(r'\b(?:fail|timeout|machine.failure|LANE STOPPED|lane done|lane incomplete|fault)\b', re.I)
@@ -72,7 +72,9 @@ def main():
     deadline_seen = False
     last_launch = None
     rapid_exits = 0
-    blocked = False
+    cooldown_until = 0
+    pending = []
+    dead_seen = False
     note(f'start; coordinator {coordinator}; setup {SETUP_PID} live={not setup_seen}; '
          'setup deadline 02:00 PST; round <=7d; idle 2h+30m; check 15m; load 20m')
     while True:
@@ -85,29 +87,39 @@ def main():
         if setup_live and now >= SETUP_DEADLINE and not deadline_seen:
             events.append('setup reached 02:00 PST deadline; diagnose without duplicate setup')
             deadline_seen = True
-        if events:
-            for event in events:
-                note(f'event: {event[:500]}')
-        if not live(coordinator) and not blocked:
-            results = ROOT / 'results/round4'
-            end = results / 'a/end'
-            outcome = end.read_text().strip() if end.exists() else None
-            finished = ((results / 'validated-flash-r4').exists()
-                        and outcome in ('done', "incomplete: the round's 7-day limit came first")
-                        and not (results / 'a/runner.lock').exists())
-            if finished:
-                note(f'finished: validated flash-r4, lane a ended {outcome}; watcher stops')
-                break
-            rapid_exits = rapid_exits + 1 if last_launch and time.monotonic() - last_launch < 180 else 0
-            if rapid_exits >= 2:
-                note(f'BLOCKER: coordinator {coordinator} exited twice within 3 minutes; '
-                     f'read {COORDINATOR} for the concrete failure; launches suspended')
-                blocked = True
+        for event in events:
+            note(f'event: {event[:500]}')
+            pending.append(event)
+        alive = live(coordinator)
+        if not alive and not dead_seen:
+            dead_seen = True
+            if last_launch is None:
+                pending.append('initial coordinator exited; inspect state and unreviewed why files')
+            elif time.monotonic() - last_launch < 180:
+                rapid_exits += 1
+                cooldown_until = time.monotonic() + min(7200, 300 * 2 ** min(rapid_exits, 4))
+                pending.append('coordinator exited quickly; inspect coordinator log and unreviewed why files')
+                note(f'BLOCKER: coordinator {coordinator} exited quickly; retry after '
+                     f'{int(cooldown_until - time.monotonic())}s; inspect {COORDINATOR}')
             else:
-                coordinator = launch('; '.join(events[-3:]) or 'previous coordinator exited; inspect state and continue')
-                last_launch = time.monotonic()
+                rapid_exits = 0
+        results = ROOT / 'results/round4'
+        end = results / 'a/end'
+        outcome = end.read_text().strip() if end.exists() else None
+        finished = ((results / 'validated-flash-r4').exists()
+                    and outcome in ('done', "incomplete: the round's 7-day limit came first")
+                    and not (results / 'a/runner.lock').exists())
+        if finished and not alive:
+            note(f'finished: validated flash-r4, lane a ended {outcome}; watcher stops')
+            break
+        if not alive and pending and time.monotonic() >= cooldown_until:
+            coordinator = launch('; '.join(pending[-5:]))
+            pending.clear()
+            last_launch = time.monotonic()
+            dead_seen = False
         notes = (SETUP / 'SETUP-NOTES.md').exists() or (SETUP / 'harness/plans/flash-r4/SETUP-NOTES.md').exists()
-        note(f'tick coordinator={coordinator} live={live(coordinator)} blocked={blocked} setup={setup_live} '
+        note(f'tick coordinator={coordinator} live={live(coordinator)} pending={len(pending)} '
+             f'retry_seconds={max(0, int(cooldown_until - time.monotonic()))} setup={setup_live} '
              f'notes={notes} log_offset={offset}; '
              'limits setup 02:00 PST, round 7d, idle 2h+30m, check 15m, load 20m')
         time.sleep(45)
