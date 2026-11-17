@@ -62,11 +62,16 @@ plan. Two things:
 
 The problem statement can't settle everything. Each run was told to record in `questions.md`
 every decision it made that the statement leaves open, with the answer it assumed, for the owner
-to confirm. Filling a gap is expected; what counts is the result. Judge every assumption, and any
-departure from a rule the statement gives, by what the built apps would then do: a result that
-breaks a line of item 1 makes the plan not fit; one that leaves the apps useful only lowers its
-rank. A recorded assumption costs less than the same one made silently, since the owner can
-correct it before the build.
+to confirm. A decision the statement leaves open is the owner's to make: recorded in
+`questions.md`, it never makes a plan not fit, as he answers it before the build; it lowers the
+rank only by what the built apps would do if he accepted the assumed answer. Judge a silent
+assumption, and any departure from a rule the statement gives, by what the built apps would then
+do: a result that breaks a line of item 1 makes the plan not fit; one that leaves the apps useful
+only lowers its rank.
+
+The owner's answers so far: a job over 8 hours is split into 8-hour parts and the rest, on
+separate workdays; each part gets the same cleaners if they are free, and other free cleaners
+if not.
 
 Read every version of a task before ranking it. Write one line a run and task to `grades.jsonl`,
 with `questions` the run's open questions in a few words each:
