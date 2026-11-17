@@ -4,309 +4,338 @@
 
 # test2-q122-python-r2-M1-0: fail
 
-- Job: 07:51:56 to 08:18:38 (1602 s); runner&#x27;s note: 6 errors in 0.14s
-- Hermes&#x27;s turn: completed True, failed False, interrupted False, partial False, turn_exit_reason text_response(finish_reason=stop), api_calls 35
-- Hermes session: 20261117_075200_0a82a2
+- Job: 13:19:25 to 13:49:38 (1813 s); runner&#x27;s note: 6 failed in 0.15s
+- Hermes&#x27;s turn: completed True, failed False, interrupted False, partial False, turn_exit_reason text_response(finish_reason=stop), api_calls 46
+- Hermes session: 20261117_131929_cfd92c
 
 ## The session, turn by turn
 
-- 07:52:00 **prompt** [577 chars]
-- 07:52:33 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}
-- 07:52:33 **call** read_file {path: specs/001-cleaning-scheduling-billing/index.md}
-- 07:52:33 **call** search_files {pattern: [4 chars], path: specs/001-cleaning-scheduling-billing, target: [5 chars]}
-  - 07:52:33 result (read_file): [296 lines, 39099 bytes]
-  - 07:52:33 result (read_file): [0 lines, 0 bytes, NOT FOUND, error]
-  - 07:52:33 result (search_files): [? lines, ? bytes]
-- 07:53:12 **call** read_file {path: specs/001-cleaning-scheduling-billing/plan.md}
-- 07:53:12 **call** read_file {path: specs/001-cleaning-scheduling-billing/data-model.md}
-- 07:53:12 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}
-- 07:53:12 **call** read_file {path: desktop}
-  - 07:53:13 result (read_file): [130 lines, 7149 bytes]
-  - 07:53:13 result (read_file): [143 lines, 7936 bytes]
-  - 07:53:13 result (read_file): [78 lines, 4860 bytes]
-  - 07:53:13 result (read_file): [0 lines, 0 bytes, NOT FOUND, error]
-- 07:53:40 **model writes** (tool_calls) [294 chars]
-- 07:53:40 **call** terminal {command: ls -la /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q12-python-r2/app/}
-  - 07:53:40 result (terminal): exit 1, 1 lines out
-- 07:53:42 **call** terminal {command: pwd &amp;&amp; ls -la}
-  - 07:53:42 result (terminal): exit 0, 6 lines out
-- 07:53:46 **model writes** (tool_calls) [248 chars]
-- 07:53:46 **call** terminal {command: python3 -m venv .venv &amp;&amp; .venv/bin/pip install pytest -q &amp;&amp; .venv/bin/python -m pytest --version}
-  - 07:53:54 result (terminal): exit 0, 3 lines out
-- 07:53:57 **call** write_file {content: [7 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/requirements.txt}
-  - 07:53:57 result (write_file): [? lines, ? bytes]
-- 07:54:00 **model writes** (tool_calls) [62 chars]
-- 07:54:00 **call** terminal {command: mkdir -p desktop/cleaning desktop/static desktop/tests}
-  - 07:54:00 result (terminal): exit 0, 0 lines out
-- 07:54:23 **call** write_file {content: [39 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/errors.py}
-- 07:54:23 **call** write_file {content: [39 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/models.py}
-- 07:54:23 **call** write_file {content: [39 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/store.py}
-- 07:54:23 **call** write_file {content: [39 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
-- 07:54:23 **call** write_file {content: [39 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/timezone_util.py}
-- 07:54:23 **call** write_file {content: [39 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/invoices.py}
-- 07:54:23 **call** write_file {content: [39 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/utilization.py}
-- 07:54:23 **call** write_file {content: [21 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/static/index.html}
-- 07:54:23 **call** write_file {content: [24 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/__init__.py}
-  - 07:54:24 result (write_file): [? lines, ? bytes]
-  - 07:54:24 result (write_file): [? lines, ? bytes]
-  - 07:54:24 result (write_file): [? lines, ? bytes]
-  - 07:54:24 result (write_file): [? lines, ? bytes]
-  - 07:54:24 result (write_file): [? lines, ? bytes]
-  - 07:54:24 result (write_file): [? lines, ? bytes]
-  - 07:54:24 result (write_file): [? lines, ? bytes]
-  - 07:54:24 result (write_file): [? lines, ? bytes]
-  - 07:54:24 result (write_file): [? lines, ? bytes]
-- 07:54:38 **model writes** (tool_calls) [31 chars]
-- 07:54:38 **call** write_file {content: [782 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/errors.py}
-  - 07:54:38 result (write_file): [? lines, ? bytes]
-- 07:55:50 **model writes** (tool_calls) [61 chars]
-- 07:55:50 **call** write_file {content: [8574 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/models.py}
-  - 07:55:51 result (write_file): [? lines, ? bytes]
-- 07:56:35 **model writes** (tool_calls) [38 chars]
-- 07:56:35 **call** write_file {content: [4865 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/timezone_util.py}
-  - 07:56:35 result (write_file): [? lines, ? bytes]
-- 07:57:47 **model writes** (tool_calls) [43 chars]
-- 07:57:47 **call** write_file {content: [8835 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/store.py}
-  - 07:57:48 result (write_file): [? lines, ? bytes]
-- 07:58:25 **model writes** (tool_calls) [42 chars]
-- 07:58:25 **call** patch {path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/store.py, old_string: [515 chars], new_string: [521 chars]}
-- 07:58:25 **call** patch {path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/store.py, old_string: [364 chars], new_string: [374 chars]}
-- 07:58:25 **call** patch {path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/store.py, old_string: [840 chars], new_string: [842 chars]}
-  - 07:58:25 result (patch): [? lines, ? bytes]
-  - 07:58:26 result (patch): [? lines, ? bytes]
-  - 07:58:26 result (patch): [? lines, ? bytes]
-- 08:01:31 **model writes** (tool_calls) [83 chars]
-- 08:01:31 **call** write_file {content: [10149 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
-  - 08:01:32 result (write_file): [? lines, ? bytes]
-- 08:01:35 **model writes** (tool_calls) [83 chars]
-- 08:01:35 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
-  - 08:01:35 result (read_file): [275 lines, 10149 bytes]
-- 08:02:13 **model writes** (tool_calls) [92 chars]
-- 08:02:13 **call** patch {new_string: [1919 chars], old_string: [309 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
-  - 08:02:13 result (patch): [? lines, ? bytes]
-- 08:04:20 **model writes** (tool_calls) [50 chars]
-- 08:04:20 **call** write_file {content: [14516 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/app.py}
-  - 08:04:21 result (write_file): [? lines, ? bytes]
-- 08:04:33 **model writes** (tool_calls) [92 chars]
-- 08:04:33 **call** patch {new_string: [460 chars], old_string: [128 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/store.py}
-  - 08:04:33 result (patch): [? lines, ? bytes]
-- 08:04:57 **model writes** (tool_calls) [34 chars]
-- 08:04:57 **call** patch {new_string: [1332 chars], old_string: [966 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/app.py}
-  - 08:04:57 result (patch): [? lines, ? bytes]
-- 08:06:06 **model writes** (tool_calls) [102 chars]
-- 08:06:06 **call** write_file {content: [6007 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_api.py}
-  - 08:06:07 result (write_file): [? lines, ? bytes]
-- 08:08:03 **model writes** (tool_calls) [50 chars]
-- 08:08:03 **call** write_file {content: [9132 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}
-  - 08:08:03 result (write_file): [? lines, ? bytes]
-- 08:09:54 **model writes** (tool_calls) [58 chars]
-- 08:09:54 **call** write_file {content: [12225 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/static/index.html}
-  - 08:09:54 result (write_file): [? lines, ? bytes]
-- 08:11:46 **prompt** [17702 chars]
-- 07:52:33 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}  ← the same call, time 2
-- 07:52:33 **call** read_file {path: specs/001-cleaning-scheduling-billing/index.md}  ← the same call, time 2
-- 07:52:33 **call** search_files {pattern: [4 chars], path: specs/001-cleaning-scheduling-billing, target: [5 chars]}  ← the same call, time 2
-  - 07:52:33 result (read_file): [90 chars]
-  - 07:52:33 result (read_file): [176 chars]
-  - 07:52:33 result (search_files): [93 chars]
-- 08:02:13 **model writes** (tool_calls) [92 chars]
-- 08:02:13 **call** patch {new_string: [1919 chars], old_string: [309 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}  ← the same call, time 2
-  - 08:02:13 result (patch): [152 chars]
-- 08:04:20 **model writes** (tool_calls) [50 chars]
-- 08:04:20 **call** write_file {content: [14516 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/app.py}  ← the same call, time 2
-  - 08:04:21 result (write_file): [130 chars]
-- 08:04:33 **model writes** (tool_calls) [92 chars]
-- 08:04:33 **call** patch {new_string: [460 chars], old_string: [128 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/store.py}  ← the same call, time 2
-  - 08:04:33 result (patch): [? lines, ? bytes]
-- 08:04:57 **model writes** (tool_calls) [34 chars]
-- 08:04:57 **call** patch {new_string: [1332 chars], old_string: [966 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/app.py}  ← the same call, time 2
-  - 08:04:57 result (patch): [? lines, ? bytes]
-- 08:06:06 **model writes** (tool_calls) [102 chars]
-- 08:06:06 **call** write_file {content: [6007 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_api.py}  ← the same call, time 2
-  - 08:06:07 result (write_file): [? lines, ? bytes]
-- 08:08:03 **model writes** (tool_calls) [50 chars]
-- 08:08:03 **call** write_file {content: [9132 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}  ← the same call, time 2
-  - 08:08:03 result (write_file): [? lines, ? bytes]
-- 08:09:54 **model writes** (tool_calls) [58 chars]
-- 08:09:54 **call** write_file {content: [12225 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/static/index.html}  ← the same call, time 2
-  - 08:09:54 result (write_file): [? lines, ? bytes]
-- 08:13:24 **model writes** (tool_calls) [52 chars]
-- 08:13:24 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop &amp;&amp; .venv/bin/python -m pytest tests/ -v, timeout: 120}
-  - 08:13:24 result (terminal): exit 127, 1 lines out
-- 08:13:28 **model writes** (tool_calls) [75 chars]
-- 08:13:28 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop &amp;&amp; python3 -m venv .venv &amp;&amp; .venv/bin/pip install pytest -q &amp;&amp; .venv/bin/python -m pytest tests/ -v, timeout: 120}
-  - 08:13:36 result (terminal): exit 1, 147 lines out
-- 08:13:48 **model writes** (tool_calls) [141 chars]
-- 08:13:48 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}  ← the same call, time 2
-  - 08:13:48 result (read_file): [328 lines, 11759 bytes]
-- 08:15:08 **model writes** (tool_calls) [2185 chars]
-- 08:15:08 **call** patch {new_string: [1914 chars], old_string: [1803 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}
-  - 08:15:08 result (patch): [? lines, ? bytes]
-- 08:15:13 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop &amp;&amp; .venv/bin/python -m pytest tests/test_booking_rule.py::test_12_00_end_next_slot_13_00 -v, timeout: 30}
-  - 08:15:14 result (terminal): exit 1, 71 lines out
-- 08:15:44 **model writes** (tool_calls) [206 chars]
-- 08:15:44 **call** execute_code {code: [2114 chars]}
-  - 08:15:44 result (execute_code): exit 0, 5 lines out
-- 08:16:50 **model writes** (tool_calls) [1515 chars]
-- 08:16:50 **call** patch {new_string: [2301 chars], old_string: [1914 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}
-  - 08:16:50 result (patch): [? lines, ? bytes]
-- 08:17:11 **model writes** (tool_calls) [90 chars]
-- 08:17:11 **call** patch {new_string: [839 chars], old_string: [727 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_api.py}
-  - 08:17:12 result (patch): [? lines, ? bytes]
-- 08:17:57 **model writes** (tool_calls) [49 chars]
-- 08:17:57 **call** patch {new_string: [1635 chars], old_string: [1571 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}
-  - 08:17:58 result (patch): [? lines, ? bytes]
-- 08:18:04 **model writes** (tool_calls) [34 chars]
-- 08:18:04 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop &amp;&amp; .venv/bin/python -m pytest tests/ -v, timeout: 60}
-  - 08:18:05 result (terminal): exit 0, 19 lines out
-- 08:18:10 **model writes** (tool_calls) [49 chars]
-- 08:18:10 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop &amp;&amp; git status}
-  - 08:18:10 result (terminal): exit 0, 6 lines out
-- 08:18:19 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop &amp;&amp; git add -A &amp;&amp; git commit -m &quot;Implement T001-T017: Desktop back-office app core - errors.py: AppError wit … [783 chars]}
-  - 08:18:19 result (terminal): exit 0, 15 lines out
-- 08:18:31 **model writes** (stop) [1023 chars]
+- 13:19:29 **prompt** [577 chars]
+- 13:20:02 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}
+- 13:20:02 **call** read_file {path: specs/001-cleaning-scheduling-billing/plan.md}
+- 13:20:02 **call** list {path: .}
+  - 13:20:02 result (list): [232 chars]
+  - 13:20:02 result (read_file): [296 lines, 39099 bytes]
+  - 13:20:02 result (read_file): [130 lines, 7149 bytes]
+- 13:20:44 **call** search_files {pattern: [2 chars], target: [5 chars]}
+  - 13:20:46 result (search_files): [? lines, ? bytes]
+- 13:20:53 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}
+- 13:20:53 **call** read_file {path: specs/001-cleaning-scheduling-billing/data-model.md}
+- 13:20:53 **call** read_file {path: specs/001-cleaning-scheduling-billing/research.md}
+  - 13:20:53 result (read_file): [86 lines, 5406 bytes]
+  - 13:20:53 result (read_file): [143 lines, 7936 bytes]
+  - 13:20:53 result (read_file): [184 lines, 12333 bytes]
+- 13:21:33 **model writes** (tool_calls) [220 chars]
+- 13:21:33 **call** execute_code {code: [791 chars]}
+  - 13:21:34 result (execute_code): exit 1, 12 lines out, the tool reported an error
+- 13:21:39 **model writes** (tool_calls) [37 chars]
+- 13:21:39 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2 &amp;&amp; python3 -m venv .venv, timeout: 120}
+  - 13:21:39 result (terminal): exit 1, 1 lines out
+- 13:21:43 **model writes** (tool_calls) [113 chars]
+- 13:21:43 **call** terminal {command: ls -la /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/}
+  - 13:21:43 result (terminal): exit 0, 5 lines out
+- 13:21:46 **model writes** (tool_calls) [98 chars]
+- 13:21:46 **call** terminal {command: ls -la /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/}
+  - 13:21:46 result (terminal): exit 0, 5 lines out
+- 13:21:51 **model writes** (tool_calls) [124 chars]
+- 13:21:51 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; python3 -m venv .venv, timeout: 120}
+  - 13:21:55 result (terminal): exit 0, 0 lines out
+- 13:21:59 **model writes** (tool_calls) [47 chars]
+- 13:21:59 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; .venv/bin/pip install pytest, timeout: 120}
+  - 13:22:02 result (terminal): exit 0, 21 lines out
+- 13:22:10 **model writes** (tool_calls) [46 chars]
+- 13:22:10 **call** write_file {content: [7 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/requirements.txt}
+- 13:22:10 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; .venv/bin/python -m pytest --version}
+  - 13:22:10 result (write_file): [? lines, ? bytes]
+  - 13:22:10 result (terminal): exit 0, 1 lines out
+- 13:22:14 **model writes** (tool_calls) [73 chars]
+- 13:22:14 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; mkdir -p desktop/cleaning desktop/static desktop/tests mobile/Sources/CleaningLogic mobile/Tests/CleaningLogicTe … [203 chars]}
+  - 13:22:14 result (terminal): exit 0, 0 lines out
+- 13:22:35 **model writes** (tool_calls) [50 chars]
+- 13:22:35 **call** write_file {content: [30 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/errors.py}
+- 13:22:35 **call** write_file {content: [30 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/models.py}
+- 13:22:35 **call** write_file {content: [29 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/store.py}
+- 13:22:35 **call** write_file {content: [34 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
+- 13:22:35 **call** write_file {content: [35 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/timezone_util.py}
+- 13:22:35 **call** write_file {content: [32 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/invoices.py}
+- 13:22:35 **call** write_file {content: [35 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/utilization.py}
+- 13:22:35 **call** write_file {content: [20 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/__init__.py}
+  - 13:22:36 result (write_file): [? lines, ? bytes]
+  - 13:22:36 result (write_file): [? lines, ? bytes]
+  - 13:22:36 result (write_file): [? lines, ? bytes]
+  - 13:22:36 result (write_file): [? lines, ? bytes]
+  - 13:22:36 result (write_file): [? lines, ? bytes]
+  - 13:22:36 result (write_file): [? lines, ? bytes]
+  - 13:22:36 result (write_file): [? lines, ? bytes]
+  - 13:22:36 result (write_file): [? lines, ? bytes]
+- 13:22:52 **model writes** (tool_calls) [43 chars]
+- 13:22:52 **call** write_file {content: [957 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/errors.py}
+  - 13:22:52 result (write_file): [? lines, ? bytes]
+- 13:23:55 **model writes** (tool_calls) [61 chars]
+- 13:23:55 **call** write_file {content: [6874 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/models.py}
+  - 13:23:55 result (write_file): [? lines, ? bytes]
+- 13:24:28 **model writes** (tool_calls) [43 chars]
+- 13:24:28 **call** write_file {content: [3726 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/store.py}
+  - 13:24:29 result (write_file): [? lines, ? bytes]
+- 13:25:11 **model writes** (tool_calls) [45 chars]
+- 13:25:11 **call** write_file {content: [4016 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/timezone_util.py}
+  - 13:25:12 result (write_file): [? lines, ? bytes]
+- 13:27:09 **model writes** (tool_calls) [76 chars]
+- 13:27:09 **call** patch {path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/timezone_util.py, old_string: [110 chars], new_string: [126 chars]}
+  - 13:27:10 result (patch): [? lines, ? bytes]
+- 13:29:13 **model writes** (tool_calls) [40 chars]
+- 13:29:13 **call** write_file {content: [311 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/conftest.py}
+  - 13:29:13 result (write_file): [? lines, ? bytes]
+- 13:30:12 **model writes** (tool_calls) [87 chars]
+- 13:30:12 **call** write_file {content: [6931 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
+  - 13:30:13 result (write_file): [? lines, ? bytes]
+- 13:31:12 **model writes** (tool_calls) [68 chars]
+- 13:31:12 **call** patch {new_string: [5218 chars], old_string: [1429 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
+  - 13:31:12 result (patch): [? lines, ? bytes]
+- 13:33:42 **model writes** (tool_calls) [47 chars]
+- 13:33:42 **call** write_file {content: [16924 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/app.py}
+  - 13:33:43 result (write_file): [? lines, ? bytes]
+- 13:35:31 **model writes** (tool_calls) [99 chars]
+- 13:35:31 **call** write_file {content: [11726 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/static/index.html}
+  - 13:35:31 result (write_file): [? lines, ? bytes]
+- 13:36:23 **model writes** (tool_calls) [88 chars]
+- 13:36:23 **call** write_file {content: [4313 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_api.py}
+  - 13:36:23 result (write_file): [? lines, ? bytes]
+- 13:37:52 **model writes** (tool_calls) [32 chars]
+- 13:37:52 **call** write_file {content: [6340 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}
+  - 13:37:52 result (write_file): [? lines, ? bytes]
+- 13:37:58 **model writes** (tool_calls) [45 chars]
+- 13:37:58 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; .venv/bin/python -m pytest desktop/tests/test_booking_rule.py -v 2&gt;&amp;1 | head -100, timeout: 120}
+  - 13:37:59 result (terminal): exit 0, 100 lines out
+- 13:39:37 **prompt** [14918 chars]
+- 13:20:02 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}  ← the same call, time 2
+- 13:20:02 **call** read_file {path: specs/001-cleaning-scheduling-billing/plan.md}  ← the same call, time 2
+- 13:20:02 **call** list {path: .}  ← the same call, time 2
+  - 13:20:02 result (?): [32 chars]
+  - 13:20:02 result (read_file): [90 chars]
+  - 13:20:02 result (read_file): [88 chars]
+- 13:31:12 **model writes** (tool_calls) [68 chars]
+- 13:31:12 **call** patch {new_string: [5218 chars], old_string: [1429 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 13:31:12 result (patch): [152 chars]
+- 13:33:42 **model writes** (tool_calls) [47 chars]
+- 13:33:42 **call** write_file {content: [16924 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/app.py}  ← the same call, time 2
+  - 13:33:43 result (write_file): [? lines, ? bytes]
+- 13:35:31 **model writes** (tool_calls) [99 chars]
+- 13:35:31 **call** write_file {content: [11726 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/static/index.html}  ← the same call, time 2
+  - 13:35:31 result (write_file): [? lines, ? bytes]
+- 13:36:23 **model writes** (tool_calls) [88 chars]
+- 13:36:23 **call** write_file {content: [4313 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_api.py}  ← the same call, time 2
+  - 13:36:23 result (write_file): [? lines, ? bytes]
+- 13:37:52 **model writes** (tool_calls) [32 chars]
+- 13:37:52 **call** write_file {content: [6340 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}  ← the same call, time 2
+  - 13:37:52 result (write_file): [? lines, ? bytes]
+- 13:37:58 **model writes** (tool_calls) [45 chars]
+- 13:37:58 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; .venv/bin/python -m pytest desktop/tests/test_booking_rule.py -v 2&gt;&amp;1 | head -100, timeout: 120}  ← the same call, time 2
+  - 13:37:59 result (terminal): exit 0, 100 lines out
+- 13:41:19 **model writes** (tool_calls) [216 chars]
+- 13:41:19 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/models.py, limit: 100}
+  - 13:41:19 result (read_file): [244 lines, 6874 bytes]
+- 13:43:07 **call** read_file {offset: 100, path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/models.py}
+  - 13:43:07 result (read_file): [244 lines, 6874 bytes]
+- 13:43:45 **model writes** (tool_calls) [252 chars]
+- 13:43:45 **call** patch {new_string: [1057 chars], old_string: [1021 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}
+  - 13:43:45 result (patch): [? lines, ? bytes]
+- 13:44:18 **call** patch {new_string: [1096 chars], old_string: [1060 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}
+  - 13:44:18 result (patch): [? lines, ? bytes]
+- 13:44:50 **call** patch {new_string: [1050 chars], old_string: [1014 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}
+  - 13:44:51 result (patch): [? lines, ? bytes]
+- 13:45:13 **call** patch {new_string: [650 chars], old_string: [650 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}
+  - 13:45:13 result (patch): [? lines, ? bytes]
+- 13:45:30 **model writes** (tool_calls) [71 chars]
+- 13:45:30 **call** patch {new_string: [902 chars], old_string: [498 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_rule.py}
+  - 13:45:30 result (patch): [? lines, ? bytes]
+- 13:45:37 **model writes** (tool_calls) [31 chars]
+- 13:45:37 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; .venv/bin/python -m pytest desktop/tests/test_booking_rule.py -v 2&gt;&amp;1 | head -80, timeout: 120}
+  - 13:45:38 result (terminal): exit 0, 47 lines out
+- 13:45:46 **model writes** (tool_calls) [230 chars]
+- 13:45:46 **call** read_file {offset: 140, path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
+  - 13:45:46 result (read_file): [297 lines, 10720 bytes]
+- 13:46:39 **model writes** (tool_calls) [211 chars]
+- 13:46:39 **call** patch {new_string: [2516 chars], old_string: [2848 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
+  - 13:46:40 result (patch): [? lines, ? bytes]
+- 13:46:48 **model writes** (tool_calls) [273 chars]
+- 13:46:48 **call** read_file {limit: 80, path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
+  - 13:46:48 result (read_file): [284 lines, 10388 bytes]
+- 13:47:41 **model writes** (tool_calls) [325 chars]
+- 13:47:41 **call** patch {new_string: [2897 chars], old_string: [2516 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/cleaning/scheduling.py}
+  - 13:47:41 result (patch): [? lines, ? bytes]
+- 13:47:49 **model writes** (tool_calls) [31 chars]
+- 13:47:49 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; .venv/bin/python -m pytest desktop/tests/test_booking_rule.py::test_10_hours_splits_8_plus_2 -v, timeout: 60}
+  - 13:47:50 result (terminal): exit 0, 9 lines out
+- 13:47:55 **model writes** (tool_calls) [42 chars]
+- 13:47:55 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; .venv/bin/python -m pytest desktop/tests/test_booking_rule.py -v, timeout: 60}
+  - 13:47:56 result (terminal): exit 0, 16 lines out
+- 13:48:01 **model writes** (tool_calls) [37 chars]
+- 13:48:01 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; .venv/bin/python -m pytest desktop/tests/test_booking_api.py -v, timeout: 60}
+  - 13:48:02 result (terminal): exit 1, 51 lines out
+- 13:48:37 **model writes** (tool_calls) [167 chars]
+- 13:48:37 **call** patch {new_string: [1284 chars], old_string: [1125 chars], path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app/desktop/tests/test_booking_api.py}
+  - 13:48:37 result (patch): [? lines, ? bytes]
+- 13:48:43 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; .venv/bin/python -m pytest desktop/tests/test_booking_api.py -v, timeout: 60}  ← the same call, time 2
+  - 13:48:43 result (terminal): exit 0, 13 lines out
+- 13:48:49 **model writes** (tool_calls) [71 chars]
+- 13:48:49 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; .venv/bin/python -m pytest desktop/tests/ -v, timeout: 120}
+  - 13:48:50 result (terminal): exit 0, 21 lines out
+- 13:48:56 **model writes** (tool_calls) [49 chars]
+- 13:48:56 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; git status, timeout: 30}
+  - 13:48:56 result (terminal): exit 0, 6 lines out
+- 13:49:08 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q122-python-r2/app &amp;&amp; git add desktop/ &amp;&amp; git commit -m &quot;Step 1: Implement desktop back-office app (T001, T003, T004, T006, T008, T010 … [928 chars], timeout: 60}
+  - 13:49:09 result (terminal): exit 0, 16 lines out
+- 13:49:22 **model writes** (stop) [1068 chars]
 
 ## Summary
 
-- Model turns 43, tool calls 59, distinct calls 48
+- Model turns 53, tool calls 66, distinct calls 56
 - The session&#x27;s last entry: the model writing text
 
 ## The runner&#x27;s watch (one line each 30 s), last 60 lines
 
 ```
-07:51:56  start: prompt 578 bytes, limit 604800s
-07:52:26  +30s  files same (last change 30s ago)  request open yes (last 0s ago)
-07:52:56  +60s  files same (last change 60s ago)  request open yes (last 0s ago)
-07:53:26  +90s  files same (last change 90s ago)  request open yes (last 0s ago)
-07:53:56  +120s  files changed (last change 0s ago)  request open yes (last 0s ago)
-07:54:27  +150s  files changed (last change 0s ago)  request open yes (last 0s ago)
-07:54:57  +181s  files changed (last change 0s ago)  request open yes (last 0s ago)
-07:55:27  +211s  files same (last change 30s ago)  request open yes (last 0s ago)
-07:55:57  +241s  files changed (last change 0s ago)  request open yes (last 0s ago)
-07:56:28  +271s  files same (last change 30s ago)  request open yes (last 0s ago)
-07:56:58  +302s  files changed (last change 0s ago)  request open yes (last 0s ago)
-07:57:28  +332s  files same (last change 30s ago)  request open yes (last 0s ago)
-07:57:58  +362s  files changed (last change 0s ago)  request open yes (last 0s ago)
-07:58:28  +392s  files changed (last change 0s ago)  request open yes (last 0s ago)
-07:58:59  +422s  files same (last change 30s ago)  request open yes (last 0s ago)
-07:59:29  +453s  files same (last change 61s ago)  request open yes (last 0s ago)
-07:59:59  +483s  files same (last change 91s ago)  request open yes (last 0s ago)
-08:00:29  +513s  files same (last change 121s ago)  request open yes (last 0s ago)
-08:00:59  +543s  files same (last change 151s ago)  request open yes (last 0s ago)
-08:01:30  +574s  files same (last change 182s ago)  request open yes (last 0s ago)
-08:02:00  +604s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:02:30  +634s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:03:00  +664s  files same (last change 30s ago)  request open yes (last 0s ago)
-08:03:31  +694s  files same (last change 60s ago)  request open yes (last 0s ago)
-08:04:01  +725s  files same (last change 91s ago)  request open yes (last 0s ago)
-08:04:31  +755s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:05:01  +785s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:05:31  +815s  files same (last change 30s ago)  request open yes (last 0s ago)
-08:06:02  +845s  files same (last change 60s ago)  request open yes (last 0s ago)
-08:06:32  +876s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:07:02  +906s  files same (last change 30s ago)  request open yes (last 0s ago)
-08:07:32  +936s  files same (last change 60s ago)  request open yes (last 0s ago)
-08:08:02  +966s  files same (last change 90s ago)  request open yes (last 0s ago)
-08:08:33  +996s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:09:03  +1027s  files same (last change 31s ago)  request open yes (last 0s ago)
-08:09:33  +1057s  files same (last change 61s ago)  request open yes (last 0s ago)
-08:10:03  +1087s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:10:34  +1117s  files same (last change 30s ago)  request open yes (last 0s ago)
-08:11:04  +1148s  files same (last change 61s ago)  request open yes (last 0s ago)
-08:11:34  +1178s  files same (last change 91s ago)  request open yes (last 0s ago)
-08:12:04  +1208s  files same (last change 121s ago)  request open yes (last 0s ago)
-08:12:34  +1238s  files same (last change 151s ago)  request open yes (last 0s ago)
-08:13:05  +1268s  files same (last change 181s ago)  request open yes (last 0s ago)
-08:13:35  +1299s  files changed (last change 0s ago)  request open msg (last 7s ago)
-08:14:05  +1329s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:14:35  +1359s  files same (last change 30s ago)  request open yes (last 0s ago)
-08:15:06  +1389s  files same (last change 60s ago)  request open yes (last 0s ago)
-08:15:36  +1420s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:16:06  +1450s  files same (last change 30s ago)  request open yes (last 0s ago)
-08:16:36  +1480s  files same (last change 60s ago)  request open yes (last 0s ago)
-08:17:07  +1510s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:17:37  +1541s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:18:07  +1571s  files changed (last change 0s ago)  request open yes (last 0s ago)
-08:18:37  +1601s  Hermes exited on its own, status 0 -&gt; done
+13:19:25  start: prompt 578 bytes, limit 604800s
+…
+13:20:25  +60s  files same (last change 60s ago)  request open yes (last 0s ago)
+13:20:55  +90s  files same (last change 90s ago)  request open yes (last 0s ago)
+13:21:26  +120s  files same (last change 120s ago)  request open yes (last 0s ago)
+13:21:56  +151s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:22:26  +181s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:22:56  +211s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:23:26  +241s  files same (last change 30s ago)  request open yes (last 0s ago)
+13:23:57  +271s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:24:27  +302s  files same (last change 31s ago)  request open yes (last 0s ago)
+13:24:57  +332s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:25:27  +362s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:25:57  +392s  files same (last change 30s ago)  request open yes (last 0s ago)
+13:26:27  +422s  files same (last change 60s ago)  request open yes (last 0s ago)
+13:26:58  +452s  files same (last change 90s ago)  request open yes (last 0s ago)
+13:27:28  +483s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:27:58  +513s  files same (last change 30s ago)  request open yes (last 0s ago)
+13:28:28  +543s  files same (last change 60s ago)  request open yes (last 0s ago)
+13:28:58  +573s  files same (last change 90s ago)  request open yes (last 0s ago)
+13:29:29  +603s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:29:59  +634s  files same (last change 31s ago)  request open yes (last 0s ago)
+13:30:29  +664s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:30:59  +694s  files same (last change 30s ago)  request open yes (last 0s ago)
+13:31:29  +724s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:32:00  +754s  files same (last change 30s ago)  request open yes (last 0s ago)
+13:32:30  +785s  files same (last change 61s ago)  request open yes (last 0s ago)
+13:33:00  +815s  files same (last change 91s ago)  request open yes (last 0s ago)
+13:33:30  +845s  files same (last change 121s ago)  request open yes (last 0s ago)
+13:34:00  +875s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:34:31  +905s  files same (last change 30s ago)  request open yes (last 0s ago)
+13:35:01  +936s  files same (last change 61s ago)  request open yes (last 0s ago)
+13:35:31  +966s  files same (last change 91s ago)  request open msg (last 0s ago)
+13:36:01  +996s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:36:31  +1026s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:37:02  +1056s  files same (last change 30s ago)  request open yes (last 0s ago)
+13:37:32  +1087s  files same (last change 61s ago)  request open yes (last 0s ago)
+13:38:02  +1117s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:38:32  +1147s  files same (last change 30s ago)  request open yes (last 0s ago)
+13:39:02  +1177s  files same (last change 60s ago)  request open yes (last 0s ago)
+13:39:33  +1207s  files same (last change 90s ago)  request open yes (last 0s ago)
+13:40:03  +1238s  files same (last change 121s ago)  request open yes (last 0s ago)
+13:40:33  +1268s  files same (last change 151s ago)  request open yes (last 0s ago)
+13:41:03  +1298s  files same (last change 181s ago)  request open yes (last 0s ago)
+13:41:33  +1328s  files same (last change 211s ago)  request open yes (last 0s ago)
+13:42:04  +1358s  files same (last change 241s ago)  request open yes (last 0s ago)
+13:42:34  +1389s  files same (last change 272s ago)  request open yes (last 0s ago)
+13:43:04  +1419s  files same (last change 302s ago)  request open yes (last 0s ago)
+13:43:34  +1449s  files same (last change 332s ago)  request open yes (last 0s ago)
+13:44:04  +1479s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:44:35  +1509s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:45:05  +1540s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:45:35  +1570s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:46:05  +1600s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:46:35  +1630s  files same (last change 30s ago)  request open yes (last 0s ago)
+13:47:06  +1660s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:47:36  +1691s  files same (last change 31s ago)  request open yes (last 0s ago)
+13:48:06  +1721s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:48:36  +1751s  files same (last change 30s ago)  request open yes (last 0s ago)
+13:49:06  +1781s  files changed (last change 0s ago)  request open yes (last 0s ago)
+13:49:37  +1812s  Hermes exited on its own, status 0 -&gt; done
 ```
 
 ## The check&#x27;s output, last 60 lines
 
 ```
-6 errors in 0.14s
+6 failed in 0.15s
 ```
 
 ## The check&#x27;s errors, last 60 lines
 
 ```
 
-conftest.py:51: 
+    def test_later_part_prefers_original_crew_but_replaces_unavailable_member(probe):
+&gt;       a, b = probe.cleaner(), probe.cleaner(&#x27;Bo&#x27;)
+               ^^^^^^^^^^^^^^^
+
+test_m1.py:45: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = &lt;conftest.Probe object at 0x10c5ba190&gt;
-path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.by533G/t/test_later_part_prefers_origin0/data.json&#x27;)
+self = &lt;conftest.Probe object at 0x1089810f0&gt;, name = &#x27;Ann&#x27;
 
-    def __init__(self, path):
-&gt;       from app import create_app
-E       ImportError: cannot import name &#x27;create_app&#x27; from &#x27;app&#x27; (/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.by533G/w/desktop/app.py)
+    def cleaner(self, name=&#x27;Ann&#x27;):
+&gt;       return self.ok(&#x27;POST&#x27;, &#x27;/api/cleaners&#x27;, {&#x27;name&#x27;: name, &#x27;phone&#x27;: &#x27;555&#x27;, &#x27;email&#x27;: &#x27;a@example.test&#x27;}, 201)[&#x27;cleaner&#x27;][&#x27;id&#x27;]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: &#x27;cleaner&#x27;
 
-conftest.py:14: ImportError
-________ ERROR at setup of test_sixty_minutes_is_strict_at_the_boundary ________
+conftest.py:36: KeyError
+_________________ test_sixty_minutes_is_strict_at_the_boundary _________________
 
-tmp_path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.by533G/t/test_sixty_minutes_is_strict_a0&#x27;)
+probe = &lt;conftest.Probe object at 0x108981a70&gt;
 
-    @pytest.fixture
-    def probe(tmp_path):
-&gt;       return Probe(tmp_path / &#x27;data.json&#x27;)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    def test_sixty_minutes_is_strict_at_the_boundary(probe):
+&gt;       probe.cleaner()
 
-conftest.py:51: 
+test_m1.py:56: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = &lt;conftest.Probe object at 0x10c5ba8b0&gt;
-path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.by533G/t/test_sixty_minutes_is_strict_a0/data.json&#x27;)
+self = &lt;conftest.Probe object at 0x108981a70&gt;, name = &#x27;Ann&#x27;
 
-    def __init__(self, path):
-&gt;       from app import create_app
-E       ImportError: cannot import name &#x27;create_app&#x27; from &#x27;app&#x27; (/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.by533G/w/desktop/app.py)
+    def cleaner(self, name=&#x27;Ann&#x27;):
+&gt;       return self.ok(&#x27;POST&#x27;, &#x27;/api/cleaners&#x27;, {&#x27;name&#x27;: name, &#x27;phone&#x27;: &#x27;555&#x27;, &#x27;email&#x27;: &#x27;a@example.test&#x27;}, 201)[&#x27;cleaner&#x27;][&#x27;id&#x27;]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: &#x27;cleaner&#x27;
 
-conftest.py:14: ImportError
-___________________ ERROR at setup of test_horizon_is_atomic ___________________
+conftest.py:36: KeyError
+____________________________ test_horizon_is_atomic ____________________________
 
-tmp_path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.by533G/t/test_horizon_is_atomic0&#x27;)
+probe = &lt;conftest.Probe object at 0x10892e450&gt;
 
-    @pytest.fixture
-    def probe(tmp_path):
-&gt;       return Probe(tmp_path / &#x27;data.json&#x27;)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    def test_horizon_is_atomic(probe):
+&gt;       probe.cleaner()
 
-conftest.py:51: 
+test_m1.py:63: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = &lt;conftest.Probe object at 0x10c59b530&gt;
-path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.by533G/t/test_horizon_is_atomic0/data.json&#x27;)
+self = &lt;conftest.Probe object at 0x10892e450&gt;, name = &#x27;Ann&#x27;
 
-    def __init__(self, path):
-&gt;       from app import create_app
-E       ImportError: cannot import name &#x27;create_app&#x27; from &#x27;app&#x27; (/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.by533G/w/desktop/app.py)
+    def cleaner(self, name=&#x27;Ann&#x27;):
+&gt;       return self.ok(&#x27;POST&#x27;, &#x27;/api/cleaners&#x27;, {&#x27;name&#x27;: name, &#x27;phone&#x27;: &#x27;555&#x27;, &#x27;email&#x27;: &#x27;a@example.test&#x27;}, 201)[&#x27;cleaner&#x27;][&#x27;id&#x27;]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: &#x27;cleaner&#x27;
 
-conftest.py:14: ImportError
+conftest.py:36: KeyError
 =========================== short test summary info ============================
-ERROR test_m1.py::test_booking_grid_spacing_and_refusals - ImportError: canno...
-ERROR test_m1.py::test_minutes_weekends_and_split_replacement - ImportError: ...
-ERROR test_m1.py::test_later_part_can_choose_another_free_cleaner - ImportErr...
-ERROR test_m1.py::test_later_part_prefers_original_crew_but_replaces_unavailable_member
-ERROR test_m1.py::test_sixty_minutes_is_strict_at_the_boundary - ImportError:...
-ERROR test_m1.py::test_horizon_is_atomic - ImportError: cannot import name &#x27;c...
-6 errors in 0.14s
+FAILED test_m1.py::test_booking_grid_spacing_and_refusals - KeyError: &#x27;cleaner&#x27;
+FAILED test_m1.py::test_minutes_weekends_and_split_replacement - KeyError: &#x27;c...
+FAILED test_m1.py::test_later_part_can_choose_another_free_cleaner - KeyError...
+FAILED test_m1.py::test_later_part_prefers_original_crew_but_replaces_unavailable_member
+FAILED test_m1.py::test_sixty_minutes_is_strict_at_the_boundary - KeyError: &#x27;...
+FAILED test_m1.py::test_horizon_is_atomic - KeyError: &#x27;cleaner&#x27;
+6 failed in 0.15s
 ```
 
 ## The repo
 
 ```
 branch: main
-* 9bb4589 20 seconds ago
-* 09bcafa 27 minutes ago
+* 2286861 30 seconds ago
+* 69d5203 30 minutes ago
 uncommitted: none
 ```
 
