@@ -75,6 +75,7 @@ def main():
     cooldown_until = 0
     pending = []
     dead_seen = False
+    recent_event = 'none'
     note(f'start; coordinator {coordinator}; setup {SETUP_PID} live={not setup_seen}; '
          'setup deadline 02:00 PST; round <=7d; idle 2h+30m; check 15m; load 20m')
     while True:
@@ -88,6 +89,7 @@ def main():
             events.append('setup reached 02:00 PST deadline; diagnose without duplicate setup')
             deadline_seen = True
         for event in events:
+            recent_event = event[:140]
             note(f'event: {event[:500]}')
             match = re.search(r'why/([\w.-]+\.md)', event)
             if match:
@@ -137,7 +139,9 @@ def main():
         note(f'tick phase={phase[:100]} coordinator={coordinator} live={live(coordinator)} '
              f'runner={runner} live={live(runner)} pending={len(pending)} '
              f'retry_seconds={max(0, int(cooldown_until - time.monotonic()))} setup={setup_live} '
-             f'notes={notes} log_offset={offset}; deadline 2026-11-23 23:46:37 PST + grace; '
+             f'notes={notes} log_offset={offset} evidence={recent_event!r} '
+             f'blockers={"coordinator cooldown" if cooldown_until > time.monotonic() else "none"}; '
+             'deadline 2026-11-23 23:46:37 PST + grace; '
              'limits idle 2h+30m, check 15m, load 20m')
         time.sleep(45)
 
