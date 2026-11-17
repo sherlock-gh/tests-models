@@ -118,7 +118,9 @@ while :; do
     case $part in
         gate) gate_unit "$name"; through "$name" || skip_model "$name" ;;
         1) test1 "$name" ;;
-        python|swift) test2 "$name" "$part" ;;   # queued only with PLAN (units, lib.sh)
+        python|swift)   # queued only with PLAN (units, lib.sh); a model survives test 1 with 2 of 3 runs complete
+            if [ "$(awk -F'\t' -v n="$name" '$1==n && $3=="complete"' "$SHARED"/*/test1.tsv 2>/dev/null | wc -l)" -ge 2 ]; then test2 "$name" "$part"
+            else say "test 2: $name skipped, fewer than 2 of 3 test 1 runs complete"; fi ;;
         *) stop_round "models.txt lists $name for $part, which this runner has no test for yet" ;;
     esac
     [ -n "${DEADLINE_HIT:-}" ] && break

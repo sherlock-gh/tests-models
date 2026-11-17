@@ -297,7 +297,8 @@ units() {  # name part, in order: the gates (lane b's models first), every model
     for m in $all; do if in_second "$m"; then shared="$shared $m"; else own="$own $m"; fi; done
     [ "$LANE" = a ] && all="$own $shared"
     for m in $all; do listed "$m" 1 && echo "$m 1"; done
-    [ -n "${PLAN:-}" ] && for m in $all; do parts_of "$m" | grep -vx 1 | awk -v m="$m" '{print m, $1}'; done
+    # every model's Python build before any Swift build (owner, 16 Nov)
+    [ -n "${PLAN:-}" ] && for p in python swift; do for m in $all; do parts_of "$m" | grep -qx "$p" && echo "$m $p"; done; done
     true
 }
 in_second() { case " ${SECOND_MODELS:-} " in *" $1 "*) return 0 ;; esac; return 1; }
