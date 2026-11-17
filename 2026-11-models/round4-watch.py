@@ -39,7 +39,8 @@ def note(message):
 def launch(reason):
     with COORDINATOR.open('a') as out:
         agent = subprocess.Popen(
-            [HERMES, '-m', 'gpt-6-sol', '-z', PROMPT.read_text() + '\nWake reason: ' + reason],
+            [HERMES, '--provider', 'openai-codex', '-m', 'gpt-6-sol', '-z',
+             PROMPT.read_text() + '\nWake reason: ' + reason],
             cwd=ROOT.parent, stdin=subprocess.DEVNULL, stdout=out,
             stderr=subprocess.STDOUT, start_new_session=True,
         )
@@ -63,6 +64,9 @@ def main():
     offset = LOG.stat().st_size if LOG.exists() else 0
     setup_seen = not live(SETUP_PID)
     deadline_seen = False
+    last_launch = None
+    rapid_exits = 0
+    blocked = False
     note(f'start; coordinator {coordinator}; setup {SETUP_PID} live={not setup_seen}; '
          'setup deadline 02:00 PST; round <=7d; idle 2h+30m; check 15m; load 20m')
     while True:
@@ -78,7 +82,7 @@ def main():
         if events:
             for event in events:
                 note(f'event: {event[:500]}')
-        if not live(coordinator):
+        if not live(coordinator) and not blocked:
             results = ROOT / 'results/round4'
             end = results / 'a/end'
             finished = ((results / 'validated-flash-r4').exists() and end.exists()
@@ -87,9 +91,16 @@ def main():
             if finished:
                 note('finished: validated flash-r4, lane a ended done; watcher stops')
                 break
-            coordinator = launch('; '.join(events[-3:]) or 'previous coordinator exited; inspect state and continue')
+            rapid_exits = rapid_exits + 1 if last_launch and time.monotonic() - last_launch < 180 else 0
+            if rapid_exits >= 2:
+                note(f'BLOCKER: coordinator {coordinator} exited twice within 3 minutes; '
+                     f'read {COORDINATOR} for the concrete failure; launches suspended')
+                blocked = True
+            else:
+                coordinator = launch('; '.join(events[-3:]) or 'previous coordinator exited; inspect state and continue')
+                last_launch = time.monotonic()
         notes = (SETUP / 'SETUP-NOTES.md').exists() or (SETUP / 'harness/plans/flash-r4/SETUP-NOTES.md').exists()
-        note(f'tick coordinator={coordinator} live={live(coordinator)} setup={setup_live} '
+        note(f'tick coordinator={coordinator} live={live(coordinator)} blocked={blocked} setup={setup_live} '
              f'notes={notes} log_offset={offset}; '
              'limits setup 02:00 PST, round 7d, idle 2h+30m, check 15m, load 20m')
         time.sleep(45)
