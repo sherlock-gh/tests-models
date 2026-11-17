@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cleaning back office</title>
+<style>body{font:16px system-ui;max-width:1000px;margin:2rem auto;padding:0 1rem;background:#f5f7fa;color:#1d2938}section{background:white;padding:1rem;margin:1rem 0;border-radius:8px}input,select,button{font:inherit;padding:.4rem;margin:.2rem}button{cursor:pointer}pre{white-space:pre-wrap;overflow:auto;background:#eef2f6;padding:1rem}#message{position:sticky;top:0;background:#e5f6e7;padding:.7rem}#message.error{background:#ffe0dc}label{display:inline-block;margin:.3rem}h1{margin-bottom:.2rem}</style></head><body>
+<h1>Cleaning back office</h1><div id="message" role="alert">Ready.</div>
+<section><h2>Cleaners</h2><form id="cleaner-form"><input name="name" placeholder="Name" required><input name="phone" placeholder="Phone" required><input name="email" placeholder="Email" required><button>Add cleaner</button></form><div id="cleaners"></div></section>
+<section><h2>Clients</h2><form id="client-form"><input name="name" placeholder="Name" required><input name="address" placeholder="Address" required><input name="phone" placeholder="Phone" required><button>Add client</button></form><div id="clients"></div></section>
+<section><h2>Book a job</h2><form id="job-form"><label>Client <select name="client_id" id="client-select" required></select></label><label>Cleaners <input name="cleaners_needed" type="number" min="1" max="3" value="1" required></label><label>Hours <input name="expected_length_hours" type="number" min=".016666" step="any" value="4" required></label><label>Requested day <input name="requested_day" type="date" required></label><button>Book earliest free slot</button></form><div id="jobs"></div></section>
+<section><h2>Day and field taps</h2><form id="day-form"><label>Cleaner <select name="cleaner_id" id="day-cleaner" required></select></label><label>Date <input name="on" type="date" required></label><button>Show day</button></form><div id="day-view"></div><form id="tap-form"><label>Job ID <input name="job_id" type="number" required></label><label>Cleaner ID <input name="cleaner_id" type="number" required></label><label>At <input name="at" type="datetime-local" required></label><select name="kind"><option>arrive</option><option>depart</option></select><button>Record tap</button></form><form id="extend-form"><label>Job ID <input name="job_id" type="number" required></label><label>Cleaner ID <input name="cleaner_id" type="number" required></label><label>At <input name="at" type="datetime-local" required></label><button>More time (+20 min)</button></form></section>
+<section><h2>Invoices and payments</h2><div id="invoices"></div><form id="payment-form"><label>Invoice ID <input name="id" type="number" required></label><label>Amount (cents) <input name="amount_cents" type="number" required></label><button>Settle exactly</button></form></section>
+<section><h2>Utilization</h2><form id="util-form"><label>Cleaner <select name="cleaner_id" id="util-cleaner" required></select></label><label>From <input name="from" type="date" required></label><label>To <input name="to" type="date" required></label><button>Show utilization</button></form><pre id="utilization"></pre></section>
+<script>
+const $=id=>document.getElementById(id);
+function announce(value,error=false){$('message').className=error?'error':'';$('message').textContent=typeof value==='string'?value:JSON.stringify(value,null,2)}
+async function api(path,method='GET',body){const r=await fetch('/api/'+path,{method,headers:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});const value=await r.json();if(!r.ok)throw Error(value.error||'Request failed');return value}
+async function run(action){try{await action()}catch(e){announce(e.message,true)}}
+function form(id){return Object.fromEntries(new FormData($(id)))}
+function jsonNode(record){const pre=document.createElement('pre');pre.textContent=JSON.stringify(record,null,2);return pre}
+function button(label,action){const b=document.createElement('button');b.textContent=label;b.onclick=()=>run(action);return b}
+function render(resource,items){const root=$(resource);root.replaceChildren();for(const item of items){const box=document.createElement('div');box.append(jsonNode(item));if(resource!=='invoices'){
+box.append(button('Edit',async()=>{const keys=resource==='jobs'?['client_id','cleaners_needed','expected_length_hours','requested_day']:resource==='clients'?['name','address','phone']:['name','phone','email'];const body={};for(const k of keys){const entry=prompt(k,item[k]);if(entry===null)return;body[k]=['client_id','cleaners_needed'].includes(k)?Number(entry):k==='expected_length_hours'?Number(entry):entry}announce(await api(resource+'/'+item.id,'PUT',body));await refresh()}));
+box.append(button('Delete',async()=>{if(!confirm('Delete '+resource+' #'+item.id+'?'))return;announce(await api(resource+'/'+item.id,'DELETE'));await refresh()}));}
+root.append(box)}}
+async function refresh(){const [cleaners,clients,jobs,invoices]=await Promise.all(['cleaners','clients','jobs','invoices'].map(x=>api(x)));for(const [key,items] of Object.entries({cleaners:cleaners.cleaners,clients:clients.clients,jobs:jobs.jobs,invoices:invoices.invoices}))render(key,items);
+for(const [select,items,caption] of [['client-select',clients.clients,'name'],['day-cleaner',cleaners.cleaners,'name'],['util-cleaner',cleaners.cleaners,'name']]){const s=$(select),old=s.value;s.replaceChildren();for(const item of items){const opt=document.createElement('option');opt.value=item.id;opt.textContent=item.id+' '+item[caption];s.append(opt)}s.value=old||s.value}}
+function onform(id,fn){$(id).addEventListener('submit',e=>{e.preventDefault();run(async()=>{await fn(form(id));await refresh()})})}
+onform('cleaner-form',async v=>announce(await api('cleaners','POST',v)));
+onform('client-form',async v=>announce(await api('clients','POST',v)));
+onform('job-form',async v=>announce(await api('jobs','POST',{...v,client_id:Number(v.client_id),cleaners_needed:Number(v.cleaners_needed),expected_length_hours:Number(v.expected_length_hours)})));
+onform('day-form',async v=>{const result=await api('day?'+new URLSearchParams(v));$('day-view').replaceChildren(jsonNode(result));announce(result)});
+onform('tap-form',async v=>announce(await api('assignments/tap','POST',{...v,job_id:Number(v.job_id),cleaner_id:Number(v.cleaner_id)})));
+onform('extend-form',async v=>announce(await api('assignments/extend','POST',{...v,job_id:Number(v.job_id),cleaner_id:Number(v.cleaner_id),minutes:20})));
+onform('payment-form',async v=>announce(await api('invoices/'+v.id+'/payment','POST',{amount_cents:Number(v.amount_cents)})));
+onform('util-form',async v=>{const result=await api('utilization?'+new URLSearchParams(v));$('utilization').textContent=JSON.stringify(result,null,2);announce('Utilization loaded')});
+run(refresh);
+</script></body></html>

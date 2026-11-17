@@ -29,10 +29,11 @@ if [ -n "${1:-}" ]; then   # test 2 on a build plan
     }
     gap='s/1020, 60, 540/1020, 59, 540/; s/gap = 60/gap = 59/'
     round='s/\* 5 + 2) \/\/ 4/* 5) \/\/ 4/; s/\* 5 + 2) \/ 4/* 5) \/ 4/'
-    while IFS=$'\t' read -r lng bill brk; do   # brk: the plan's own break of the bill, where halves of a cent can't arise
+    while IFS=$'\t' read -r lng bill brk gap_break; do   # plan-specific breaks, if its code differs
+        [[ -z "$lng" || "$lng" == \#* ]] && continue
         n=$(awk -F'\t' -v l="$lng" '!/^#/ && $1==l' "$P/steps.tsv" | wc -l | tr -d ' ')
         t2_case pass "$lng" "$n" "the reference solution, every milestone"
-        t2_case fail "$lng" 1 "the gap between jobs 59 minutes" "$gap"
+        t2_case fail "$lng" 1 "the gap between jobs 59 minutes" "${gap_break:-$gap}"
         if [ -n "$brk" ]; then t2_case fail "$lng" "$bill" "the bill broken: $brk" "$brk"
         else t2_case fail "$lng" "$bill" "halves of a cent rounded down" "$round"; fi
     done < "$P/validate.tsv"

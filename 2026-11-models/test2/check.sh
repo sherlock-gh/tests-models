@@ -30,9 +30,9 @@ else
     [ -f "$SWIFT_PKG/Package.swift" ] || { echo "no $SWIFT_PKG/Package.swift"; exit 1; }
     rm -rf "$SWIFT_PKG/.build" "$SWIFT_PKG/.swiftpm" "$SWIFT_PKG/$SWIFT_TESTS" && mkdir -p "$SWIFT_PKG/$SWIFT_TESTS" || exit 3
     for i in $(seq "$N"); do cp "$H/M$i.swift" "$SWIFT_PKG/$SWIFT_TESTS/" || exit 3; done
-    (cd "$SWIFT_PKG" && capped 1200 swift test) > "$W/out" 2>&1; rc=$?
+    (cd "$SWIFT_PKG" && capped 1200 swift test --disable-sandbox) > "$W/out" 2>&1; rc=$?
     [ $rc = 142 ] && { echo "the build and tests did not finish in 20 min"; exit 1; }
     { [ $rc = 0 ] && ! grep -qE '^✘|error:' "$W/out"; } || grep -E '^✘|error:|failed' "$W/out" | tail -60 >&2
-    grep -E 'Executed [0-9]+ tests' "$W/out" | tail -1 | grep . || grep -m1 'error:' "$W/out" | cut -c1-200 || echo "build failed"
+    grep -E 'Executed [0-9]+ tests|Test run with [0-9]+ tests passed' "$W/out" | tail -1 | grep . || grep -m1 'error:' "$W/out" | cut -c1-200 || echo "build failed"
     case $rc in 0) exit 0 ;; 1) exit 1 ;; *) exit 3 ;; esac   # 1: the build or a test failed
 fi
