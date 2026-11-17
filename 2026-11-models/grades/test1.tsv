@@ -1,4 +1,4 @@
-# Test 1's blind reviews. Round 1's local runs: set test1-20261111-1304, graded by Opus (of 16). Round 2's local runs with round 1's Sonnet and Terra runs, regraded: set test1-20261112-1410, graded by Sol through Codex on Sherlock (of 21; Terra, a contestant, didn't grade). Iteration 3 (round3, with Flash-Next redone after the placeholder-check fix, round3-sonnet and round3-terra): set test1-20261113-0923, graded against the F1-F7 checklist by Sol through Codex and by Opus, reconciled (of 21). One line a complete run.
+# Test 1's blind reviews. Round 1's local runs: set test1-20261111-1304, graded by Opus (of 16). Round 2's local runs with round 1's Sonnet and Terra runs, regraded: set test1-20261112-1410, graded by Sol through Codex on Sherlock (of 21; Terra, a contestant, didn't grade). Iteration 3 (round3, with Flash-Next redone after the placeholder-check fix, round3-sonnet and round3-terra): set test1-20261113-0923, graded against the F1-F7 checklist by Sol through Codex and by Opus, reconciled (of 21). One line a complete run. Round 4 (round4, round4-sonnet, round4-terra): set test1-20261116-2103, each run checked blind by its own Opus subagent, the fit runs and one-line fails again by Sol through Codex, disagreements settled by Claude against the files; ranked by Claude (of 24; owner, 16 Nov: an open decision recorded in questions.md never fails a plan).
 round	config	run	fit	rank	of	note
 round1	flash	1	yes	5	16	All rules right and both apps planned in parallel with mirrored tests; but invents a 52-workday search horizon and steps candidate starts on a grid, and leaves Flask vs stdlib open.
 round1	q27-4	3	yes	6	16	Every rule stated right, standard library, minute-by-minute scan finds the true earliest slot, integer cents rounded once; but lets a rebooked job end after 17:00, where only the extended job may, and adds a search horizon.
@@ -54,3 +54,27 @@ round3	gemma31	3	no	18	21	F1, F4, F5, F7: no page; storage left open; the Swift 
 round3	coder-next	1	no	19	21	F1, F2, F5, F7: almost everything in a Python API; the Swift package gets models and two tasks.
 round3	coder-next	3	no	20	21	F1-F5, F7: a connected REST back end with a SwiftUI client.
 round3	q122	3	no	21	21	F1-F5, F7: language, storage and platform left as NEEDS CLARIFICATION; neither app planned.
+round4-sonnet	sonnet	2	yes	1	24	Closest to the rules: extensions move only the requester, bumped jobs rebooked by the booking rule with any free cleaners, taps per part; later split parts keep the first part's cleaners, cleaner deletion and in-progress edits refused; every assumption recorded.
+round4-terra	terra	3	yes	2	24	Sound and fully tested in both apps; but split jobs need one cleaner set on consecutive days with every part inside 90 days, and an extension or cleaner deletion is refused when a cascade can't be placed or meets started work.
+round4-sonnet	sonnet	3	yes	3	24	Clean ordering with shared scenarios; but editing any job field rebooks the whole job (a client fix can move it), same cleaners on every part, lowest-id choice can miss a feasible crew and loads low-id cleaners.
+round4-terra	terra	2	yes	4	24	Well ordered; but an extension extends every cleaner on the part, bumping co-workers needlessly, and a final Depart is refused unless every cleaner has every part recorded, so one missed tap holds the invoice.
+round4-sonnet	sonnet	1	yes	5	24	Rebooking after a deletion or update searches from the original requested day with no not-before-now floor (silent), the extension cascade's 'within 1 hour of the new end' wording can miss deep overlaps, and the invoice ignores earlier parts.
+round4	flash	1	yes	6	24	Q1-Q9 are cited as owner questions but missing from questions.md (silent), a job edit never rebooks so cleaner count or length can go stale, bumped jobs keep their own cleaners, and extensions bump co-workers.
+round4	q27-4	2	no	7	24	Strong plan otherwise; taps are one pair per cleaner per job (silent), so a job over 8 hours invoices after day 1 or bills the overnight gap; an extension moves the whole job's end but rebooks only the requester's later jobs.
+round4	q27-4	1	no	8	24	Taps kept per job, not per part, so every invoice for a job over 8 hours is wrong.
+round4	flash	3	no	9	24	Arrive is set once per job, so a job over 8 hours is invoiced after day 1; the extension cascade checks only the requester though the whole team's end moves.
+round4-terra	terra	1	no	10	24	The desktop app has no Arrive/Depart, so a job can never complete there and no invoice is issued.
+round4	flash	2	no	11	24	F4: jobs get only 'get_job / list_jobs' and 'delete_job' (plus book_job), no update op, and :57 'No op outside this table exists'. F6: 'taps: dict keyed by cleaner id → latest {arrive, depart} — not a list' (also tasks.md:29, :67).
+round4	q27-4	3	no	11	24	F4: the back office's routes cover CRUD, booking, invoices, payments and utilization but none records Arrive/Depart or completes a job. F6: 'One record per (job, cleaner)'.
+round4	laguna-s	2	no	13	24	F5: the Swift API is bookJob, recordTap, requestMoreTime, recordPayment, utilization, delete*. F6: taps are 'the latest pair of Arrive/Depart taps per assigned cleaner ...
+round4	laguna-s	3	no	14	24	No task builds the back-office page, no utilization or job update, and the Swift package can't rebook.
+round4	laguna-s	1	no	15	24	F4: 'A client may not be deleted while they have any job with an issued invoice' (also exact-interfaces.md:92, tasks.md:133). F5: T029 '/cleaners/{id}/jobs GET route returning a cleaner's jobs for today' is desktop-only.
+round4	coder-next	3	no	16	24	F1: 'views/ desktop.py, templates/' and quickstart.md:27 'Go to Cleaners tab'. F4: contracts/README.md:21-46 lists routes for CRUD, booking, arrive/depart, invoices, payments, but none for utilization.
+round4	q122	1	no	17	24	F1: 'Implement desktop API routes in apps/desktop/src/api/routes.py for all services'. F4: CRUD services only for cleaners and clients.
+round4	gemma31	3	no	18	24	F1: tasks.md:65 'Implement job booking API endpoint'. F4: tasks.md:118-121 only cleaner/client CRUD.
+round4	coder-next	1	no	19	24	Wrong app shapes: no Python-served page and no UI-free Swift package, with operations missing.
+round4	gemma31	1	no	20	24	Wrong architecture (apps connected or sharing storage), operations missing, stack open.
+round4	q122	3	no	21	24	Neither app planned as asked.
+round4	q122	2	no	21	24	Neither app planned as asked.
+round4	coder-next	2	no	23	24	Nothing in the plan meets the brief.
+round4	gemma31	2	no	23	24	A single Python project with no Swift package or page; dependencies left as NEEDS CLARIFICATION.
