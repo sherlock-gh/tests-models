@@ -88,8 +88,9 @@ def main():
                 note('finished: validated flash-r4, lane a ended done; watcher stops')
                 break
             coordinator = launch('; '.join(events[-3:]) or 'previous coordinator exited; inspect state and continue')
+        notes = (SETUP / 'SETUP-NOTES.md').exists() or (SETUP / 'harness/plans/flash-r4/SETUP-NOTES.md').exists()
         note(f'tick coordinator={coordinator} live={live(coordinator)} setup={setup_live} '
-             f'notes={SETUP.joinpath("SETUP-NOTES.md").exists()} log_offset={offset}; '
+             f'notes={notes} log_offset={offset}; '
              'limits setup 02:00 PST, round 7d, idle 2h+30m, check 15m, load 20m')
         time.sleep(45)
 
