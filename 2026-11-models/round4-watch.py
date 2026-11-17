@@ -79,6 +79,14 @@ def main():
             for event in events:
                 note(f'event: {event[:500]}')
         if not live(coordinator):
+            results = ROOT / 'results/round4'
+            end = results / 'a/end'
+            finished = ((results / 'validated-flash-r4').exists() and end.exists()
+                        and end.read_text().strip() == 'done'
+                        and not (results / 'a/runner.lock').exists())
+            if finished:
+                note('finished: validated flash-r4, lane a ended done; watcher stops')
+                break
             coordinator = launch('; '.join(events[-3:]) or 'previous coordinator exited; inspect state and continue')
         note(f'tick coordinator={coordinator} live={live(coordinator)} setup={setup_live} '
              f'notes={SETUP.joinpath("SETUP-NOTES.md").exists()} log_offset={offset}; '
