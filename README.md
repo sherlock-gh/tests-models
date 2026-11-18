@@ -1,19 +1,53 @@
-# Lab tests
+# Lab test
 
-Which language model should do each kind of work, tested in a local lab: the local models on Adlerbot, run by the Hermes agent on Sherlock, with cloud models for comparison. Everything the models work on is synthetic test material. This page is also the home page of the results site, [sherlock-gh.github.io/tests-models](https://sherlock-gh.github.io/tests-models/).
+## Results
 
-| Test | Results |
+| [November](#November-Tests) | [October](#October-Tests) |
 | --- | --- |
-| [2026-11-models](#2026-11-models) | [Round 1](https://sherlock-gh.github.io/tests-models/2026-11-models/round1/) · [Round 2](https://sherlock-gh.github.io/tests-models/2026-11-models/round2/) · [Round 3](https://sherlock-gh.github.io/tests-models/2026-11-models/round3/) · [Round 4](https://sherlock-gh.github.io/tests-models/2026-11-models/round4/) · [Files to reproduce](https://sherlock-gh.github.io/tests-models/2026-11-models/files/) |
-| [2026-10-config](#2026-10-config) | [Round 1](https://sherlock-gh.github.io/tests-models/2026-10-config/round1/) · [Round 2](https://sherlock-gh.github.io/tests-models/2026-10-config/round2/) · [Round 3](https://sherlock-gh.github.io/tests-models/2026-10-config/round3/) · [Round 4](https://sherlock-gh.github.io/tests-models/2026-10-config/round4/) |
+| [Round 1](https://sherlock-gh.github.io/tests-models/2026-11-models/round1/)<br>[Round 2](https://sherlock-gh.github.io/tests-models/2026-11-models/round2/)<br>[Round 3](https://sherlock-gh.github.io/tests-models/2026-11-models/round3/)<br>[Round 4](https://sherlock-gh.github.io/tests-models/2026-11-models/round4/) | [Round 1](https://sherlock-gh.github.io/tests-models/2026-10-config/round1/)<br>[Round 2](https://sherlock-gh.github.io/tests-models/2026-10-config/round2/)<br>[Round 3](https://sherlock-gh.github.io/tests-models/2026-10-config/round3/)<br>[Round 4](https://sherlock-gh.github.io/tests-models/2026-10-config/round4/) |
 
-What each test checks, why it is run this way, and what each iteration changed, below. Each test's folder has its own README and its files.
+[Download files to reproduce this test](https://sherlock-gh.github.io/tests-models/2026-11-models/files/)
 
-## 2026-11-models
+## Goal
 
-Which model should do each kind of work: planning, Python, Swift, a website?
+Identify the optimal models and model configurations for each type of work.
 
-Candidates: the local models on Adlerbot, run by Hermes. Sonnet and Terra (cloud) are for comparison only. Folder: [2026-11-models](2026-11-models/README.md).
+## Conditions
+
+* PM: Cloud Opus
+* Lead Architect: Hermes on MBP Inel 16 GB RAM
+* Models: MLX-ML and Ollama on MBP m3 128 GB RAM
+* Frontier control: Cloud terra and sonnet
+
+This page is also the home page of the results site, [sherlock-gh.github.io/tests-models](https://sherlock-gh.github.io/tests-models/).
+
+## 4 Stage Test
+
+### Test Stage 0: Gate
+
+Can the model meet minimum requirements?
+
+### Test Stage 1: PM
+
+Using SpecKit and some basic prompting from me, each model use create a project proposal and plan. In this cases we need to design and development a schjeudling and billing system for a cleaning company, include desktop for backoffice and mobile for clearners.
+
+All materiels are evaluated and the highest performcing proposal + plan is used to the drive the next 2 test stages.
+
+### Test Stage 2: Python
+
+Develop the backend application to manage appointment scheduleing, resource allocation, and billing.
+
+### Test Stage 3: Swifth
+
+Develop a mobile app to allow cleaners in the field to over ride the scheduled start and start time to reflect reality.
+
+### Test Stage 4: Website
+
+Create a website for a satirical guru -- i already created this, and i just want to see how close the models come in terms of UI design quality.  Our doesn't have to be the same, just smiliar quality.
+
+## November-Tests
+
+[November Tests](2026-11-models/README.md).
 
 ### The tests
 
@@ -56,9 +90,9 @@ Candidates: the local models on Adlerbot, run by Hermes. Sonnet and Terra (cloud
 | Iteration 2 | 11–12 Nov | One change: Hermes tells models not to end a turn by announcing the next step. Flash-Next then finished 3 of 3. In the blind review only Terra's plans were fit to build from, and the problem left 10 decisions open. |
 | Iteration 3 | 12–13 Nov | The owner settled the 10 open decisions and added rules to the problem; each step names its output file and lists open questions. Laguna XS dropped. Fit plans: Sonnet and Terra, and Flash-Next run 1, the only local one. |
 
-## 2026-10-config
+## October Test
 
-Which local setup (engine, model, quantization, thinking, harness) can do planning and real Python and Swift builds? Folder: [2026-10-config](2026-10-config/README.md).
+[October Tests](2026-10-config/README.md).
 
 ### The tests
 
