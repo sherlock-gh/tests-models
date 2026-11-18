@@ -16,7 +16,12 @@ class Probe:
         self.app = create_app(path)
 
     def call(self, method, url, body=None):
-        return self.app.request(method, url, body)
+        # The contract writes a record reply as {cleaner}, {client}, {job}, {invoice}: the record
+        # itself or wrapped under its name both read it (owner, 17 Nov), so a bare one is wrapped here.
+        status, value = self.app.request(method, url, body)
+        if isinstance(value, dict) and 'id' in value and 'error' not in value:
+            value = {**{k: value for k in ('cleaner', 'client', 'job', 'invoice')}, **value}
+        return status, value
 
     def ok(self, method, url, body=None, code=200):
         status, value = self.call(method, url, body)
