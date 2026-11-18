@@ -1,0 +1,243 @@
+<!doctype html><meta charset="utf-8"><title>test2-q27-4-python-r1-M2-0</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ round 4</a>
+
+<b>Test 2 · Python</b>
+
+# test2-q27-4-python-r1-M2-0: fail
+
+- Job: 22:37:12 to 22:50:19 (787 s); runner&#x27;s note: passed 0 of 8: 8 errors in 0.11s
+- Hermes&#x27;s turn: completed True, failed False, interrupted False, partial False, turn_exit_reason guardrail_halt, api_calls 24
+- Hermes session: 20261117_223716_7afb89
+
+## The session, turn by turn
+
+- 22:37:16 **prompt** [541 chars]
+- 22:37:24 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}
+- 22:37:24 **call** search_files {pattern: [1 chars], target: [5 chars], path: specs/001-cleaning-scheduling-billing, limit: 100}
+  - 22:37:25 result (read_file): [296 lines, 39099 bytes]
+  - 22:37:25 result (search_files): [? lines, ? bytes]
+- 22:38:33 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}
+- 22:38:33 **call** read_file {path: specs/001-cleaning-scheduling-billing/data-model.md}
+  - 22:38:33 result (read_file): [86 lines, 5406 bytes]
+  - 22:38:33 result (read_file): [143 lines, 7936 bytes]
+- 22:39:08 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git log --oneline | head -30 &amp;&amp; echo --- &amp;&amp; git status --short | head -20 &amp;&amp; echo --- &amp;&amp; ls desktop desktop/cle … [246 chars]}
+- 22:39:08 **call** read_file {path: specs/001-cleaning-scheduling-billing/quickstart.md}
+  - 22:39:08 result (terminal): exit 0, 29 lines out
+  - 22:39:08 result (read_file): [97 lines, 4571 bytes]
+- 22:39:25 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git show --stat 87c547c | head -40 &amp;&amp; echo === &amp;&amp; git show --stat 6d4c567 | head -40}
+  - 22:39:25 result (terminal): exit 0, 32 lines out
+- 22:39:31 **call** read_file {path: desktop/cleaning/models.py}
+- 22:39:31 **call** read_file {path: desktop/cleaning/store.py}
+  - 22:39:31 result (read_file): [413 lines, 13484 bytes]
+  - 22:39:31 result (read_file): [76 lines, 2582 bytes]
+- 22:40:16 **call** read_file {path: desktop/cleaning/timezone_util.py}
+- 22:40:16 **call** read_file {path: desktop/cleaning/errors.py}
+- 22:40:16 **call** read_file {path: desktop/tests/conftest.py}
+  - 22:40:16 result (read_file): [135 lines, 4800 bytes]
+  - 22:40:16 result (read_file): [48 lines, 1418 bytes]
+  - 22:40:16 result (read_file): [40 lines, 1039 bytes]
+- 22:40:39 **call** read_file {path: specs/001-cleaning-scheduling-billing/spec.md}
+- 22:40:39 **call** read_file {path: specs/001-cleaning-scheduling-billing/questions.md}
+  - 22:40:40 result (read_file): [243 lines, 19598 bytes]
+  - 22:40:40 result (read_file): [49 lines, 2883 bytes]
+- 22:41:28 **call** read_file {path: specs/001-cleaning-scheduling-billing/AMENDMENTS.md}
+- 22:41:28 **call** read_file {path: specs/001-cleaning-scheduling-billing/research.md}
+  - 22:41:28 result (read_file): [15 lines, 1794 bytes]
+  - 22:41:28 result (read_file): [184 lines, 12333 bytes]
+- 22:42:00 **call** read_file {path: specs/001-cleaning-scheduling-billing/plan.md}
+  - 22:42:00 result (read_file): [130 lines, 7149 bytes]
+- 22:42:29 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git diff 6d4c567 87c547c -- specs | head -50; ls specs/001-cleaning-scheduling-billing/; echo ===; git diff 6d4 … [229 chars]}
+- 22:42:29 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls -la .venv/bin 2&gt;/dev/null | head -5; ls desktop/tests; cat desktop/requirements.txt}
+  - 22:42:29 result (terminal): exit 0, 16 lines out
+  - 22:42:29 result (terminal): exit 0, 13 lines out
+- 22:42:36 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/mobile-logic.md}
+- 22:42:36 **call** read_file {path: desktop/tests/test_store.py}
+  - 22:42:36 result (read_file): [87 lines, 4624 bytes]
+  - 22:42:36 result (read_file): [117 lines, 3817 bytes]
+- 22:43:02 **call** read_file {path: desktop/tests/test_timezone_util.py}
+- 22:43:02 **call** read_file {path: desktop/tests/test_models.py}
+  - 22:43:02 result (read_file): [109 lines, 3855 bytes]
+  - 22:43:02 result (read_file): [177 lines, 5347 bytes]
+- 22:43:42 **call** read_file {path: specs/001-cleaning-scheduling-billing/checklists/requirements.md}
+- 22:43:42 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls specs/001-cleaning-scheduling-billing/checklists/ &amp;&amp; cat .gitignore}
+  - 22:43:42 result (read_file): [41 lines, 1734 bytes]
+  - 22:43:42 result (terminal): exit 0, 5 lines out
+- 22:43:54 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls mobile mobile/Sources/CleaningLogic mobile/Tests/CleaningLogicTests 2&gt;&amp;1; ls mobile/Package.swift 2&gt;&amp;1; .ven … [254 chars]}
+  - 22:43:55 result (terminal): exit 0, 11 lines out
+- 22:44:03 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python -m pytest -q desktop/tests/test_timezone_util.py::test_shift_to_valid_quarter_start_across_spr … [227 chars]}
+  - 22:44:04 result (terminal): exit 0, 15 lines out
+- 22:44:21 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python - &lt;&lt;&#x27;EOF&#x27; import datetime as dt from zoneinfo import ZoneInfo tz = ZoneInfo(&quot;America/Los_Angel … [482 chars]}
+  - 22:44:21 result (terminal): exit 0, 4 lines out
+- 22:45:53 **prompt** [9587 chars]
+- 22:37:24 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}  ← the same call, time 2
+- 22:37:24 **call** search_files {pattern: [1 chars], target: [5 chars], path: specs/001-cleaning-scheduling-billing, limit: 100}  ← the same call, time 2
+  - 22:37:25 result (read_file): [90 chars]
+  - 22:37:25 result (search_files): [90 chars]
+- 22:41:28 **call** read_file {path: specs/001-cleaning-scheduling-billing/AMENDMENTS.md}  ← the same call, time 2
+- 22:41:28 **call** read_file {path: specs/001-cleaning-scheduling-billing/research.md}  ← the same call, time 2
+  - 22:41:28 result (read_file): [94 chars]
+  - 22:41:28 result (read_file): [161 chars]
+- 22:42:00 **call** read_file {path: specs/001-cleaning-scheduling-billing/plan.md}  ← the same call, time 2
+  - 22:42:00 result (read_file): [160 chars]
+- 22:42:29 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git diff 6d4c567 87c547c -- specs | head -50; ls specs/001-cleaning-scheduling-billing/; echo ===; git diff 6d4 … [229 chars]}  ← the same call, time 2
+- 22:42:29 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls -la .venv/bin 2&gt;/dev/null | head -5; ls desktop/tests; cat desktop/requirements.txt}  ← the same call, time 2
+  - 22:42:29 result (terminal): exit 0, 16 lines out
+  - 22:42:29 result (terminal): exit 0, 13 lines out
+- 22:42:36 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/mobile-logic.md}  ← the same call, time 2
+- 22:42:36 **call** read_file {path: desktop/tests/test_store.py}  ← the same call, time 2
+  - 22:42:36 result (read_file): [87 lines, 4624 bytes]
+  - 22:42:36 result (read_file): [117 lines, 3817 bytes]
+- 22:43:02 **call** read_file {path: desktop/tests/test_timezone_util.py}  ← the same call, time 2
+- 22:43:02 **call** read_file {path: desktop/tests/test_models.py}  ← the same call, time 2
+  - 22:43:02 result (read_file): [109 lines, 3855 bytes]
+  - 22:43:02 result (read_file): [177 lines, 5347 bytes]
+- 22:43:42 **call** read_file {path: specs/001-cleaning-scheduling-billing/checklists/requirements.md}  ← the same call, time 2
+- 22:43:42 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls specs/001-cleaning-scheduling-billing/checklists/ &amp;&amp; cat .gitignore}  ← the same call, time 2
+  - 22:43:42 result (read_file): [41 lines, 1734 bytes]
+  - 22:43:42 result (terminal): exit 0, 5 lines out
+- 22:43:54 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls mobile mobile/Sources/CleaningLogic mobile/Tests/CleaningLogicTests 2&gt;&amp;1; ls mobile/Package.swift 2&gt;&amp;1; .ven … [254 chars]}  ← the same call, time 2
+  - 22:43:55 result (terminal): exit 0, 11 lines out
+- 22:44:03 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python -m pytest -q desktop/tests/test_timezone_util.py::test_shift_to_valid_quarter_start_across_spr … [227 chars]}  ← the same call, time 2
+  - 22:44:04 result (terminal): exit 0, 15 lines out
+- 22:44:21 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python - &lt;&lt;&#x27;EOF&#x27; import datetime as dt from zoneinfo import ZoneInfo tz = ZoneInfo(&quot;America/Los_Angel … [482 chars]}  ← the same call, time 2
+  - 22:44:21 result (terminal): exit 0, 4 lines out
+- 22:48:23 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python - &lt;&lt;&#x27;EOF&#x27; import datetime as dt from zoneinfo import ZoneInfo tz = ZoneInfo(&quot;America/Los_Angel … [459 chars]}
+  - 22:48:23 result (terminal): exit 0, 4 lines out
+- 22:48:36 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python - &lt;&lt;&#x27;EOF&#x27; import datetime as dt from zoneinfo import ZoneInfo tz = ZoneInfo(&quot;America/Los_Angel … [459 chars]}  ← the same call, time 2
+  - 22:48:36 result (terminal): exit 0, 4 lines out
+- 22:48:39 **call** read_file {path: desktop/cleaning/timezone_util.py}  ← the same call, time 2
+  - 22:48:39 result (read_file): [5760 chars]
+- 22:49:04 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python - &lt;&lt;&#x27;EOF&#x27; import datetime as dt from zoneinfo import ZoneInfo tz = ZoneInfo(&quot;America/Los_Angel … [494 chars]}
+  - 22:49:04 result (terminal): exit 0, 4 lines out
+- 22:49:17 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python - &lt;&lt;&#x27;EOF&#x27; import datetime as dt from zoneinfo import ZoneInfo tz = ZoneInfo(&quot;America/Los_Angel … [494 chars]}  ← the same call, time 2
+  - 22:49:17 result (terminal): exit 0, 4 lines out
+- 22:49:30 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python - &lt;&lt;&#x27;EOF&#x27; import datetime as dt from zoneinfo import ZoneInfo tz = ZoneInfo(&quot;America/Los_Angel … [494 chars]}  ← the same call, time 3
+  - 22:49:31 result (terminal): [446 chars]
+- 22:49:44 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python - &lt;&lt;&#x27;EOF&#x27; import datetime as dt from zoneinfo import ZoneInfo tz = ZoneInfo(&quot;America/Los_Angel … [494 chars]}  ← the same call, time 4
+  - 22:49:44 result (terminal): [446 chars]
+- 22:49:58 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python - &lt;&lt;&#x27;EOF&#x27; import datetime as dt from zoneinfo import ZoneInfo tz = ZoneInfo(&quot;America/Los_Angel … [494 chars]}  ← the same call, time 5
+  - 22:49:58 result (terminal): [688 chars]
+- 22:49:58 **model writes** (-) [217 chars]
+
+## Summary
+
+- Model turns 35, tool calls 52, distinct calls 30
+- The same call 5 times: terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; .venv/bin/python - &lt;&lt;&#x27;EOF&#x27; import datetime as dt from zoneinfo import ZoneInfo tz = ZoneInfo(&quot;America/Los_Angel … [494 chars]}
+- The session&#x27;s last entry: the model writing text
+
+## The runner&#x27;s watch (one line each 30 s), last 60 lines
+
+```
+22:37:12  start: prompt 542 bytes, limit 604800s
+22:37:42  +30s  files same (last change 30s ago)  request open yes (last 0s ago)
+22:38:12  +60s  files same (last change 60s ago)  request open yes (last 0s ago)
+22:38:42  +90s  files same (last change 90s ago)  request open yes (last 0s ago)
+22:39:13  +120s  files same (last change 120s ago)  request open yes (last 0s ago)
+22:39:43  +151s  files same (last change 151s ago)  request open yes (last 0s ago)
+22:40:13  +181s  files same (last change 181s ago)  request open yes (last 0s ago)
+22:40:43  +211s  files same (last change 211s ago)  request open yes (last 0s ago)
+22:41:13  +241s  files same (last change 241s ago)  request open yes (last 0s ago)
+22:41:44  +272s  files same (last change 272s ago)  request open yes (last 0s ago)
+22:42:14  +302s  files same (last change 302s ago)  request open yes (last 0s ago)
+22:42:44  +332s  files same (last change 332s ago)  request open yes (last 0s ago)
+22:43:14  +362s  files same (last change 362s ago)  request open yes (last 0s ago)
+22:43:44  +392s  files same (last change 392s ago)  request open yes (last 0s ago)
+22:44:15  +423s  files changed (last change 0s ago)  request open yes (last 0s ago)
+22:44:45  +453s  files same (last change 30s ago)  request open yes (last 0s ago)
+22:45:15  +483s  files same (last change 60s ago)  request open yes (last 0s ago)
+22:45:45  +513s  files same (last change 90s ago)  request open yes (last 0s ago)
+22:46:16  +543s  files same (last change 120s ago)  request open yes (last 0s ago)
+22:46:46  +574s  files same (last change 151s ago)  request open yes (last 0s ago)
+22:47:16  +604s  files same (last change 181s ago)  request open yes (last 0s ago)
+22:47:46  +634s  files same (last change 211s ago)  request open yes (last 0s ago)
+22:48:16  +664s  files same (last change 241s ago)  request open yes (last 0s ago)
+22:48:47  +694s  files same (last change 271s ago)  request open yes (last 0s ago)
+22:49:17  +725s  files same (last change 302s ago)  request open yes (last 0s ago)
+22:49:47  +755s  files same (last change 332s ago)  request open yes (last 0s ago)
+22:50:17  +785s  Hermes exited on its own, status 0 -&gt; done
+```
+
+## The check&#x27;s output, last 60 lines
+
+```
+passed 0 of 8: 8 errors in 0.11s
+```
+
+## The check&#x27;s errors, last 60 lines
+
+```
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;conftest.Probe object at 0x103307770&gt;
+path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.oOQtl1/t/test_horizon_is_atomic0/data.json&#x27;)
+
+    def __init__(self, path):
+&gt;       from app import create_app
+E       ModuleNotFoundError: No module named &#x27;app&#x27;
+
+conftest.py:14: ModuleNotFoundError
+______________ ERROR at setup of test_taps_invoice_exact_payment _______________
+
+tmp_path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.oOQtl1/t/test_taps_invoice_exact_paymen0&#x27;)
+
+    @pytest.fixture
+    def probe(tmp_path):
+&gt;       return Probe(tmp_path / &#x27;data.json&#x27;)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+conftest.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;conftest.Probe object at 0x1033679b0&gt;
+path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.oOQtl1/t/test_taps_invoice_exact_paymen0/data.json&#x27;)
+
+    def __init__(self, path):
+&gt;       from app import create_app
+E       ModuleNotFoundError: No module named &#x27;app&#x27;
+
+conftest.py:14: ModuleNotFoundError
+__________ ERROR at setup of test_every_split_assignment_must_depart ___________
+
+tmp_path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.oOQtl1/t/test_every_split_assignment_mu0&#x27;)
+
+    @pytest.fixture
+    def probe(tmp_path):
+&gt;       return Probe(tmp_path / &#x27;data.json&#x27;)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+conftest.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;conftest.Probe object at 0x1033f9150&gt;
+path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.oOQtl1/t/test_every_split_assignment_mu0/data.json&#x27;)
+
+    def __init__(self, path):
+&gt;       from app import create_app
+E       ModuleNotFoundError: No module named &#x27;app&#x27;
+
+conftest.py:14: ModuleNotFoundError
+=========================== short test summary info ============================
+ERROR test_m1.py::test_booking_grid_spacing_and_refusals - ModuleNotFoundErro...
+ERROR test_m1.py::test_minutes_weekends_and_split_replacement - ModuleNotFoun...
+ERROR test_m1.py::test_later_part_can_choose_another_free_cleaner - ModuleNot...
+ERROR test_m1.py::test_later_part_prefers_original_crew_but_replaces_unavailable_member
+ERROR test_m1.py::test_sixty_minutes_is_strict_at_the_boundary - ModuleNotFou...
+ERROR test_m1.py::test_horizon_is_atomic - ModuleNotFoundError: No module nam...
+ERROR test_m2.py::test_taps_invoice_exact_payment - ModuleNotFoundError: No m...
+ERROR test_m2.py::test_every_split_assignment_must_depart - ModuleNotFoundErr...
+8 errors in 0.11s
+```
+
+## The repo
+
+```
+branch: main
+* 87c547c 13 minutes ago
+* 6d4c567 47 minutes ago
+* 95ad57a 56 minutes ago
+uncommitted: none
+```
+
+## The server
+
+- Sherlock&#x27;s record of the model served: q27-4
+</body>
