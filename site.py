@@ -55,6 +55,7 @@ def href(url):
 
 def inline(text):
     s = html.escape(text, quote=False)
+    s = re.sub(r"&lt;(/?[a-zA-Z][^<>]*?)&gt;", r"<\1>", s)   # HTML the README writes, as Markdown allows
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
     s = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", s)
     return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", lambda m: f'<a href="{html.escape(href(m.group(2)))}">{m.group(1)}</a>', s)
@@ -66,7 +67,7 @@ def cells(line):
 
 def render(md):
     """README.md as HTML: the Markdown it uses (headings, paragraphs, tables, lists, code, bold,
-    links), each ## heading opening a section."""
+    links, inline HTML), each ## heading opening a section."""
     out, open_section = [], False
     for block in re.split(r"\n\s*\n", md.strip()):
         lines = block.splitlines()
@@ -87,7 +88,7 @@ def render(md):
             cls = "" if open_section else " class=top"
             out.append(f"<table{cls}><tr>" + "".join(f"<th>{inline(c)}</th>" for c in head) + "</tr>"
                        + "".join("<tr>" + "".join(f"<td>{inline(c)}</td>" for c in r) + "</tr>" for r in rows) + "</table>")
-        elif first.startswith("- "):
+        elif first.startswith(("- ", "* ")):
             out.append("<ul>" + "".join(f"<li>{inline(l[2:])}</li>" for l in lines) + "</ul>")
         else:
             out.append(f"<p>{inline(' '.join(lines))}</p>")
