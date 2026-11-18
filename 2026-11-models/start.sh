@@ -52,4 +52,6 @@ lane() {  # lane host address, unless that lane runs
 }
 lane a adlerbot 192.168.40.110 && say "lane a: on Adlerbot"
 [ -n "$B_NAME" ] && lane b "$B_NAME" "$B_ADDR" && say "lane b: on $B_NAME ($B_ADDR)"
+# the watch (watch.py): Claude, unattended, on every failure and lane end, whoever's session is open
+pgrep -f "watch.py $ROUND\$" >/dev/null || { (nohup python3 watch.py "$ROUND" >> "$S/watch.log" 2>&1 < /dev/null &); say "the watch: $S/watch.log"; }
 say "the round runs on its own now: http://192.168.50.100:18100/tests/2026-11-models/${ROUND%%-*}/"

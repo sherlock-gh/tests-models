@@ -11,7 +11,7 @@ The owner's model tests for his home lab: which local and cloud models, with whi
 ## Running a round
 
 - **It never waits on the owner.** No rule pauses or halts a round for anyone to read something. A model failure is recorded and the run moves on; a fault in the machine is repaired and the milestone resumes; a fault in the test (a check that can't run, a job that never asks the model) stops the round, and you fix it at once.
-- **You watch all of it.** While a round runs, keep a background watch on its log that wakes you on every failure, timeout, machine failure and lane end. At each wake, read the why file whole and decide whether the model or the test was at fault. If the test was, fix it, void the runs it ended and redo them, without stopping the round. Then re-arm the watch.
+- **You watch all of it.** While a round runs, `watch.py` (started by `start.sh`, independent of any session) starts Claude unattended with `watch-brief.md` on every failure, timeout, machine failure and lane end. At each wake, read the why file whole and decide whether the model or the test was at fault. If the test was, fix it, void the runs it ended and redo them, without stopping the round. Then re-arm the watch.
 - **Ask for approvals before the owner steps away.** Name every one the unattended work will need and get it while he's there.
 - **Visible:** each round's live page is up before the round starts, linked from http://192.168.50.100:18100/tests/: one numbered page a round, `/tests/<test>/round<n>/`, and nothing else (no combined pages, no one-off URLs).
 - **Time limits** on everything unattended, stated at handoff; reaching one is recorded as a result. Not for attended commands that take seconds.
