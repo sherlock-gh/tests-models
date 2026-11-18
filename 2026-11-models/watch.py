@@ -15,7 +15,10 @@ T = Path(__file__).resolve().parent
 ROUND = sys.argv[1]
 RES = T / "results" / ROUND
 LOG = Path.home() / "scaffolding/tests-2026-11-models/log.txt"
-EVENT = re.compile(r"\] (?:.* M\d+: (?!pass)|.*(?:machine failure|LANE STOPPED|lane done|lane incomplete|stopped at|STOPPED|fault))")
+# A partial score is a model's result, not an event (most steps end in one); a zero, a step with
+# no score, a machine failure and a lane's end are, as the test may be at fault (17 Nov: waking on
+# every step would have used the owner's weekly Claude plan in a day or two)
+EVENT = re.compile(r"\] (?:.* M\d+: (?!pass)(?!.*passed [1-9])|.*(?:machine failure|LANE STOPPED|lane done|lane incomplete|stopped at|STOPPED|fault))")
 LIMIT = 50 * 60
 
 
@@ -37,7 +40,7 @@ def claude(events):
     out = (RES / "watch-claude.log").open("a")
     out.write(f"\n===== {time.strftime('%F %T')}\n")
     out.flush()
-    return subprocess.Popen(["claude", "-p", prompt, "--dangerously-skip-permissions"], cwd=T,
+    return subprocess.Popen(["claude", "-p", prompt, "--model", "sonnet", "--dangerously-skip-permissions"], cwd=T,
                             stdin=subprocess.DEVNULL, stdout=out, stderr=subprocess.STDOUT,
                             start_new_session=True), time.time()
 
