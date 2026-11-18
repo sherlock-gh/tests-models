@@ -150,6 +150,10 @@ def score_of(text):
     return (int(m.group(1)), int(m.group(2))) if m else (0, 0)
 
 
+# a lane whose end the owner called (sherlock.sh never writes this): its runs not done never will be
+OWNER_ENDED = any(read(SHARED / n / "end").startswith("stopped: the owner") for n in ("a", "b"))
+
+
 def run_cell(name, test, lang, r, lane_name):
     res = results_of(lane_name, test, lang)
     lane = lanes.get(lane_name)
@@ -191,6 +195,8 @@ def run_cell(name, test, lang, r, lane_name):
         a, b = res.get((name, "1")), res.get((name, "2"))
         if a and b and a[0] == b[0] and a[0] != "machine-failed":
             return cell("skip", "not needed", "runs 1 and 2 agree")
+    if OWNER_ENDED:
+        return cell("skip", "not run", "test ended by the owner")
     return cell("wait", "waiting")
 
 
