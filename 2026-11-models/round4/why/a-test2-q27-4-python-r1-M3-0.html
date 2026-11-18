@@ -1,0 +1,405 @@
+<!doctype html><meta charset="utf-8"><title>test2-q27-4-python-r1-M3-0</title><body style="font:13px/1.45 ui-monospace,Menlo,monospace;padding:16px;white-space:pre-wrap"><a href="../">‹ round 4</a>
+
+<b>Test 2 · Python</b>
+
+# test2-q27-4-python-r1-M3-0: fail
+
+- Job: 22:50:19 to 23:30:07 (2388 s); runner&#x27;s note: passed 0 of 11: 11 errors in 0.14s; the model left it uncommitted
+- Hermes&#x27;s turn: completed True, failed False, interrupted False, partial False, turn_exit_reason guardrail_halt, api_calls 59
+- Hermes session: 20261117_225023_0000c6
+
+## The session, turn by turn
+
+- 22:50:23 **prompt** [517 chars]
+- 22:50:32 **call** terminal {command: pwd &amp;&amp; ls &amp;&amp; git log --oneline -10 &amp;&amp; git status --short}
+- 22:50:32 **call** search_files {path: specs/001-cleaning-scheduling-billing, pattern: [1 chars], target: [5 chars], limit: 100}
+  - 22:50:32 result (terminal): exit 0, 7 lines out
+  - 22:50:32 result (search_files): [? lines, ? bytes]
+- 22:50:41 **call** search_files {context: 3, path: specs/001-cleaning-scheduling-billing/tasks.md, pattern: [8 chars]}
+- 22:50:41 **call** terminal {command: find desktop -type f | head -50 &amp;&amp; echo --- &amp;&amp; find mobile -type f | head -20}
+  - 22:50:41 result (search_files): [? lines, ? bytes]
+  - 22:50:41 result (terminal): exit 0, 32 lines out
+- 22:51:00 **call** read_file {path: specs/001-cleaning-scheduling-billing/tasks.md}
+- 22:51:00 **call** read_file {path: specs/001-cleaning-scheduling-billing/AMENDMENTS.md}
+  - 22:51:00 result (read_file): [296 lines, 39099 bytes]
+  - 22:51:00 result (read_file): [15 lines, 1794 bytes]
+- 22:52:13 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls desktop/cleaning desktop/tests desktop/static &amp;&amp; git show --stat HEAD &amp;&amp; git show --stat HEAD~1 | head -30}
+  - 22:52:13 result (terminal): exit 0, 49 lines out
+- 22:52:22 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls -la .. &amp;&amp; ls -la . &amp;&amp; cat .gitignore 2&gt;/dev/null &amp;&amp; git remote -v}
+  - 22:52:22 result (terminal): exit 0, 19 lines out
+- 22:52:29 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}
+- 22:52:29 **call** read_file {path: specs/001-cleaning-scheduling-billing/research.md}
+  - 22:52:29 result (read_file): [86 lines, 5406 bytes]
+  - 22:52:29 result (read_file): [184 lines, 12333 bytes]
+- 22:53:08 **call** read_file {path: specs/001-cleaning-scheduling-billing/data-model.md}
+- 22:53:08 **call** read_file {path: specs/001-cleaning-scheduling-billing/questions.md}
+  - 22:53:08 result (read_file): [143 lines, 7936 bytes]
+  - 22:53:08 result (read_file): [49 lines, 2883 bytes]
+- 22:53:35 **call** read_file {path: specs/001-cleaning-scheduling-billing/quickstart.md}
+- 22:53:35 **call** read_file {path: specs/001-cleaning-scheduling-billing/spec.md}
+  - 22:53:35 result (read_file): [97 lines, 4571 bytes]
+  - 22:53:35 result (read_file): [243 lines, 19598 bytes]
+- 22:54:28 **model writes** (tool_calls) [79 chars]
+- 22:54:28 **call** read_file {path: desktop/cleaning/models.py}
+- 22:54:28 **call** read_file {path: desktop/cleaning/store.py}
+  - 22:54:28 result (read_file): [413 lines, 13484 bytes]
+  - 22:54:28 result (read_file): [76 lines, 2582 bytes]
+- 22:55:17 **call** read_file {path: desktop/cleaning/timezone_util.py}
+- 22:55:17 **call** read_file {path: desktop/cleaning/errors.py}
+- 22:55:17 **call** read_file {path: desktop/tests/conftest.py}
+  - 22:55:17 result (read_file): [135 lines, 4800 bytes]
+  - 22:55:17 result (read_file): [48 lines, 1418 bytes]
+  - 22:55:17 result (read_file): [40 lines, 1039 bytes]
+- 22:55:44 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/mobile-logic.md}
+- 22:55:44 **call** read_file {path: specs/001-cleaning-scheduling-billing/plan.md}
+  - 22:55:44 result (read_file): [87 lines, 4624 bytes]
+  - 22:55:44 result (read_file): [130 lines, 7149 bytes]
+- 22:56:16 **call** read_file {path: desktop/tests/test_models.py}
+- 22:56:16 **call** read_file {path: desktop/tests/test_store.py}
+  - 22:56:16 result (read_file): [177 lines, 5347 bytes]
+  - 22:56:16 result (read_file): [117 lines, 3817 bytes]
+- 22:56:51 **call** read_file {path: specs/001-cleaning-scheduling-billing/checklists/requirements.md}
+- 22:56:51 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app.reply.txt}
+  - 22:56:51 result (read_file): [41 lines, 1734 bytes]
+  - 22:56:51 result (read_file): [0 lines, 0 bytes, error]
+- 22:58:20 **prompt** [9010 chars]
+- 22:50:32 **call** terminal {command: pwd &amp;&amp; ls &amp;&amp; git log --oneline -10 &amp;&amp; git status --short}  ← the same call, time 2
+- 22:50:32 **call** search_files {path: specs/001-cleaning-scheduling-billing, pattern: [1 chars], target: [5 chars], limit: 100}  ← the same call, time 2
+  - 22:50:32 result (terminal): [99 chars]
+  - 22:50:32 result (search_files): [90 chars]
+- 22:54:28 **model writes** (tool_calls) [79 chars]
+- 22:54:28 **call** read_file {path: desktop/cleaning/models.py}  ← the same call, time 2
+- 22:54:28 **call** read_file {path: desktop/cleaning/store.py}  ← the same call, time 2
+  - 22:54:28 result (read_file): [70 chars]
+  - 22:54:28 result (read_file): [76 lines, 2582 bytes]
+- 22:55:17 **call** read_file {path: desktop/cleaning/timezone_util.py}  ← the same call, time 2
+- 22:55:17 **call** read_file {path: desktop/cleaning/errors.py}  ← the same call, time 2
+- 22:55:17 **call** read_file {path: desktop/tests/conftest.py}  ← the same call, time 2
+  - 22:55:17 result (read_file): [135 lines, 4800 bytes]
+  - 22:55:17 result (read_file): [48 lines, 1418 bytes]
+  - 22:55:17 result (read_file): [40 lines, 1039 bytes]
+- 22:55:44 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/mobile-logic.md}  ← the same call, time 2
+- 22:55:44 **call** read_file {path: specs/001-cleaning-scheduling-billing/plan.md}  ← the same call, time 2
+  - 22:55:44 result (read_file): [87 lines, 4624 bytes]
+  - 22:55:44 result (read_file): [130 lines, 7149 bytes]
+- 22:56:16 **call** read_file {path: desktop/tests/test_models.py}  ← the same call, time 2
+- 22:56:16 **call** read_file {path: desktop/tests/test_store.py}  ← the same call, time 2
+  - 22:56:16 result (read_file): [177 lines, 5347 bytes]
+  - 22:56:16 result (read_file): [117 lines, 3817 bytes]
+- 22:56:51 **call** read_file {path: specs/001-cleaning-scheduling-billing/checklists/requirements.md}  ← the same call, time 2
+- 22:56:51 **call** read_file {path: /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app.reply.txt}  ← the same call, time 2
+  - 22:56:51 result (read_file): [41 lines, 1734 bytes]
+  - 22:56:51 result (read_file): [0 lines, 0 bytes, error]
+- 23:01:02 **call** read_file {path: desktop/tests/test_timezone_util.py}
+- 23:01:02 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; ls desktop/tests/ &amp;&amp; python3 -m pytest desktop/tests -q 2&gt;&amp;1 | tail -5}
+  - 23:01:02 result (read_file): [109 lines, 3855 bytes]
+  - 23:01:03 result (terminal): exit 0, 12 lines out
+- 23:01:31 **call** patch {path: desktop/cleaning/timezone_util.py, old_string: [272 chars], new_string: [578 chars]}
+  - 23:01:33 result (patch): [? lines, ? bytes]
+- 23:04:30 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q}
+  - 23:04:31 result (terminal): exit 0, 2 lines out
+- 23:04:43 **model writes** (tool_calls) [70 chars]
+- 23:04:43 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git add -A &amp;&amp; git commit -q -m &quot;Fix nonexistent-wall-time detection in timezone_util (round-trip via UTC) The r … [549 chars]}
+  - 23:04:43 result (terminal): exit 0, 1 lines out
+- 23:04:46 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}  ← the same call, time 2
+  - 23:04:46 result (read_file): [6065 chars]
+- 23:07:23 **call** write_file {content: [9327 chars], path: desktop/cleaning/scheduling.py}
+  - 23:07:23 result (write_file): [? lines, ? bytes]
+- 23:07:27 **call** read_file {path: desktop/cleaning/models.py}  ← the same call, time 3
+  - 23:07:27 result (read_file): [16127 chars]
+- 23:08:09 **call** patch {new_string: [153 chars], old_string: [134 chars], path: desktop/cleaning/scheduling.py}
+  - 23:08:10 result (patch): [? lines, ? bytes]
+- 23:08:21 **call** patch {new_string: [178 chars], old_string: [153 chars], path: desktop/cleaning/scheduling.py}
+  - 23:08:21 result (patch): [? lines, ? bytes]
+- 23:08:47 **call** patch {new_string: [598 chars], old_string: [575 chars], path: desktop/cleaning/scheduling.py}
+  - 23:08:47 result (patch): [? lines, ? bytes]
+- 23:09:01 **call** patch {new_string: [206 chars], old_string: [230 chars], path: desktop/cleaning/scheduling.py}
+  - 23:09:02 result (patch): [? lines, ? bytes]
+- 23:09:34 **call** patch {new_string: [917 chars], old_string: [899 chars], path: desktop/cleaning/scheduling.py}
+  - 23:09:34 result (patch): [? lines, ? bytes]
+- 23:13:26 **call** write_file {content: [9406 chars], path: desktop/tests/test_scheduling.py}
+  - 23:13:26 result (write_file): [? lines, ? bytes]
+- 23:13:32 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q}  ← the same call, time 2
+  - 23:13:33 result (terminal): exit 1, 70 lines out
+- 23:14:11 **call** patch {new_string: [897 chars], old_string: [651 chars], path: desktop/cleaning/scheduling.py}
+  - 23:14:11 result (patch): [? lines, ? bytes]
+- 23:14:46 **call** patch {new_string: [1417 chars], old_string: [299 chars], path: desktop/cleaning/scheduling.py}
+  - 23:14:47 result (patch): [? lines, ? bytes]
+- 23:16:07 **call** patch {new_string: [2303 chars], old_string: [2220 chars], path: desktop/cleaning/scheduling.py}
+  - 23:16:07 result (patch): [? lines, ? bytes]
+- 23:17:09 **call** patch {new_string: [1749 chars], old_string: [1611 chars], path: desktop/cleaning/scheduling.py}
+  - 23:17:09 result (patch): [? lines, ? bytes]
+- 23:17:55 **call** patch {new_string: [883 chars], old_string: [657 chars], path: desktop/tests/test_scheduling.py}
+  - 23:17:55 result (patch): [? lines, ? bytes]
+- 23:18:45 **call** patch {new_string: [964 chars], old_string: [460 chars], path: desktop/tests/test_scheduling.py}
+  - 23:18:45 result (patch): [? lines, ? bytes]
+- 23:19:09 **call** patch {new_string: [344 chars], old_string: [292 chars], path: desktop/tests/test_scheduling.py}
+  - 23:19:09 result (patch): [? lines, ? bytes]
+- 23:19:17 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q}  ← the same call, time 3
+  - 23:19:18 result (terminal): exit 1, 70 lines out
+- 23:19:54 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -c &quot; import sys sys.path.insert(0, &#x27;desktop&#x27;) import datetime as dt from cleaning import scheduling as  … [997 chars]}
+  - 23:19:54 result (terminal): exit 0, 2 lines out
+- 23:20:03 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; grep -n &quot;def cleaner_free_for_part&quot; desktop/cleaning/scheduling.py &amp;&amp; grep -n &quot;def find_slot&quot; desktop/cleaning/ … [294 chars]}
+  - 23:20:03 result (terminal): exit 0, 8 lines out
+- 23:20:33 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; find desktop -name __pycache__ -type d -exec rm -rf {} + 2&gt;/dev/null; python3 -c &quot; import sys sys.path.insert(0 … [1109 chars]}
+  - 23:20:33 result (terminal): exit 0, 3 lines out
+- 23:20:38 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q}  ← the same call, time 4
+  - 23:20:39 result (terminal): exit 1, 70 lines out
+- 23:20:57 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q -s 2&gt;&amp;1 | head - … [272 chars]}
+  - 23:20:58 result (terminal): exit 0, 28 lines out
+- 23:23:18 **prompt** [12706 chars]
+- 23:04:30 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q}  ← the same call, time 5
+  - 23:04:31 result (terminal): exit 0, 2 lines out
+- 23:04:43 **model writes** (tool_calls) [70 chars]
+- 23:04:43 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; git add -A &amp;&amp; git commit -q -m &quot;Fix nonexistent-wall-time detection in timezone_util (round-trip via UTC) The r … [549 chars]}  ← the same call, time 2
+  - 23:04:43 result (terminal): exit 0, 1 lines out
+- 23:04:46 **call** read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}  ← the same call, time 3
+  - 23:04:46 result (read_file): [105 chars]
+- 23:07:23 **call** write_file {content: [9327 chars], path: desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 23:07:23 result (write_file): [64 chars]
+- 23:07:27 **call** read_file {path: desktop/cleaning/models.py}  ← the same call, time 4
+  - 23:07:27 result (read_file): [70 chars]
+- 23:08:09 **call** patch {new_string: [153 chars], old_string: [134 chars], path: desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 23:08:10 result (patch): [70 chars]
+- 23:08:21 **call** patch {new_string: [178 chars], old_string: [153 chars], path: desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 23:08:21 result (patch): [68 chars]
+- 23:08:47 **call** patch {new_string: [598 chars], old_string: [575 chars], path: desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 23:08:47 result (patch): [70 chars]
+- 23:09:01 **call** patch {new_string: [206 chars], old_string: [230 chars], path: desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 23:09:02 result (patch): [70 chars]
+- 23:09:34 **call** patch {new_string: [917 chars], old_string: [899 chars], path: desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 23:09:34 result (patch): [70 chars]
+- 23:13:26 **call** write_file {content: [9406 chars], path: desktop/tests/test_scheduling.py}  ← the same call, time 2
+  - 23:13:26 result (write_file): [66 chars]
+- 23:13:32 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q}  ← the same call, time 6
+  - 23:13:33 result (terminal): [123 chars]
+- 23:14:11 **call** patch {new_string: [897 chars], old_string: [651 chars], path: desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 23:14:11 result (patch): [70 chars]
+- 23:14:46 **call** patch {new_string: [1417 chars], old_string: [299 chars], path: desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 23:14:47 result (patch): [156 chars]
+- 23:16:07 **call** patch {new_string: [2303 chars], old_string: [2220 chars], path: desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 23:16:07 result (patch): [156 chars]
+- 23:17:09 **call** patch {new_string: [1749 chars], old_string: [1611 chars], path: desktop/cleaning/scheduling.py}  ← the same call, time 2
+  - 23:17:09 result (patch): [156 chars]
+- 23:17:55 **call** patch {new_string: [883 chars], old_string: [657 chars], path: desktop/tests/test_scheduling.py}  ← the same call, time 2
+  - 23:17:55 result (patch): [156 chars]
+- 23:18:45 **call** patch {new_string: [964 chars], old_string: [460 chars], path: desktop/tests/test_scheduling.py}  ← the same call, time 2
+  - 23:18:45 result (patch): [156 chars]
+- 23:19:09 **call** patch {new_string: [344 chars], old_string: [292 chars], path: desktop/tests/test_scheduling.py}  ← the same call, time 2
+  - 23:19:09 result (patch): [? lines, ? bytes]
+- 23:19:17 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q}  ← the same call, time 7
+  - 23:19:18 result (terminal): exit 1, 70 lines out
+- 23:19:54 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -c &quot; import sys sys.path.insert(0, &#x27;desktop&#x27;) import datetime as dt from cleaning import scheduling as  … [997 chars]}  ← the same call, time 2
+  - 23:19:54 result (terminal): exit 0, 2 lines out
+- 23:20:03 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; grep -n &quot;def cleaner_free_for_part&quot; desktop/cleaning/scheduling.py &amp;&amp; grep -n &quot;def find_slot&quot; desktop/cleaning/ … [294 chars]}  ← the same call, time 2
+  - 23:20:03 result (terminal): exit 0, 8 lines out
+- 23:20:33 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; find desktop -name __pycache__ -type d -exec rm -rf {} + 2&gt;/dev/null; python3 -c &quot; import sys sys.path.insert(0 … [1109 chars]}  ← the same call, time 2
+  - 23:20:33 result (terminal): exit 0, 3 lines out
+- 23:20:38 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q}  ← the same call, time 8
+  - 23:20:39 result (terminal): exit 1, 70 lines out
+- 23:20:57 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q -s 2&gt;&amp;1 | head - … [272 chars]}  ← the same call, time 2
+  - 23:20:58 result (terminal): exit 0, 28 lines out
+- 23:26:40 **call** read_file {limit: 100, offset: 100, path: desktop/cleaning/scheduling.py}
+  - 23:26:40 result (read_file): [291 lines, 10981 bytes]
+- 23:26:52 **call** read_file {path: desktop/tests/conftest.py}  ← the same call, time 3
+  - 23:26:52 result (read_file): [1548 chars]
+- 23:26:57 **call** read_file {path: desktop/cleaning/timezone_util.py}  ← the same call, time 3
+  - 23:26:57 result (read_file): [141 lines, 5108 bytes]
+- 23:27:18 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py -q --tb=short 2&gt;&amp;1 | grep -E &quot;^(FAILED|PASSED|desktop)&quot; | he … [263 chars]}
+  - 23:27:19 result (terminal): exit 0, 12 lines out
+- 23:27:27 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; find . -name __pycache__ -type d -exec rm -rf {} + 2&gt;/dev/null; python3 -m pytest desktop/tests -q}
+  - 23:27:28 result (terminal): exit 1, 70 lines out
+- 23:27:43 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; find . -name &quot;*.pyc&quot; -delete 2&gt;/dev/null; find . -name __pycache__ -type d -exec rm -rf {} + 2&gt;/dev/null; pytho … [248 chars]}
+  - 23:27:44 result (terminal): exit 1, 70 lines out
+- 23:27:59 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -c &quot; import sys sys.path.insert(0, &#x27;desktop&#x27;) import cleaning.scheduling as sch import inspect src = in … [250 chars]}
+  - 23:28:00 result (terminal): exit 0, 45 lines out
+- 23:28:28 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -c &quot; import sys sys.path.insert(0, &#x27;desktop&#x27;) import datetime as dt from cleaning import scheduling as  … [1039 chars]}
+  - 23:28:28 result (terminal): exit 0, 3 lines out
+- 23:28:35 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [209 chars]}
+  - 23:28:36 result (terminal): exit 0, 22 lines out
+- 23:28:46 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [231 chars]}
+  - 23:28:47 result (terminal): exit 1, 0 lines out
+- 23:28:54 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [236 chars]}
+  - 23:28:55 result (terminal): exit 1, 0 lines out
+- 23:29:01 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [221 chars]}
+  - 23:29:02 result (terminal): [594 chars]
+- 23:29:07 **call** read_file {limit: 30, offset: 1, path: desktop/tests/test_scheduling.py}
+  - 23:29:07 result (read_file): [271 lines, 10188 bytes]
+- 23:29:16 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [221 chars]}  ← the same call, time 2
+  - 23:29:16 result (terminal): [594 chars]
+- 23:29:24 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [226 chars]}
+  - 23:29:25 result (terminal): [594 chars]
+- 23:29:33 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [226 chars]}  ← the same call, time 2
+  - 23:29:33 result (terminal): [314 chars]
+- 23:29:41 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [226 chars]}  ← the same call, time 3
+  - 23:29:41 result (terminal): [527 chars]
+- 23:29:49 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [226 chars]}  ← the same call, time 4
+  - 23:29:50 result (terminal): [527 chars]
+- 23:29:57 **call** terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [226 chars]}  ← the same call, time 5
+  - 23:29:58 result (terminal): [769 chars]
+- 23:29:58 **model writes** (-) [217 chars]
+
+## Summary
+
+- Model turns 91, tool calls 110, distinct calls 60
+- The same call 3 times: read_file {path: specs/001-cleaning-scheduling-billing/contracts/desktop-api.md}
+- The same call 4 times: read_file {path: desktop/cleaning/models.py}
+- The same call 3 times: read_file {path: desktop/cleaning/timezone_util.py}
+- The same call 3 times: read_file {path: desktop/tests/conftest.py}
+- The same call 8 times: terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests -q}
+- The same call 5 times: terminal {command: cd /Users/sherlock/workspaces/tests/2026-11-models/round4-a/test2-q27-4-python-r1/app &amp;&amp; python3 -m pytest desktop/tests/test_scheduling.py::test_find_slot_1245_rejected_by_spacing -q --tb=long 2&gt;&amp;1 | … [226 chars]}
+- The session&#x27;s last entry: the model writing text
+
+## The runner&#x27;s watch (one line each 30 s), last 60 lines
+
+```
+22:50:19  start: prompt 518 bytes, limit 604800s
+…
+23:00:53  +634s  files same (last change 634s ago)  request open yes (last 0s ago)
+23:01:24  +664s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:01:54  +695s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:02:24  +725s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:02:54  +755s  files same (last change 60s ago)  request open yes (last 0s ago)
+23:03:24  +785s  files same (last change 90s ago)  request open yes (last 0s ago)
+23:03:55  +815s  files same (last change 120s ago)  request open yes (last 0s ago)
+23:04:25  +846s  files same (last change 151s ago)  request open yes (last 0s ago)
+23:04:55  +876s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:05:25  +906s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:05:55  +936s  files same (last change 60s ago)  request open yes (last 0s ago)
+23:06:26  +966s  files same (last change 90s ago)  request open yes (last 0s ago)
+23:06:56  +997s  files same (last change 121s ago)  request open yes (last 0s ago)
+23:07:26  +1027s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:07:56  +1057s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:08:26  +1087s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:08:57  +1117s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:09:27  +1148s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:09:57  +1178s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:10:27  +1208s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:10:57  +1238s  files same (last change 60s ago)  request open yes (last 0s ago)
+23:11:28  +1268s  files same (last change 90s ago)  request open yes (last 0s ago)
+23:11:58  +1299s  files same (last change 121s ago)  request open yes (last 0s ago)
+23:12:28  +1329s  files same (last change 151s ago)  request open yes (last 0s ago)
+23:12:58  +1359s  files same (last change 181s ago)  request open yes (last 0s ago)
+23:13:28  +1389s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:13:59  +1419s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:14:29  +1450s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:14:59  +1480s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:15:29  +1510s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:15:59  +1540s  files same (last change 60s ago)  request open yes (last 0s ago)
+23:16:30  +1570s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:17:00  +1601s  files same (last change 31s ago)  request open yes (last 0s ago)
+23:17:30  +1631s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:18:00  +1661s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:18:30  +1691s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:19:01  +1721s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:19:31  +1752s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:20:01  +1782s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:20:31  +1812s  files same (last change 60s ago)  request open yes (last 0s ago)
+23:21:01  +1842s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:21:32  +1872s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:22:02  +1903s  files same (last change 61s ago)  request open yes (last 0s ago)
+23:22:32  +1933s  files same (last change 91s ago)  request open yes (last 0s ago)
+23:23:02  +1963s  files same (last change 121s ago)  request open yes (last 0s ago)
+23:23:32  +1993s  files same (last change 151s ago)  request open yes (last 0s ago)
+23:24:03  +2023s  files same (last change 181s ago)  request open yes (last 0s ago)
+23:24:33  +2054s  files same (last change 212s ago)  request open yes (last 0s ago)
+23:25:03  +2084s  files same (last change 242s ago)  request open yes (last 0s ago)
+23:25:33  +2114s  files same (last change 272s ago)  request open yes (last 0s ago)
+23:26:03  +2144s  files same (last change 302s ago)  request open yes (last 0s ago)
+23:26:34  +2174s  files same (last change 332s ago)  request open yes (last 0s ago)
+23:27:04  +2205s  files same (last change 363s ago)  request open yes (last 0s ago)
+23:27:34  +2235s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:28:04  +2265s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:28:34  +2295s  files same (last change 30s ago)  request open yes (last 0s ago)
+23:29:05  +2325s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:29:35  +2356s  files changed (last change 0s ago)  request open yes (last 0s ago)
+23:30:05  +2386s  Hermes exited on its own, status 0 -&gt; done
+```
+
+## The check&#x27;s output, last 60 lines
+
+```
+passed 0 of 11: 11 errors in 0.14s; the model left it uncommitted
+```
+
+## The check&#x27;s errors, last 60 lines
+
+```
+path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.0p8P8B/t/test_extension_rebooks_at_hour0/data.json&#x27;)
+
+    def __init__(self, path):
+&gt;       from app import create_app
+E       ModuleNotFoundError: No module named &#x27;app&#x27;
+
+conftest.py:14: ModuleNotFoundError
+_______ ERROR at setup of test_coworkers_later_job_moves_with_extension ________
+
+tmp_path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.0p8P8B/t/test_coworkers_later_job_moves0&#x27;)
+
+    @pytest.fixture
+    def probe(tmp_path):
+&gt;       return Probe(tmp_path / &#x27;data.json&#x27;)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+conftest.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;conftest.Probe object at 0x1096c5550&gt;
+path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.0p8P8B/t/test_coworkers_later_job_moves0/data.json&#x27;)
+
+    def __init__(self, path):
+&gt;       from app import create_app
+E       ModuleNotFoundError: No module named &#x27;app&#x27;
+
+conftest.py:14: ModuleNotFoundError
+______________ ERROR at setup of test_extension_can_pass_workday _______________
+
+tmp_path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.0p8P8B/t/test_extension_can_pass_workda0&#x27;)
+
+    @pytest.fixture
+    def probe(tmp_path):
+&gt;       return Probe(tmp_path / &#x27;data.json&#x27;)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+conftest.py:56: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;conftest.Probe object at 0x109632990&gt;
+path = PosixPath(&#x27;/private/var/folders/9y/jxqgyvn90x54n96y09th8bpc0000gr/T/check2.0p8P8B/t/test_extension_can_pass_workda0/data.json&#x27;)
+
+    def __init__(self, path):
+&gt;       from app import create_app
+E       ModuleNotFoundError: No module named &#x27;app&#x27;
+
+conftest.py:14: ModuleNotFoundError
+=========================== short test summary info ============================
+ERROR test_m1.py::test_booking_grid_spacing_and_refusals - ModuleNotFoundErro...
+ERROR test_m1.py::test_minutes_weekends_and_split_replacement - ModuleNotFoun...
+ERROR test_m1.py::test_later_part_can_choose_another_free_cleaner - ModuleNot...
+ERROR test_m1.py::test_later_part_prefers_original_crew_but_replaces_unavailable_member
+ERROR test_m1.py::test_sixty_minutes_is_strict_at_the_boundary - ModuleNotFou...
+ERROR test_m1.py::test_horizon_is_atomic - ModuleNotFoundError: No module nam...
+ERROR test_m2.py::test_taps_invoice_exact_payment - ModuleNotFoundError: No m...
+ERROR test_m2.py::test_every_split_assignment_must_depart - ModuleNotFoundErr...
+ERROR test_m3.py::test_extension_rebooks_at_hour_floor - ModuleNotFoundError:...
+ERROR test_m3.py::test_coworkers_later_job_moves_with_extension - ModuleNotFo...
+ERROR test_m3.py::test_extension_can_pass_workday - ModuleNotFoundError: No m...
+11 errors in 0.14s
+```
+
+## The repo
+
+```
+branch: main
+* a45c761 2 seconds ago
+* 64813bf 25 minutes ago
+* 87c547c 53 minutes ago
+* 6d4c567 87 minutes ago
+* 95ad57a 2 hours ago
+uncommitted: none
+```
+
+## The server
+
+- Sherlock&#x27;s record of the model served: q27-4
+</body>
