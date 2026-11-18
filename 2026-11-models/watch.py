@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Watches a round's runner log on Sherlock, independent of any session, and starts Claude
-unattended (watch-brief.md) on every failure, timeout, machine failure and lane end:
+"""Watches a round's runner log on Sherlock, independent of any session, and starts Claude (Codex
+once 10% of Claude's weekly plan is left) unattended (watch-brief.md) on every failure, timeout, machine failure and lane end:
     nohup python3 watch.py <round> >> results/<round>/watch.log 2>&1 &
 One Claude at a time, 45 min each (killed at 50); events arriving meanwhile go to the next.
 Ends after the lane has ended and Claude has handled its last events."""
@@ -34,13 +34,31 @@ def runner_alive():
         return False
 
 
+def claude_used():
+    """(week %, session %) of the owner's Claude plan used, by Claude Code's /usage; None unread"""
+    try:
+        u = subprocess.run(["claude", "-p", "/usage"], capture_output=True, text=True, timeout=120,
+                           stdin=subprocess.DEVNULL).stdout
+        return (int(re.search(r"Current week[^:]*:\s*(\d+)% used", u).group(1)),
+                int(re.search(r"Current session:\s*(\d+)% used", u).group(1)))
+    except (OSError, subprocess.SubprocessError, AttributeError):
+        return None
+
+
 def claude(events):
     prompt = ((T / "watch-brief.md").read_text() + f"\nRound: {ROUND}. Events:\n" + "\n".join(events))
-    say(f"claude on {len(events)} event(s): {events[0][:160]}")
+    # Claude until 10% of the week's plan is left (owner, 17 Nov) or the 5-hour session is spent;
+    # then Codex, on the owner's ChatGPT plan, does the same work
+    used = claude_used()
+    codex = used is not None and (used[0] >= 90 or used[1] >= 95)
+    who = "codex" if codex else "claude"
+    say(f"{who} (Claude used: {used}) on {len(events)} event(s): {events[0][:160]}")
     out = (RES / "watch-claude.log").open("a")
-    out.write(f"\n===== {time.strftime('%F %T')}\n")
+    out.write(f"\n===== {time.strftime('%F %T')} {who}\n")
     out.flush()
-    return subprocess.Popen(["claude", "-p", prompt, "--model", "sonnet", "--dangerously-skip-permissions"], cwd=T,
+    cmd = (["codex", "exec", "--dangerously-bypass-approvals-and-sandbox", prompt] if codex else
+           ["claude", "-p", prompt, "--model", "sonnet", "--dangerously-skip-permissions"])
+    return subprocess.Popen(cmd, cwd=T,
                             stdin=subprocess.DEVNULL, stdout=out, stderr=subprocess.STDOUT,
                             start_new_session=True), time.time()
 

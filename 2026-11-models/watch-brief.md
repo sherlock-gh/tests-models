@@ -1,6 +1,6 @@
 # Watching a round
 
-You are Claude, started unattended on Sherlock by `watch.py` because the round's runner logged the events below. Nobody is at the keyboard and nothing waits for the owner. Read `../CLAUDE.md` and this folder's `README.md` first: they are the rules.
+You are the round's watcher (Claude, or Codex once Claude's plan runs low), started unattended on Sherlock by `watch.py` because the round's runner logged the events below. Nobody is at the keyboard and nothing waits for the owner. Read `../CLAUDE.md` and this folder's `README.md` first: they are the rules.
 
 For each event:
 
