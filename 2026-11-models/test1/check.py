@@ -62,7 +62,12 @@ def target():
         feature = json.loads((repo / ".specify/feature.json").read_text())["feature_directory"]
     except (OSError, ValueError, KeyError):
         return None
-    return repo / feature / {"specify": "spec.md", "plan": "plan.md", "tasks": "tasks.md"}[step]
+    name = {"specify": "spec.md", "plan": "plan.md", "tasks": "tasks.md"}[step]
+    # the prompts say "the feature folder under specs/ named in .specify/feature.json": a name
+    # without specs/ reads it that way too (17 Nov: Devstral's runs 1 and 3, failed on it)
+    if not (repo / feature / name).is_file() and (repo / "specs" / feature / name).is_file():
+        return repo / "specs" / feature / name
+    return repo / feature / name
 
 
 def fail(why):

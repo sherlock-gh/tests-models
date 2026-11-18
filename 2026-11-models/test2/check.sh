@@ -5,7 +5,7 @@
 # place of the build's own tests, from a fresh clone (no build cache). Prints one line, the score
 # first: "passed <p> of <n>", n being every hidden test so far (work that doesn't build passes 0).
 # Exit 0: all pass; 1: some fail; 3: the check itself couldn't run, which stops the round.
-# The tests and build: 20 min, then the work counts as hanging (0 passed).
+# The tests and builds: 20 min, then the work counts as hanging (0 passed).
 set -u
 REPO=$1 LNG=$2 N=$3
 PLAN=${4:?usage: check.sh <repo> <python|swift> <milestone> <plan>}
@@ -37,13 +37,25 @@ else
     n=$(for i in $(seq "$N"); do cat "$H/M$i.swift"; done | grep -cE '^[[:space:]]*@Test')
     [ "$n" -gt 0 ] || { echo "no hidden tests in $H"; exit 3; }
     [ -f "$SWIFT_PKG/Package.swift" ] || { echo "passed 0 of $n: no $SWIFT_PKG/Package.swift"; exit 1; }
-    rm -rf "$SWIFT_PKG/.build" "$SWIFT_PKG/.swiftpm" "$SWIFT_PKG/$SWIFT_TESTS" && mkdir -p "$SWIFT_PKG/$SWIFT_TESTS" || exit 3
-    for i in $(seq "$N"); do cp "$H/M$i.swift" "$SWIFT_PKG/$SWIFT_TESTS/" || exit 3; done
-    (cd "$SWIFT_PKG" && capped 1200 swift test --disable-sandbox) > "$W/out" 2>&1; rc=$?
-    [ $rc = 142 ] && { echo "passed 0 of $n: the build and tests did not finish in 20 min"; exit 1; }
-    { [ $rc = 0 ] && ! grep -qE '^✘|error:' "$W/out"; } || grep -E '^✘|error:|failed' "$W/out" | tail -60 >&2
-    # p: Swift Testing's line for each test that passed (not its suites' or the run's summary)
-    p=$(grep -E '^✔ Test ' "$W/out" | grep -vcE '^✔ Test run with') || true
-    echo "passed $p of $n: $(grep -E 'Test run with [0-9]+ tests' "$W/out" | tail -1 | grep . || grep -m1 'error:' "$W/out" | cut -c1-200 || echo "build failed")"
-    case $rc in 0) exit 0 ;; 1) exit 1 ;; *) exit 3 ;; esac   # 1: the build or a test failed
+    # Each milestone's tests build on their own with M1.swift (its helpers), so a symbol one milestone
+    # lacks fails that milestone's tests, not every milestone's (17 Nov: one build of all of them
+    # scored 0 for a single missing function). The first build takes minutes; the rest reuse it.
+    rm -rf "$SWIFT_PKG/.build" "$SWIFT_PKG/.swiftpm" || exit 3
+    p=0 p1=0 rc=0 r=0 sum="" t0=$(date +%s)
+    for i in $(seq "$N"); do
+        rm -rf "${SWIFT_PKG:?}/$SWIFT_TESTS" && mkdir -p "$SWIFT_PKG/$SWIFT_TESTS" && cp "$H/M1.swift" "$SWIFT_PKG/$SWIFT_TESTS/" || exit 3
+        if [ "$i" != 1 ]; then cp "$H/M$i.swift" "$SWIFT_PKG/$SWIFT_TESTS/" || exit 3; fi
+        left=$((1200 - $(date +%s) + t0)); [ $left -gt 0 ] || { r=142; break; }
+        (cd "$SWIFT_PKG" && capped $left swift test --disable-sandbox) > "$W/out$i" 2>&1; r=$?
+        [ $r = 142 ] && break
+        if [ $r != 0 ] || grep -qE '^✘|error:' "$W/out$i"; then rc=1; { echo "-- M$i"; grep -E '^✘|error:|failed' "$W/out$i" | tail -30; } >&2; fi
+        [ $r -le 1 ] || { rc=$r; break; }
+        # Swift Testing's line for each test that passed (not its suites' or the run's summary)
+        k=$(grep -E '^✔ Test ' "$W/out$i" | grep -vcE '^✔ Test run with') || true
+        if [ "$i" = 1 ]; then p1=$k p=$k; elif [ $((k - p1)) -gt 0 ]; then p=$((p + k - p1)); fi
+        sum="$sum M$i $(grep -oE 'Test run with [0-9]+ tests (passed|failed)' "$W/out$i" | tail -1 | awk '{print $NF}' | grep . || echo "did not build"),"
+    done
+    [ $r = 142 ] && { echo "passed $p of $n: the builds and tests did not finish in 20 min"; exit 1; }
+    echo "passed $p of $n:${sum%,}"
+    case $rc in 0) exit 0 ;; 1) exit 1 ;; *) exit 3 ;; esac   # 1: a build or a test failed
 fi

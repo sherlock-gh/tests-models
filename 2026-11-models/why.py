@@ -50,7 +50,10 @@ def usage():
 def session(sid):
     """(session id, rows, problem) of this job's Hermes session."""
     try:
-        con = sqlite3.connect(f"file:{HERMES / 'state.db'}?mode=ro", uri=True)
+        # read-only mode fails on Hermes's WAL database while it writes ("unable to open database
+        # file", most of round 4's why files): a plain connection that only queries
+        con = sqlite3.connect(HERMES / 'state.db', timeout=30)
+        con.execute("pragma query_only = 1")
         if not sid:   # a job ended by the runner writes no usage file: find it by its prompt
             try:
                 prompt = Path(prompt_file).read_text().strip()

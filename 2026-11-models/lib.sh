@@ -84,6 +84,25 @@ asking() { netstat -an -p tcp | grep -qE "${SERVER//./\\.}\\.8080 +ESTABLISHED";
 
 stop_jobs() { local p="$ROOT/${1:-}"; pkill -f "[${p:0:1}]${p:1}"; true; }   # this lane's only
 
+# Hermes's memory and skills persist across sessions and every job reads them, so a job's writes
+# would coach every later run (Flash-Next's notes on this very task, from round 3 on, and its
+# speckit skill from round 2: 17 Nov). Each job starts from the state before it and its writes
+# are undone after it, noted in its trace.
+HSTATE=(memories skills)
+hermes_keep() { tar -C ~/.hermes --exclude '.*' -cf "$1" "${HSTATE[@]}" 2>/dev/null; }
+hermes_undo() {  # snapshot trace: put back what the job changed
+    local now="${1%.tar}.after.tar"
+    hermes_keep "$now"
+    if ! cmp -s <(tar -tvf "$1" 2>/dev/null | awk '{print $5, $NF}' | sort; tar -xOf "$1" 2>/dev/null | shasum) \
+                <(tar -tvf "$now" 2>/dev/null | awk '{print $5, $NF}' | sort; tar -xOf "$now" 2>/dev/null | shasum); then
+        tar -tf "$now" | grep -v '/$' | grep -vxFf <(tar -tf "$1") | while read -r f; do rm -f ~/.hermes/"$f"; done
+        tar -C ~/.hermes -xf "$1"
+        find ~/.hermes/skills -mindepth 1 -type d -empty -delete 2>/dev/null
+        echo "$(date +%T)  the job wrote Hermes's memory or skills: undone" >> "$2"
+    fi
+    rm -f "$1" "$now"
+}
+
 job() {  # repo label limit prompt-file: one Hermes job, fenced to the repo and watched. Sets END:
     # done | timeout | server (not answering) | hang (no request, no Hermes message, no file change, 5 min) |
     # crash (Hermes says the turn failed, or exited nonzero without recording a completed turn) |
@@ -98,6 +117,7 @@ job() {  # repo label limit prompt-file: one Hermes job, fenced to the repo and 
     rm -f "$u".json "$u".check "$u".check-err     # a redone label must not inherit an earlier attempt's files
     echo "$(date +%T)  start: prompt $(wc -c < "$4" | tr -d ' ') bytes, limit ${limit}s" > "$tr"
     st=$(repo_state "$repo" 2>/dev/null); lc=$start; lr=$start
+    hermes_keep "$u.hermes.tar"
     CUSTOM_BASE_URL=$URL zsh -lc 'hermes-in "$1" --provider custom -m "$4" -z "$(cat "$2")" --usage-file "$3"' job ~/"$repo" "$4" "$USAGE/$label".json "$HMODEL" \
         >> ~/"$repo".reply.txt 2>&1 < /dev/null &
     pid=$!
@@ -111,6 +131,11 @@ job() {  # repo label limit prompt-file: one Hermes job, fenced to the repo and 
         ak=no; asking && { lr=$now; ak=yes; }
         hm=$(sqlite3 -readonly "$HOME/.hermes/state.db" 'select cast(max(timestamp) as int) from messages' 2>/dev/null)
         [ -n "$hm" ] && [ "$hm" -gt "$lr" ] && [ "$hm" -ge "$start" ] && { lr=$hm; ak="${ak/no/msg}"; }
+        # A tool the model called still running (its own test run, with its own timeout) is work, not a
+        # hang: 17 Nov, q27-4's pytest with a 10-min timeout was ended as a hang at 5 min. The
+        # 2 h without a file change (QUIET) still bounds it.
+        [ "$(sqlite3 -readonly "$HOME/.hermes/state.db" "select role='assistant' and tool_calls is not null from messages where timestamp >= $start order by id desc limit 1" 2>/dev/null)" = 1 ] &&
+            { lr=$now; ak="${ak/no/tool}"; }
         if ! server_ok; then END=server              # an outage is the machine's, even at the limit
         elif [ $((now - start)) -ge "$limit" ] || [ "$now" -ge "${DEADLINE:-9999999999}" ]; then END=timeout
         elif [ $((now - lc)) -ge 300 ] && [ $((now - lr)) -ge 300 ]; then END=hang
@@ -121,6 +146,7 @@ job() {  # repo label limit prompt-file: one Hermes job, fenced to the repo and 
         [ -n "$END" ] && { stop_jobs "${repo#"$ROOT"/}"; wait "$pid" 2>/dev/null; break; }
     done
     wait "$pid" 2>/dev/null; rc=$?
+    hermes_undo "$u.hermes.tar" "$tr"
     [ -n "$END" ] && return
     END=done
     # usage: 0 a completed turn, 1 a failed one, 2 none or unreadable
