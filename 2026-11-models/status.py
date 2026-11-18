@@ -51,7 +51,8 @@ class Lane:
         self.dir = d
         self.gate = {r[0]: r for r in tsv(d / "test0.tsv")}
         self.t1 = {(r[0], r[1]): (r[2], r[3] if len(r) > 3 else "") for r in tsv(d / "test1.tsv")}
-        self.t2 = {(r[0], r[1], r[2]): (r[3], r[4] if len(r) > 4 else "") for r in tsv(d / "test2.tsv")}
+        self.t2 = {(r[0], r[1], r[2]): (r[3], r[4] if len(r) > 4 else "", r[5] if len(r) > 5 else "")
+                   for r in tsv(d / "test2.tsv")}
         self.ms = {}
         for l in read(d / "runs.jsonl").splitlines():
             try:
@@ -126,6 +127,8 @@ def progress(lane, rid, test):
         ms = lane.ms.get(rid, [])
         steps = T / "test2" / "plans" / os.environ.get("PLAN", "") / "steps.tsv"
         total = sum(1 for l in read(steps).splitlines() if l.split("\t")[0] == rid.split("-")[-2]) or "?"
+    if test != "1":   # a build runs every step: count the steps done
+        return len(ms), total
     return sum(1 for m in ms if m.get("outcome") == "pass"), total
 
 
@@ -141,6 +144,12 @@ def results_of(lane_name, test, lang):
 CARRIED = []   # the runs shown that an earlier round settled
 
 
+def score_of(text):
+    """'12 of 16' -> (12, 16)"""
+    m = re.match(r"(\d+) of (\d+)", text or "")
+    return (int(m.group(1)), int(m.group(2))) if m else (0, 0)
+
+
 def run_cell(name, test, lang, r, lane_name):
     res = results_of(lane_name, test, lang)
     lane = lanes.get(lane_name)
@@ -148,14 +157,19 @@ def run_cell(name, test, lang, r, lane_name):
     want = ["1", name, str(r)] if test == "1" else ["2", name, lang, str(r)]
     if lane and lane.now == want:
         ok, total = progress(lane, rid, test)
-        sub = f"{ok} of {total} steps passed"
+        word = "passed" if test == "1" else "done"
+        sub = f"{ok} of {total} steps {word}"
         if lane.trace and lane.trace[0].startswith(rid):
             step = lane.trace[0][len(rid) + 1:].rsplit("-", 1)[0]
-            sub = f"{step.replace('-', ' ')}, {mins(lane.trace[1])} in · {ok}/{total} passed"
+            sub = f"{step.replace('-', ' ')}, {mins(lane.trace[1])} in · {ok}/{total} {word}"
         return cell("run", "running", sub)
     got = res.get((name, str(r)))
+    if got and test != "1" and got[0] != "machine-failed" and len(got) > 2 and got[2]:
+        p, n = score_of(got[2])   # a build: its score, the hidden tests its last step passes
+        link = why_link(lane, rid) if lane else ""
+        return cell("ok" if p == n else "inc" if p == 0 else "part", f"{p} of {n}", "hidden tests passed", link)
     if got:
-        result, where = got
+        result, where = got[:2]
         old = test == "1" and carried.get((name, str(r))) == got and not (lane and (name, str(r)) in lane.t1)
         if old:
             CARRIED.append(rid)
@@ -264,6 +278,10 @@ for name, model, tests in models:
                        for (k, v), x in zip([(k, v) for k, v in results_of(lane_name, test, lang).items() if k[0] == name], got)]
             n = sum(1 for x in got if x == "complete")
             score = f"{n}/{len(got)}" if got else ""
+            if test != "1":   # builds: the mean share of hidden tests passed, and its range across runs
+                pcts = [100 * p // q for p, q in (score_of(v[2]) for k, v in results_of(lane_name, test, lang).items()
+                                                  if k[0] == name and len(v) > 2 and v[2]) if q]
+                score = (f"{sum(pcts) // len(pcts)}%" + (f" ({min(pcts)}–{max(pcts)})" if len(pcts) > 1 else "")) if pcts else ""
             where = PREV if not lane_name and got else ""   # one model host: only carried runs say where
             tds.append(f'<td class="score">{score}' + (f'<small>{html.escape(where)}</small>' if where else "") + '</td>')
         else:
@@ -419,6 +437,7 @@ td a:hover b {{ text-decoration:underline; }}
 td a b::after {{ content:" ›"; }}
 .ok {{ background:var(--ok); color:var(--okf); }} .bad {{ background:var(--bad); color:var(--badf); }}
 .inc {{ background:color-mix(in srgb, var(--bad) 30%, transparent); color:var(--badf); }}
+.part {{ background:color-mix(in srgb, var(--ok) 35%, transparent); color:var(--okf); }}
 .mach {{ background:var(--mach); color:var(--machf); }} .wait {{ background:var(--wait); color:var(--waitf); }}
 .run {{ background:var(--run); color:var(--runf); animation:pulse 2s ease-in-out infinite; }}
 .rank {{ display:inline-block; margin:0 0 4px; padding:2px 8px; border-radius:5px; font-size:16px; font-weight:700; color:#111; }}

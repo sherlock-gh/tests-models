@@ -18,8 +18,8 @@ The owner's model tests for his home lab: which local and cloud models, with whi
 
 ## What a test decides
 
-- Tests eliminate: a model failure at any milestone ends that run; pick from the survivors. Every surviving model does every run of every test, as runs disagree (a model failing run 1 has passed 2 and 3).
-- Completion first, then quality by a blind review of how helpful the work is. Speed only breaks ties; a difference within a model's own run-to-run spread is a tie.
+- A plan (test 1) is eliminated at its first failed milestone. A build (tests 2 and 3) runs every milestone and is scored by the hidden tests it passes, so models are ranked, not all zeroed. Every surviving model does every run of every test, as runs disagree (a model failing run 1 has passed 2 and 3).
+- Completion (a build's score) first, then quality by a blind review of how helpful the work is. Speed only breaks ties; a difference within a model's own run-to-run spread is a tie.
 - Drop a model on its failures' reasons, not their count. A zero is diagnosed before it rejects: if the test caused it, fix the test and rerun.
 - A test gives a defined problem, as a competent human would hand over. A model stalling on a missing input is a test fault.
 - Before a round, every check must pass known-good work and fail known-bad work (`validate.sh`).

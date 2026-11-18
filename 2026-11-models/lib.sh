@@ -183,7 +183,10 @@ PY
 # that would never end: owner, 14 Nov). The caller defines prompt_for <milestone> (the prompt, on stdout) and
 # check_for <milestone> (exit 0 = pass, 1 = the work fails; anything else is a fault in the
 # check, which stops the round; note on stdout). Sets RUN to complete | failed | machine-failed,
-# and WHERE to the last milestone.
+# and WHERE to the last milestone. With SCORED (test 2), every milestone runs whatever the last
+# one's check said, work the model left uncommitted is committed for it and checked (the note
+# says so), and SCORE holds the last check's "passed <p> of <n>"; RUN is complete unless the
+# machine failed.
 run_work() {  # test name run-id repo limit milestones...
     local test=$1 name=$2 rid=$3 repo=$4 limit=$5 m tries fix t0 note out head0 last lab crc wrap
     local pf="${TMPDIR:-/tmp}/2026-11-models-$ROUND-$LANE.prompt"; shift 5
@@ -220,7 +223,7 @@ Commit when the step is done."; fi; } > "$pf"
                 done)
                     # Any commit since the milestone began counts, the runner's repair commits included:
                     # work done before a repair is the model's, and a resumed job may find it finished.
-                    if [ "$(git -C ~/"$repo" rev-parse HEAD)" = "$head0" ]; then out=fail note="no commit"
+                    if [ -z "${SCORED:-}" ] && [ "$(git -C ~/"$repo" rev-parse HEAD)" = "$head0" ]; then out=fail note="no commit"
                     else
                         check_for "$m" > "$USAGE/$lab".check 2> "$USAGE/$lab".check-err; crc=$?
                         note=$(cat "$USAGE/$lab".check)
@@ -240,6 +243,12 @@ Commit when the step is done."; fi; } > "$pf"
                 invalid) out=fail note="Hermes stopped: the model's tool calls were invalid" ;;
                 *) out=$END note="" ;;
             esac
+            if [ -n "${SCORED:-}" ] && [ "$out" != pass ] && [ "$out" != fail -o "$END" != done ]; then
+                # the limit or invalid calls ended the step: its work so far is checked all the same
+                check_for "$m" > "$USAGE/$lab".check 2> "$USAGE/$lab".check-err; crc=$?
+                [ $crc -le 1 ] || stop_round "the check for $rid $m failed to run (exit $crc): $(why "$lab" "$repo" "check fault" "$note"); see why/$lab.md"
+                note="$(cat "$USAGE/$lab".check); $note"
+            fi
             break
         done
         record test="$test" config="$name" model="$(model_of "$name")" cache_gb="$(cache_of "$name")" sampling="$(sampling_of "$name")" \
@@ -250,6 +259,7 @@ Commit when the step is done."; fi; } > "$pf"
         [ "$RUN" = machine-failed ] && last=" | why/$lab.md"
         say "$rid $m: ${out:-machine-failed} ${note:-}$last"; REASON="$m: ${out:-machine-failed} ${note:-}$last"
         [ "$RUN" = machine-failed ] && return
+        if [ -n "${SCORED:-}" ]; then SCORE=$(grep -o 'passed [0-9]* of [0-9]*' "$USAGE/$lab".check 2>/dev/null | head -1); continue; fi
         [ "$out" = pass ] || { RUN=failed; return; }
     done
 }

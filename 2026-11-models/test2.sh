@@ -1,11 +1,12 @@
 # Test 2, the builds (README, "Python and Swift"), sourced by sherlock.sh and cloud.sh. PLAN names the
 # build plan (test2/plans/<plan>). For one model and language, up to 3 runs; a run builds that plan's
 # app milestone by milestone in a fresh repo holding only the plan
-# (~/$ROOT/test2-<model>-<language>-r<n>/app/specs/001-cleaning-scheduling-billing/). Each milestone
-# must end in a commit and pass the hidden tests of every milestone so far (test2/check.sh). A model
-# failure ends the run. Writes results/test2.tsv (one line a run) and results/runs.jsonl.
+# (~/$ROOT/test2-<model>-<language>-r<n>/app/specs/001-cleaning-scheduling-billing/). After each
+# milestone the hidden tests of every milestone so far run (test2/check.sh) and the run goes on to
+# the next whatever they say; its score is the hidden tests its last milestone passes (README,
+# "Scoring"). Writes results/test2.tsv (one line a run) and results/runs.jsonl.
 AUTO=${AUTO:-"No one is available to answer questions: run the step non-interactively."}
-TSV2="$RES/test2.tsv"; [ -f "$TSV2" ] || printf 'config\tlanguage\trun\tresult\tstopped at\n' > "$TSV2"
+TSV2="$RES/test2.tsv"; [ -f "$TSV2" ] || printf 'config\tlanguage\trun\tresult\tstopped at\thidden tests passed\n' > "$TSV2"
 P2="$T/test2/plans/${PLAN:?PLAN, the build plan}"
 [ -d "$P2" ] || { echo "no build plan $P2"; exit 1; }
 . "$P2/check.conf"
@@ -20,8 +21,12 @@ t2_prompt() {  # milestone M<n>
     [ "$LNG" = swift ] && echo "On this machine swift test runs Swift Testing (import Testing), not XCTest, which isn't installed: write the package's tests with Swift Testing. Run swift build and swift test with --disable-sandbox, as SwiftPM's own sandbox can't start inside this machine's, and allow a first build several minutes."
     echo "$AUTO"
 }
-t2_check() { local r; capped 1500 bash "$T/test2/check.sh" "$REPO" "$LNG" "${1#M}" "$PLAN"; r=$?   # check.sh caps the tests at 20 min
-    [ $r = 142 ] && { echo "the check itself did not finish in 25 min"; r=3; }
+t2_check() { local r left=""   # work the model left uncommitted is committed for it, then checked
+    [ -n "$(git -C ~/"$REPO" status --porcelain)" ] && left=1 &&
+        (cd ~/"$REPO" && git add -A && git -c user.name=runner -c user.email=runner@localhost commit -qm 'runner: the work the model left uncommitted') >/dev/null 2>&1
+    capped 1500 bash "$T/test2/check.sh" "$REPO" "$LNG" "${1#M}" "$PLAN" | tr -d '\n'; r=${PIPESTATUS[0]}   # check.sh caps the tests at 20 min
+    [ $r = 142 ] && { echo -n "the check itself did not finish in 25 min"; r=3; }
+    echo "${left:+; the model left it uncommitted}"
     return $r
 }
 
@@ -33,8 +38,8 @@ t2_run() {  # name language run
     RUNFIX=0; void_run "$rid"
     HMODEL=$(model_of "$name")
     new_repo "$REPO"; mkdir -p ~/"$REPO"/specs && cp -R "$P2/plan" ~/"$REPO"/specs/001-cleaning-scheduling-billing; start_repo "$REPO"
-    run_work 2 "$name" "$rid" "$REPO" "$LIMIT" $(seq -f 'M%g' "$(t2_steps "$LNG")")   # LIMIT: a backstop; time only breaks ties
-    printf '%s\t%s\t%s\t%s\t%s\n' "$name" "$LNG" "$3" "$RUN" "$([ "$RUN" = complete ] || echo "$WHERE")" >> "$TSV2"; run_event "$rid"
+    SCORE=""; SCORED=1 run_work 2 "$name" "$rid" "$REPO" "$LIMIT" $(seq -f 'M%g' "$(t2_steps "$LNG")")   # LIMIT: a backstop; time only breaks ties
+    printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$name" "$LNG" "$3" "$RUN" "$([ "$RUN" = complete ] || echo "$WHERE")" "${SCORE#passed }" >> "$TSV2"; run_event "$rid"
     rm -rf ~/"$REPO"/"$SWIFT_PKG"/.build   # the build cache: big, and never needed again
 }
 
