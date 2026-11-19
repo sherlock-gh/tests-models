@@ -2,6 +2,12 @@
 
 ## Results
 
+OVERALL: Failure.  Local LLM reutrned usable data for comparing local llm performance 6 or 274 test runs.
+
+After a month and over a dozen iterations the general pattern has been one of failures and aborted attempts.  The tested Local LLM configuration are nearly incapable for producing project plans for trivial software development, and entirely incapable of executing on any such plans.
+
+Of 274 test runs, only 81 delevered any data, and of these only 6 yielded usable data.  6 or 274 test runs yielded useful data.
+
 | [November](#November-Tests) | [October](#October-Tests) |
 | --- | --- |
 | [Round 1](https://sherlock-gh.github.io/tests-models/2026-11-models/round1/)<br>[Round 2](https://sherlock-gh.github.io/tests-models/2026-11-models/round2/)<br>[Round 3](https://sherlock-gh.github.io/tests-models/2026-11-models/round3/)<br>[Round 4](https://sherlock-gh.github.io/tests-models/2026-11-models/round4/) | [Round 1](https://sherlock-gh.github.io/tests-models/2026-10-config/round1/)<br>[Round 2](https://sherlock-gh.github.io/tests-models/2026-10-config/round2/)<br>[Round 3](https://sherlock-gh.github.io/tests-models/2026-10-config/round3/)<br>[Round 4](https://sherlock-gh.github.io/tests-models/2026-10-config/round4/) |
