@@ -17,7 +17,7 @@ from pathlib import Path
 KIT = Path.home() / "tests-site" / "kit"
 WWW = Path.home() / "demo" / "www" / "tests"
 PAGES = "https://sherlock-gh.github.io/tests-models/"
-REPO = "https://github.com/sherlock-gh/tests-models/blob/main/"
+REPO = "https://github.com/sherlock-gh/tests-models/blob/main/archive/"
 STYLE = """:root{--bg:#f7f7f5;--card:#fff;--fg:#1d1d1f;--dim:#6b6b70;--line:#dcdcd8;--accent:#0b63ce}
 @media (prefers-color-scheme:dark){:root{--bg:#161618;--card:#1f1f22;--fg:#ececee;--dim:#9a9aa2;--line:#34343a;--accent:#6aa6ff}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,sans-serif}
